@@ -5,17 +5,19 @@
     
     <title>ConcurrentHashMap源码解析 | 技术人生</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图  类注释  类常量  插入   总结">
+    <meta name="description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图   类注释  类常量  插入   总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ConcurrentHashMap源码解析">
 <meta property="og:url" content="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图  类注释  类常量  插入   总结">
+<meta property="og:description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图   类注释  类常量  插入   总结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-30T06:19:44.071Z">
+<meta property="og:image" content="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/1593517421.png">
+<meta property="og:updated_time" content="2020-06-30T11:46:16.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ConcurrentHashMap源码解析">
-<meta name="twitter:description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图  类注释  类常量  插入   总结">
+<meta name="twitter:description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图   类注释  类常量  插入   总结">
+<meta name="twitter:image" content="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/1593517421.png">
     
 
     
@@ -240,6 +242,7 @@
             <p><em>ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。</em></p>
 <h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><ul>
 <li><p>类视图</p>
+<p><img src="/2020/06/30/ConcurrentHashMap源码解析/1593517421.png" alt="类视图"></p>
 </li>
 <li><p>类注释</p>
 </li>
@@ -258,7 +261,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/" data-id="ckc1jszaq000610ifyx9lfwvm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/" data-id="ckc1v89wf0000vkifgsrwv5ga" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
