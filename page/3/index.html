@@ -163,7 +163,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                37
+                38
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,6 +192,146 @@
 
             
             <section id="main">
+    <article id="post-truffle开发入门" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/03/19/truffle开发入门/">truffle开发入门</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/03/19/truffle开发入门/">
+            <time datetime="2018-03-19T12:13:51.000Z" itemprop="datePublished">2018-03-19</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/区块链/">区块链</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>Truffle是以太坊最受欢迎的开发框架，在搭建第一个区块链程序的过程，由于truffle的版本更新为3.0以上，按照大部分部署教程无法运行，特以此记录。本文部署环境为macosx，采用homebrew套件进行部署，homebrew的安装可参考之前文章<a href="http://flyflyfish.com/2018/01/13/homebrew/">homebrew安装</a></em></p>
+<h5 id="Node环境配置"><a href="#Node环境配置" class="headerlink" title="Node环境配置"></a>Node环境配置</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install node</span></span><br><span class="line">brew install node</span><br><span class="line"><span class="comment"># Test </span></span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<h5 id="Truffle安装"><a href="#Truffle安装" class="headerlink" title="Truffle安装"></a>Truffle安装</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install truffle v3.2.1</span></span><br><span class="line">npm install -g truffle@3.2.1</span><br><span class="line"><span class="comment"># Install testrpc</span></span><br><span class="line">npm install -g ethereumjs-testrpc</span><br><span class="line"><span class="comment"># Testrpc</span></span><br><span class="line">testrpc</span><br></pre></td></tr></table></figure>
+<h5 id="Webpack-Truffle-Box"><a href="#Webpack-Truffle-Box" class="headerlink" title="Webpack Truffle Box"></a>Webpack Truffle Box</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># webpack</span></span><br><span class="line">mkdir webpack &amp;&amp; <span class="built_in">cd</span> webpack </span><br><span class="line"><span class="comment"># Truffle init</span></span><br><span class="line">truffle ubox webpack</span><br><span class="line"><span class="comment"># Compile and migrate</span></span><br><span class="line">truffle compile &amp;&amp; truffle migrate</span><br><span class="line"><span class="comment"># Serve</span></span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h5 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h5><ul>
+<li><a href="https://www.dyclassroom.com/howto-mac/how-to-install-nodejs-and-npm-on-mac-using-homebrew" target="_blank" rel="noopener">how-to-install-nodejs-and-npm-on-mac-using-homebrew</a></li>
+<li><a href="https://gist.github.com/rcugut/c7abd2a425bb65da3c61d8341cd4b02d#file-node-npm-install-md" target="_blank" rel="noopener">file-node-npm-install-md</a></li>
+<li><a href="https://github.com/trufflesuite/truffle-init-webpack" target="_blank" rel="noopener">truffle-init-webpack</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://flyflyfish.com/2018/03/19/truffle开发入门/" data-id="ckc1gadt9001u2sif48et9hxc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://flyflyfish.com/2018/03/19/truffle开发入门/#comments" id="sourceId::2018/03/19/truffle开发入门/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
     <article id="post-区块链权威指南" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -276,7 +416,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/03/19/区块链权威指南/" data-id="ckc1ctw360028x4ifsimmeg6c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/03/19/区块链权威指南/" data-id="ckc1gadtd00222sifltjhjn7w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -419,7 +559,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/03/13/cdh下Sqoop的使用/" data-id="ckc1ctw20000ex4if5itscrhz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/03/13/cdh下Sqoop的使用/" data-id="ckc1gads8000e2siflpughvd4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -566,7 +706,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/03/13/cdh下Sqoop2的安装/" data-id="ckc1ctw1z000cx4ifx4kocqom" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/03/13/cdh下Sqoop2的安装/" data-id="ckc1gads7000c2sif7z285w3o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -712,7 +852,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/03/13/Resource和Autowired注解区别/" data-id="ckc1ctw1m0002x4iflftd872a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/03/13/Resource和Autowired注解区别/" data-id="ckc1gads100072sifcy82smdw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -874,7 +1014,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/03/02/hexo布局/" data-id="ckc1ctw27000nx4ifuwqkrfe9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/03/02/hexo布局/" data-id="ckc1gadsj000q2siff40uskfn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1049,7 +1189,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc1ctw2p001ex4ifrmh05kcx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc1gadsx001d2sifgkbblklc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1187,7 +1327,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/02/26/ag/" data-id="ckc1ctw1t0007x4ifj5r1dszu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/02/26/ag/" data-id="ckc1gadrw00042sifre8dz4nl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1398,7 +1538,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/02/26/web常见漏洞/" data-id="ckc1ctw340025x4ifgkprsyy7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/02/26/web常见漏洞/" data-id="ckc1gadtb001z2sif2zg4tlqn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1546,7 +1686,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/02/24/nginx转发丢失端口问题/" data-id="ckc1ctw2x001rx4ifs68t9dk7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://flyflyfish.com/2018/02/24/nginx转发丢失端口问题/" data-id="ckc1gadt2001l2sifjfyo741o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1625,192 +1765,6 @@
 
 
 
-    <article id="post-cdh5-12-0安装" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/04/cdh5-12-0安装/">cdh5.12.0安装</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/02/04/cdh5-12-0安装/">
-            <time datetime="2018-02-04T06:00:09.000Z" itemprop="datePublished">2018-02-04</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h3 id="安装Cloudera-Manager"><a href="#安装Cloudera-Manager" class="headerlink" title="安装Cloudera Manager"></a>安装Cloudera Manager</h3><p>本文采用离线安装cdh5.12.0，所有安装包的版本均为5.12.0，安装所需的离线包均需提前下载，下文将给出对应下载链接地址和配置。<strong>安装的操作系统为centos 7及以上系统，其他系统和版本可以需自行下载对应的rpm</strong></p>
-<h5 id="下载cloudera-manager-repo（所有节点均需配置）"><a href="#下载cloudera-manager-repo（所有节点均需配置）" class="headerlink" title="下载cloudera-manager.repo（所有节点均需配置）"></a>下载cloudera-manager.repo（所有节点均需配置）</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo" title="下载链接" target="_blank" rel="noopener">下载链接</a></p>
-</li>
-<li><p>cloudera-manage.repo配置(所有节点均需配置，仅仅展示主节点的配置如下)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh] cat /etc/yum.repos.d/cloudera-manager.repo</span><br><span class="line">[cloudera-manager]</span><br><span class="line">name = Cloudera Manager, Version 5.12.0</span><br><span class="line">baseurl = https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/</span><br><span class="line">gpgkey = https://archive.cloudera.com/redhat/cdh/RPM-GPG-KEY-cloudera</span><br><span class="line">gpgcheck = 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证生效</span></span><br><span class="line">yum clean all  </span><br><span class="line">yum list | grep cloudera  </span><br><span class="line"><span class="comment"># 确认显示的版本是否正确（我这里显示5.12.0-1.cm5120.p0.120.el7）</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="下载cloudera-manager-installer-bin（主节点需配置，从节点无须配置）"><a href="#下载cloudera-manager-installer-bin（主节点需配置，从节点无须配置）" class="headerlink" title="下载cloudera-manager-installer.bin（主节点需配置，从节点无须配置）"></a>下载cloudera-manager-installer.bin（主节点需配置，从节点无须配置）</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/installer/5.12.0/cloudera-manager-installer.bin" target="_blank" rel="noopener">下载链接</a></p>
-</li>
-<li><p>放置在/opt目录，并添加执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置完毕后验证[root@n171 cdh] <code>ll /opt/cloudera-manager-installer.bin</code></p>
-<p>  -rwxr-xr-x 1 root root 519670 6月  21 02:43 /opt/cloudera-manager-installer.bin</p>
-</li>
-</ul>
-<h5 id="下载RPMS"><a href="#下载RPMS" class="headerlink" title="下载RPMS"></a>下载RPMS</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/RPMS/x86_64/" target="_blank" rel="noopener">下载链接(下载目录下所有文件)</a></p>
-</li>
-<li><p>新建放置目录 <code>mkdir -p /opt/cloudera-RPMS/</code></p>
-</li>
-<li><p>下载完毕后：</p>
-<ul>
-<li>master节点，目录结构如下</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]<span class="comment"># ls /opt/cloudera-RPMS/</span></span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-db-2-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">enterprise-debuginfo-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">oracle-j2sdk1.7-1.7.0+update67-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
-<ul>
-<li>slave节点(不需要server相关的rpm，只需要agent相关rpm)，目录结构如下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@n172 parcel-repo]<span class="comment"># ls /opt/cloudera-RPMS/</span></span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="下载CDH-Parcel"><a href="#下载CDH-Parcel" class="headerlink" title="下载CDH-Parcel"></a>下载CDH-Parcel</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cdh5/parcels/5.12.0/" title="下载CDH-Parcel文件" target="_blank" rel="noopener">下载链接</a></p>
-</li>
-<li><p>新建放置目录 <code>mkdir -p /opt/cloudera/parcel-repo/</code></p>
-</li>
-<li><p>下载完毕后(<strong>所有节点</strong>)，目录结构如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]<span class="comment"># ls /opt/cloudera/parcel-repo/</span></span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel</span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel.sha</span><br><span class="line">manifest.json</span><br><span class="line">注意:下载后将.sha1文件后缀更改为.sha</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="执行安装"><a href="#执行安装" class="headerlink" title="执行安装"></a>执行安装</h5><ul>
-<li>所有节点执行</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera-RPMS  </span><br><span class="line">yum -y localinstall --nogpgcheck *.rpm</span><br></pre></td></tr></table></figure>
-<ul>
-<li>master节点执行</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝cloudera-manage-installer.bin到/opt/</span></span><br><span class="line"><span class="comment"># +x 权限</span></span><br><span class="line">sudo chmod +x /opt/cloudera-manager-installer.bin</span><br><span class="line">/opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
-<h5 id="访问安装界面"><a href="#访问安装界面" class="headerlink" title="访问安装界面"></a>访问安装界面</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://Master主机的IP:7180/ </span><br><span class="line">如果不能访问，稍等刷新再试，服务启动需要一定时间</span><br></pre></td></tr></table></figure>
-<h5 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h5><ul>
-<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html" target="_blank" rel="noopener">CDH5.12.0安装官网链接</a></li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://flyflyfish.com/2018/02/04/cdh5-12-0安装/" data-id="ckc1ctw1v0009x4ifu2xv4szw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://flyflyfish.com/2018/02/04/cdh5-12-0安装/#comments" id="sourceId::2018/02/04/cdh5-12-0安装/" class="article-comment-link cy_cmt_count">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
     </nav>
@@ -1825,6 +1779,25 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/06/30/HashMap源码解析/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2020/06/30/HashMap源码解析/" class="title">HashMap</a></p>
+                            <p class="item-date"><time datetime="2020-06-30T03:13:45.000Z" itemprop="datePublished">2020-06-30</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -1902,25 +1875,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/11/26/ubuntu移动mysql的datadir/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
-                            <p class="item-title"><a href="/2018/11/26/ubuntu移动mysql的datadir/" class="title">ubuntu移动mysql的datadir</a></p>
-                            <p class="item-date"><time datetime="2018-11-26T10:06:20.000Z" itemprop="datePublished">2018-11-26</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1931,7 +1885,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -1940,7 +1894,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -2029,21 +1983,6 @@
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-    </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
