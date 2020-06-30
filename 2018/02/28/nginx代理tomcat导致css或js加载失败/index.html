@@ -8,16 +8,16 @@
     <meta name="description" content="Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题 nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形 端口丢失 之前笔者也有文章单独介绍，可参考nginx转发丢失端口的问题   反向代理获取真实ip（域名）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx代理tomcat导致css或js加载失败">
-<meta property="og:url" content="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/index.html">
 <meta property="og:site_name" content="技术人生">
 <meta property="og:description" content="Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题 nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形 端口丢失 之前笔者也有文章单独介绍，可参考nginx转发丢失端口的问题   反向代理获取真实ip（域名）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg">
+<meta property="og:image" content="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg">
 <meta property="og:updated_time" content="2020-06-30T02:42:56.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx代理tomcat导致css或js加载失败">
 <meta name="twitter:description" content="Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题 nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形 端口丢失 之前笔者也有文章单独介绍，可参考nginx转发丢失端口的问题   反向代理获取真实ip（域名）">
-<meta name="twitter:image" content="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg">
+<meta name="twitter:image" content="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg">
     
 
     
@@ -242,7 +242,7 @@
             <p><em>Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题</em></p>
 <p>nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形</p>
 <h4 id="端口丢失"><a href="#端口丢失" class="headerlink" title="端口丢失"></a>端口丢失</h4><ul>
-<li>之前笔者也有文章单独介绍，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">nginx转发丢失端口的问题</a></li>
+<li>之前笔者也有文章单独介绍，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">nginx转发丢失端口的问题</a></li>
 </ul>
 <hr>
 <h4 id="反向代理获取真实ip（域名）、端口、协议"><a href="#反向代理获取真实ip（域名）、端口、协议" class="headerlink" title="反向代理获取真实ip（域名）、端口、协议"></a>反向代理获取真实ip（域名）、端口、协议</h4><p>nginx反向代理后，servlet应用通过request.getRemoteAddr()取到的IP是nginx的IP，并非客户端的真实IP；通过request.getRequestUrl()获取的ip（域名）、端口、协议都是nginx对应的参数。</p>
@@ -256,7 +256,7 @@
 <li><p>针对tomcat+nginx的解决方案：</p>
 <p>nginx添加如下配置,：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br></pre></td></tr></table></figure>
-<p>如果不知道如何添加，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">nginx转发丢失端口的问题</a>。添加完后，输出结果如下：</p>
+<p>如果不知道如何添加，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">nginx转发丢失端口的问题</a>。添加完后，输出结果如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">RemoteAddr:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, URL:http:<span class="comment">//浏览器的ip地址/test</span></span><br></pre></td></tr></table></figure>
 <p>发现RemoteAddr仍然获取不正确，解决方案如下：</p>
 <ul>
@@ -293,7 +293,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc1jremv001ipcifbnpmuv70" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc1jszbx001l10ifxhw1fk06" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -361,7 +361,7 @@
 
             
     
-        <a href="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/#comments" id="sourceId::2018/02/28/nginx代理tomcat导致css或js加载失败/" class="article-comment-link cy_cmt_count">评论</a>
+        <a href="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/#comments" id="sourceId::2018/02/28/nginx代理tomcat导致css或js加载失败/" class="article-comment-link cy_cmt_count">评论</a>
     
 
         </footer>
@@ -616,21 +616,6 @@
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-    </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -8,7 +8,7 @@
     <meta name="description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图  类注释  类常量  插入   总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ConcurrentHashMap源码解析">
-<meta property="og:url" content="http://flyflyfish.com/2020/06/30/ConcurrentHashMap源码解析/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/index.html">
 <meta property="og:site_name" content="技术人生">
 <meta property="og:description" content="ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。 源码分析 类视图  类注释  类常量  插入   总结">
 <meta property="og:locale" content="zh-CN">
@@ -258,7 +258,7 @@
 
 </div>
 
-    <a data-url="http://flyflyfish.com/2020/06/30/ConcurrentHashMap源码解析/" data-id="ckc1jrelt0004pcifg7omyzfj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/" data-id="ckc1jszaq000610ifyx9lfwvm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -326,7 +326,7 @@
 
             
     
-        <a href="http://flyflyfish.com/2020/06/30/ConcurrentHashMap源码解析/#comments" id="sourceId::2020/06/30/ConcurrentHashMap源码解析/" class="article-comment-link cy_cmt_count">评论</a>
+        <a href="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/#comments" id="sourceId::2020/06/30/ConcurrentHashMap源码解析/" class="article-comment-link cy_cmt_count">评论</a>
     
 
         </footer>
@@ -572,21 +572,6 @@
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-    </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
