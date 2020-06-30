@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>nginx代理tomcat导致css或js加载失败 | 技术人生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题 nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形 端口丢失 之前笔者也有文章单独介绍，可参考nginx转发丢失端口的问题   反向代理获取真实ip（域名）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx代理tomcat导致css或js加载失败">
+<meta property="og:url" content="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/index.html">
+<meta property="og:site_name" content="技术人生">
+<meta property="og:description" content="Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题 nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形 端口丢失 之前笔者也有文章单独介绍，可参考nginx转发丢失端口的问题   反向代理获取真实ip（域名）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg">
+<meta property="og:updated_time" content="2020-06-30T02:42:56.319Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx代理tomcat导致css或js加载失败">
+<meta name="twitter:description" content="Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题 nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形 端口丢失 之前笔者也有文章单独介绍，可参考nginx转发丢失端口的问题   反向代理获取真实ip（域名）">
+<meta name="twitter:image" content="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">技术人生</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">Fly</h2>
+            <h3 id="title">大数据 区块链 web开发者</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>中国-广州</span>
+            <a id="follow" target="_blank" href="https://github.com/FlyingGlass">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                37
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                0
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/FlyingGlass" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-nginx代理tomcat导致css或js加载失败" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            nginx代理tomcat导致css或js加载失败
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/02/28/nginx代理tomcat导致css或js加载失败/">
+            <time datetime="2018-02-28T02:33:58.000Z" itemprop="datePublished">2018-02-28</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Nginx/">Nginx</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题</em></p>
+<p>nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形</p>
+<h4 id="端口丢失"><a href="#端口丢失" class="headerlink" title="端口丢失"></a>端口丢失</h4><ul>
+<li>之前笔者也有文章单独介绍，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">nginx转发丢失端口的问题</a></li>
+</ul>
+<hr>
+<h4 id="反向代理获取真实ip（域名）、端口、协议"><a href="#反向代理获取真实ip（域名）、端口、协议" class="headerlink" title="反向代理获取真实ip（域名）、端口、协议"></a>反向代理获取真实ip（域名）、端口、协议</h4><p>nginx反向代理后，servlet应用通过request.getRemoteAddr()取到的IP是nginx的IP，并非客户端的真实IP；通过request.getRequestUrl()获取的ip（域名）、端口、协议都是nginx对应的参数。</p>
+<ul>
+<li>比如nginx的配置：</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">upstream</span> backend &#123;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="comment">#server backend1.example.com wight=5;</span></span><br><span class="line">        <span class="comment">#server 127.0.0.1:8080 max_fails=3 fail_timeout=30s;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#server backup1.example.com backup;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span> your.domain.com;</span><br><span class="line">        </span><br><span class="line">        <span class="attribute">location</span> /test &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend/test;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在浏览器打开<code>http://your.domain.com/test</code>访问servlet应用，获取客户端IP和URL：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log.info(<span class="string">"RemoteAddr:&#123;&#125;, URL:&#123;&#125;"</span>, request.getRemoteAddr(), request.getRequestURL());</span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">RemoteAddr:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, URL:http:<span class="comment">//127.0.0.1:8080/test</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>针对tomcat+nginx的解决方案：</p>
+<p>nginx添加如下配置,：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br></pre></td></tr></table></figure>
+<p>如果不知道如何添加，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">nginx转发丢失端口的问题</a>。添加完后，输出结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">RemoteAddr:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, URL:http:<span class="comment">//浏览器的ip地址/test</span></span><br></pre></td></tr></table></figure>
+<p>发现RemoteAddr仍然获取不正确，解决方案如下：</p>
+<ul>
+<li><p>方案一：通过<code>request.getHeader(&quot;X-Forwrad-For&quot;)</code>或<code>request.getHeader(&quot;X-Real-IP&quot;)</code>获取到nginx配置的Header。</p>
+</li>
+<li><p>方案二： 配置tomcat，通过Servlet API的request.getRemoteAddr()方法获取客户端的IP。Tomcat的server.xml，在Host元素内最后加入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.valves.RemoteIpValve"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h4 id="JS或css无法完全加载"><a href="#JS或css无法完全加载" class="headerlink" title="JS或css无法完全加载"></a>JS或css无法完全加载</h4><p>nginx的代理缓存区，默认较小导致部分文件出现加载不全的问题，比较典型的如<code>jQuery框架</code>，可以通过配置调整nginx的缓存区即可。</p>
+<p>最终完整配置如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="comment"># http_proxy </span></span><br><span class="line">    <span class="attribute">proxy_buffer_size</span> <span class="number">128k</span>;</span><br><span class="line">    <span class="attribute">proxy_buffers</span> <span class="number">32</span> <span class="number">128k</span>;</span><br><span class="line">    <span class="attribute">proxy_busy_buffers_size</span> <span class="number">128k</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="attribute">upstream</span> backend &#123;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span> your.domain.com;</span><br><span class="line">        </span><br><span class="line">        <span class="attribute">location</span> /test &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend/test;</span><br><span class="line">            <span class="comment"># proxy_params</span></span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于<code>nginx</code>的<code>http_proxy</code>模块参数含义：</p>
+<p><img src="/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg" alt="http_proxy模块"></p>
+</li>
+</ul>
+<ul>
+<li>参考链接：<ul>
+<li><a href="https://lanjingling.github.io/2015/10/28/nginx-tomcat-cluster/" target="_blank" rel="noopener">nginx tomcat负载均衡、动静分离</a></li>
+<li><a href="http://www.zving.com/c/2014-03-19/257610.shtml" target="_blank" rel="noopener">Nginx+Tomcat代理环境下JS无法完全加载问题的处理</a></li>
+<li><a href="http://blog.csdn.net/xiao__gui/article/details/73733797" target="_blank" rel="noopener">Jetty/Tomcat + Nginx反向代理获取客户端真实IP、域名、协议、端口</a></li>
+<li><a href="https://www.jianshu.com/p/5c7d718f15d2" target="_blank" rel="noopener">nginx基本使用系列(三)_nginx常用配置文件解析</a></li>
+</ul>
+</li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc1ctw2p001ex4ifrmh05kcx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://flyflyfish.com/2018/02/28/nginx代理tomcat导致css或js加载失败/#comments" id="sourceId::2018/02/28/nginx代理tomcat导致css或js加载失败/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/03/02/hexo布局/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    hexo布局
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/02/26/ag/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">ag安装</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/02/28/nginx代理tomcat导致css或js加载失败/"></div>
+
+</section>
+    
+
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/19/ssr开机启动/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/19/ssr开机启动/" class="title">ssr开机启动</a></p>
+                            <p class="item-date"><time datetime="2019-06-19T07:56:47.000Z" itemprop="datePublished">2019-06-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/17/docker常用命令/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/17/docker常用命令/" class="title">docker常用命令</a></p>
+                            <p class="item-date"><time datetime="2019-06-17T08:06:33.000Z" itemprop="datePublished">2019-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/17/rpm离线安装脚本/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/17/rpm离线安装脚本/" class="title">rpm离线安装脚本</a></p>
+                            <p class="item-date"><time datetime="2019-06-17T07:48:43.000Z" itemprop="datePublished">2019-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/17/mysql5-7离线安装/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/17/mysql5-7离线安装/" class="title">mysql5.7离线安装</a></p>
+                            <p class="item-date"><time datetime="2019-06-17T02:53:49.000Z" itemprop="datePublished">2019-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/26/ubuntu移动mysql的datadir/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2018/11/26/ubuntu移动mysql的datadir/" class="title">ubuntu移动mysql的datadir</a></p>
+                            <p class="item-date"><time datetime="2018-11-26T10:06:20.000Z" itemprop="datePublished">2018-11-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/FlyingGlass">Github</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            <div class="row">
+                <div style="clear: left;"></div>
+                © 2018 技术人生 - Fly 版权所有<br>
+                <a href="http://www.miitbeian.gov.cn">粤ICP备18003543号</a>
+                <!--Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.-->
+            </div>
+
+
+            <!--
+            &copy; 2020 Fly<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+            -->
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytpOeLLe"></script>
+    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    <script type="text/javascript">
+    window.changyan.api.config({
+    appid: 'cytpOeLLe',
+    conf: 'prod_f8be9c732be4e5b852d91718ea6eba71'
+    });
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>ubuntu移动mysql的datadir | 技术人生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Introduction数据库会随着时间的推移而增长，有时会超出文件系统上的空间。当它们位于与操作系统其余部分相同的分区上时，您还可能遇到I/O争用。RAID、网络块存储和其他设备可以提供冗余和其他需要的特性。无论您是在添加更多空间、评估优化性能的方法，还是希望利用其他存储特性，本文都将指导您重新定位MySQL的数据目录。 Prerequisites前置条件:  ubuntu16.04服务器，具有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu移动mysql的datadir">
+<meta property="og:url" content="http://flyflyfish.com/2018/11/26/ubuntu移动mysql的datadir/index.html">
+<meta property="og:site_name" content="技术人生">
+<meta property="og:description" content="Introduction数据库会随着时间的推移而增长，有时会超出文件系统上的空间。当它们位于与操作系统其余部分相同的分区上时，您还可能遇到I/O争用。RAID、网络块存储和其他设备可以提供冗余和其他需要的特性。无论您是在添加更多空间、评估优化性能的方法，还是希望利用其他存储特性，本文都将指导您重新定位MySQL的数据目录。 Prerequisites前置条件:  ubuntu16.04服务器，具有">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-30T02:42:56.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu移动mysql的datadir">
+<meta name="twitter:description" content="Introduction数据库会随着时间的推移而增长，有时会超出文件系统上的空间。当它们位于与操作系统其余部分相同的分区上时，您还可能遇到I/O争用。RAID、网络块存储和其他设备可以提供冗余和其他需要的特性。无论您是在添加更多空间、评估优化性能的方法，还是希望利用其他存储特性，本文都将指导您重新定位MySQL的数据目录。 Prerequisites前置条件:  ubuntu16.04服务器，具有">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">技术人生</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">Fly</h2>
+            <h3 id="title">大数据 区块链 web开发者</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>中国-广州</span>
+            <a id="follow" target="_blank" href="https://github.com/FlyingGlass">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                37
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                0
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/FlyingGlass" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-ubuntu移动mysql的datadir" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            ubuntu移动mysql的datadir
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/11/26/ubuntu移动mysql的datadir/">
+            <time datetime="2018-11-26T10:06:20.000Z" itemprop="datePublished">2018-11-26</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Devops/">Devops</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>数据库会随着时间的推移而增长，有时会超出文件系统上的空间。当它们位于与操作系统其余部分相同的分区上时，您还可能遇到<code>I/O</code>争用。<code>RAID</code>、网络块存储和其他设备可以提供冗余和其他需要的特性。无论您是在添加更多空间、评估优化性能的方法，还是希望利用其他存储特性，本文都将指导您重新定位<code>MySQL</code>的数据目录。</p>
+<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>前置条件:</p>
+<ul>
+<li><code>ubuntu16.04</code>服务器，具有非根用户和<code>sudo</code>特权。</li>
+<li><code>MySQL</code>服务器。如果你还没有安装<code>MySQL</code>, 可以参考之前博文的<a href="https://flyflyfish.com/2018/01/13/mysql/">mysql的安装</a>。</li>
+</ul>
+<h3 id="STEP"><a href="#STEP" class="headerlink" title="STEP"></a>STEP</h3><ul>
+<li>登录<code>mysql</code>查看当前的<code>datadir</code>：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">mysql&gt; select @@datadir;</span><br><span class="line">sudo systemctl stop mysql</span><br><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同步现有的<code>datadir</code>到新的目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rsync</span></span><br><span class="line">sudo rsync -av /var/lib/mysql /mnt/data01</span><br><span class="line">sudo mv /var/lib/mysql /var/lib/mysql.bak</span><br><span class="line">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">$ cat /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">...</span><br><span class="line">datadir         = /mnt/data01/mysql</span><br><span class="line">...</span><br><span class="line"><span class="comment"># Configuring AppArmor Access Control Rules</span></span><br><span class="line">sudo vim /etc/apparmor.d/tunables/<span class="built_in">alias</span></span><br><span class="line">$ cat /etc/apparmor.d/tunables/<span class="built_in">alias</span></span><br><span class="line">. . .</span><br><span class="line"><span class="built_in">alias</span> /var/lib/mysql/ -&gt; /mnt/data01/mysql/</span><br><span class="line">. . .</span><br><span class="line"><span class="comment"># Restart apparmor</span></span><br><span class="line">sudo systemctl restart apparmor</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建目录以通过<code>/usr/share/mysql/mysql-systemd-start</code>脚本的检测：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ cat /usr/share/mysql/mysql-systemd-start</span><br><span class="line">...</span><br><span class="line">datadir=$(get_mysql_option mysqld datadir <span class="string">"/var/lib/mysql"</span>)</span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">"<span class="variable">$&#123;datadir&#125;</span>"</span> ] &amp;&amp; [ ! -L <span class="string">"<span class="variable">$&#123;datadir&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"MySQL data dir not found at <span class="variable">$&#123;datadir&#125;</span>. Please create one."</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">"<span class="variable">$&#123;datadir&#125;</span>/mysql"</span> ] &amp;&amp; [ ! -L <span class="string">"<span class="variable">$&#123;datadir&#125;</span>/mysql"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"MySQL system database not found in <span class="variable">$&#123;datadir&#125;</span>. Please run mysqld --initialize."</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># 创建目录，根据自己的datadir决定</span></span><br><span class="line">sudo mkdir /var/lib/mysql/mysql -p</span><br></pre></td></tr></table></figure>
+<ul>
+<li>验证是否更改成功</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start mysql</span><br><span class="line">sudo systemctl status mysql</span><br><span class="line">mysql -u root -p</span><br><span class="line">mysql&gt; select @@datadir;</span><br><span class="line">+----------------------------+</span><br><span class="line">| @@datadir                  |</span><br><span class="line">+----------------------------+</span><br><span class="line">| /mnt/data01/mysql/ |</span><br><span class="line">+----------------------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br><span class="line"><span class="comment"># Restart Mysql</span></span><br><span class="line">sudo systemctl restart mysql</span><br><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h4><ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04" target="_blank" rel="noopener">How To Install MySQL on Ubuntu 16.04</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-move-a-mysql-data-directory-to-a-new-location-on-ubuntu-16-04" target="_blank" rel="noopener">how-to-move-a-mysql-data-directory-to-a-new-location-on-ubuntu-16-04</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://flyflyfish.com/2018/11/26/ubuntu移动mysql的datadir/" data-id="ckc1ctw320021x4if2h6ny360" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://flyflyfish.com/2018/11/26/ubuntu移动mysql的datadir/#comments" id="sourceId::2018/11/26/ubuntu移动mysql的datadir/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/06/17/mysql5-7离线安装/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    mysql5.7离线安装
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/06/15/eth的gas估算/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">eth的gas估算</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="SOHUCS" sid="2018/11/26/ubuntu移动mysql的datadir/"></div>
+
+</section>
+    
+
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/19/ssr开机启动/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/19/ssr开机启动/" class="title">ssr开机启动</a></p>
+                            <p class="item-date"><time datetime="2019-06-19T07:56:47.000Z" itemprop="datePublished">2019-06-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/17/docker常用命令/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/17/docker常用命令/" class="title">docker常用命令</a></p>
+                            <p class="item-date"><time datetime="2019-06-17T08:06:33.000Z" itemprop="datePublished">2019-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/17/rpm离线安装脚本/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/17/rpm离线安装脚本/" class="title">rpm离线安装脚本</a></p>
+                            <p class="item-date"><time datetime="2019-06-17T07:48:43.000Z" itemprop="datePublished">2019-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/17/mysql5-7离线安装/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2019/06/17/mysql5-7离线安装/" class="title">mysql5.7离线安装</a></p>
+                            <p class="item-date"><time datetime="2019-06-17T02:53:49.000Z" itemprop="datePublished">2019-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/26/ubuntu移动mysql的datadir/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
+                            <p class="item-title"><a href="/2018/11/26/ubuntu移动mysql的datadir/" class="title">ubuntu移动mysql的datadir</a></p>
+                            <p class="item-date"><time datetime="2018-11-26T10:06:20.000Z" itemprop="datePublished">2018-11-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/FlyingGlass">Github</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            <div class="row">
+                <div style="clear: left;"></div>
+                © 2018 技术人生 - Fly 版权所有<br>
+                <a href="http://www.miitbeian.gov.cn">粤ICP备18003543号</a>
+                <!--Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.-->
+            </div>
+
+
+            <!--
+            &copy; 2020 Fly<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+            -->
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytpOeLLe"></script>
+    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    <script type="text/javascript">
+    window.changyan.api.config({
+    appid: 'cytpOeLLe',
+    conf: 'prod_f8be9c732be4e5b852d91718ea6eba71'
+    });
+    </script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
