@@ -163,7 +163,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                39
+                41
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,6 +192,296 @@
 
             
             <section id="main">
+    <article id="post-aws配置eb-cli" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/06/02/aws配置eb-cli/">aws配置eb-cli</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/06/02/aws配置eb-cli/">
+            <time datetime="2018-06-02T04:25:02.000Z" itemprop="datePublished">2018-06-02</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/AWS/">AWS</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>EB CLI 是 Elastic Beanstalk 的命令行界面，它提供了可简化从本地存储库创建、更新和监控环境的交互式命令。将 EB CLI 用作每日开发和测试周期的一部分，取代 AWS 管理控制台。</em></p>
+<h4 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h4><ul>
+<li><code>Larger than Python 2.7 or Python3.4</code> </li>
+</ul>
+<h4 id="安装EB-CLI"><a href="#安装EB-CLI" class="headerlink" title="安装EB CLI"></a>安装EB CLI</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可选参数 --upgrade更新依赖组件 --user安装到用户子目录</span></span><br><span class="line">pip install awsebcli </span><br><span class="line"><span class="comment"># 设置Env, eg: LOCAL_PATH=~/.local/bin</span></span><br><span class="line"><span class="built_in">export</span> PATH=LOCAL_PATH:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="comment"># Check eb version</span></span><br><span class="line">eb --version</span><br></pre></td></tr></table></figure>
+<h4 id="配置-EB-CLI"><a href="#配置-EB-CLI" class="headerlink" title="配置 EB CLI"></a>配置 EB CLI</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Maven package 激活pro的profile打入ebextensions的nginx配置</span></span><br><span class="line"><span class="built_in">cd</span> my-app &amp;&amp; mvnw clean package -Dmaven.test.skip=<span class="literal">true</span></span><br><span class="line"><span class="comment"># EB init</span></span><br><span class="line">eb init</span><br><span class="line"><span class="comment"># EB create env profile</span></span><br><span class="line">eb create</span><br><span class="line"><span class="comment"># EB deploy</span></span><br><span class="line">eb deploy</span><br><span class="line"><span class="comment"># EB logs</span></span><br><span class="line">eb logs</span><br><span class="line"><span class="comment"># 登录 EB Instance 检查详细日志</span></span><br><span class="line"><span class="comment"># eb ssh </span></span><br><span class="line"><span class="comment"># tailf /var/log/nginx/access.log</span></span><br></pre></td></tr></table></figure>
+<h4 id="配置示例-cat-elasticbeanstalk-config-yml"><a href="#配置示例-cat-elasticbeanstalk-config-yml" class="headerlink" title="配置示例(cat .elasticbeanstalk/config.yml)"></a>配置示例(<code>cat .elasticbeanstalk/config.yml</code>)</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">branch-defaults:</span></span><br><span class="line">  <span class="attr">master:</span></span><br><span class="line">    <span class="attr">environment:</span> <span class="string">my-app-dev</span></span><br><span class="line">    <span class="attr">group_suffix:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">environment:</span> <span class="string">my-app-dev</span></span><br><span class="line">    <span class="attr">group_suffix:</span> <span class="literal">null</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="comment"># 需要上传java包的路径</span></span><br><span class="line">  <span class="attr">artifact:</span> <span class="string">target/my-app.war</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line">  <span class="attr">application_name:</span> <span class="string">my-app</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">default_ec2_keyname:</span> <span class="string">mypem</span></span><br><span class="line">  <span class="attr">default_platform:</span> <span class="string">Java</span> <span class="number">8</span></span><br><span class="line">  <span class="attr">default_region:</span> <span class="string">us-east-1</span></span><br><span class="line">  <span class="attr">include_git_submodules:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">instance_profile:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">platform_name:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">platform_version:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">profile:</span> <span class="string">eb-cli</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">sc:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">workspace_type:</span> <span class="string">Application</span></span><br></pre></td></tr></table></figure>
+<h4 id="反向代理配置"><a href="#反向代理配置" class="headerlink" title="反向代理配置"></a>反向代理配置</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#### Nginx配置如何生效</span></span><br><span class="line"><span class="bullet">- </span>目录结构如下：</span><br><span class="line"><span class="code">	my-app.war</span></span><br><span class="line"><span class="code">	|-- .ebextensions</span></span><br><span class="line"><span class="code">	|   `-- nginx</span></span><br><span class="line"><span class="code">	|       `nginx.conf</span></span><br><span class="line"><span class="code">	|       `agent_deny</span></span><br><span class="line"><span class="code">	`-- org</span></span><br><span class="line"><span class="code">	`--META-INF</span></span><br><span class="line"><span class="code">	`--WEB-INF</span></span><br></pre></td></tr></table></figure>
+<h4 id="Pom-xml"><a href="#Pom-xml" class="headerlink" title="Pom.xml"></a>Pom.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--maven package springboot war--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">failOnMissingWebXml</span>&gt;</span>false<span class="tag">&lt;/<span class="name">failOnMissingWebXml</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">webResources</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/ebextensions<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">targetPath</span>&gt;</span>.ebextensions<span class="tag">&lt;/<span class="name">targetPath</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">webResources</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/eb-cli3-install.html" target="_blank" rel="noopener">安装 Elastic Beanstalk 命令行界面 (EB CLI)</a></li>
+<li><a href="https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/eb-cli3-configuration.html" target="_blank" rel="noopener">配置 EB CLI</a></li>
+<li><a href="https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/java-se-nginx.html" target="_blank" rel="noopener">配置反向代理</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/06/02/aws配置eb-cli/" data-id="ckc4fmwrv0008xwifejxfsn3p" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://flyingglass.github.io/2018/06/02/aws配置eb-cli/#comments" id="sourceId::2018/06/02/aws配置eb-cli/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-nginx反爬策略配置" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/06/02/nginx反爬策略配置/">nginx反爬策略配置</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/06/02/nginx反爬策略配置/">
+            <time datetime="2018-06-02T03:39:00.000Z" itemprop="datePublished">2018-06-02</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Nginx/">Nginx</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>网站部署上线后，为了防止爬虫的侵扰，一般会进行反爬策略限制。在Web开发中Nginx一般作为Gateway和Router，本文主要介绍如何使用Nginx进行User-Agent和RateLimit两个方面来进行反爬</em></p>
+<h4 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h4><p><code>cat /etc/nginx/agent_deny</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#禁止Scrapy等工具的抓取</span></span><br><span class="line"><span class="attribute">if</span> (<span class="variable">$http_user_agent</span> <span class="regexp">~* (Scrapy|Curl|HttpClient))</span> &#123;</span><br><span class="line">     <span class="attribute">return</span> <span class="number">403</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#禁止指定UA及UA为空的访问</span></span><br><span class="line"><span class="attribute">if</span> (<span class="variable">$http_user_agent</span> <span class="regexp">~* "FeedDemon|Indy</span> Library|Alexa Toolbar|AskTbFXTV|AhrefsBot|CrawlDaddy|CoolpadWebkit|Java|Feedly|UniversalFeedParser|ApacheBench|Microsoft URL Control|Swiftbot|ZmEu|oBot|jaunty|Python-urllib|lightDeckReports Bot|YYSpider|DigExt|HttpClient|MJ12bot|heritrix|EasouSpider|Ezooms|^$<span class="string">" ) &#123;</span></span><br><span class="line"><span class="string">     return 403;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#禁止非GET|POST方式的抓取</span></span><br><span class="line"><span class="string">if (<span class="variable">$request_method</span> !~ ^(GET|POST)$) &#123;</span></span><br><span class="line"><span class="string">    return 403;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="RateLimit"><a href="#RateLimit" class="headerlink" title="RateLimit"></a>RateLimit</h4><p><em>RateLimit传统的算法主要分为token bucket和leaky bucket，nginx和传统的leaky bucket算法略微有些区别，leaky bucket算法主要处理方式Traffic Shaping和Traffic Policing，Traffic Shaping的核心理念是”等待”，Traffic Policing的核心理念是”丢弃”，在bucket满后，常见的处理方式为：</em></p>
+<ul>
+<li>暂时拦截住上方水的向下流动，等待桶中的一部分水漏走后，再放行上方水</li>
+<li>溢出的上方水直接抛弃</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Rate Limit</span></span><br><span class="line"><span class="comment"># 此设置只能放在 http 节点下</span></span><br><span class="line"><span class="attribute">limit_req_zone</span> <span class="variable">$binary_remote_addr</span> zone=ratelimit:<span class="number">10m</span> rate=2r/s;</span><br><span class="line"><span class="comment"># 默认为503 Service Unavailable，返回429 Too Many Request更为合适</span></span><br><span class="line"><span class="attribute">limit_req_status</span> <span class="number">429</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Server</span></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="comment"># 此设置在 http, server, location 节点都可以设置；设置了 nodelay 将不会等待</span></span><br><span class="line">        <span class="attribute">limit_req</span> zone=ratelimit burst=<span class="number">20</span> nodelay;</span><br><span class="line">        <span class="attribute">include</span> agent_deny;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/java-web;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://blog.csdn.net/hellow__world/article/details/78658041" target="_blank" rel="noopener">Nginx下limit_req模块burst参数超详细解析</a></li>
+<li><a href="http://cjhust.blog.163.com/blog/static/17582715720111017114121678/" target="_blank" rel="noopener">Nginx模块开发（10）—limit_req模块分析</a></li>
+<li><a href="https://www.chrisyue.com/leaky-bucket-and-nginx-limit_req-module.html" target="_blank" rel="noopener">漏桶算法和 NGINX 的 limit_req 模块</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/06/02/nginx反爬策略配置/" data-id="ckc4fmwsv001mxwifz0yn3b0z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://flyingglass.github.io/2018/06/02/nginx反爬策略配置/#comments" id="sourceId::2018/06/02/nginx反爬策略配置/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
     <article id="post-nginx的https配置" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -267,7 +557,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/05/27/nginx的https配置/" data-id="ckc1v89xy001svkifxk5g6ysc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/05/27/nginx的https配置/" data-id="ckc4fmwsu001kxwifydjo7nwr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -410,7 +700,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/05/12/nginx反向代理配置/" data-id="ckc1v89xv001nvkif1bsvfkyn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/05/12/nginx反向代理配置/" data-id="ckc4fmwsr001fxwifu54vw3r7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -599,7 +889,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/05/11/jenkins自动化部署/" data-id="ckc1v89xe000uvkif0st2x7b6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/05/11/jenkins自动化部署/" data-id="ckc4fmwsg000wxwif9ct8mhrr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -737,7 +1027,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/05/11/mybatis多数据源/" data-id="ckc1v89xn0018vkifyuj55jeq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/05/11/mybatis多数据源/" data-id="ckc4fmwst001ixwifumpe22ta" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -884,7 +1174,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/27/爬虫设计/" data-id="ckc1v89y9002dvkiffo8eqhsx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/27/爬虫设计/" data-id="ckc4fmwta002exwifrupcsb05" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1044,7 +1334,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的npm配置/" data-id="ckc1v89xs001ivkif85wv7lkl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的npm配置/" data-id="ckc4fmwsp001bxwifl6t6ghly" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1212,7 +1502,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的maven配置/" data-id="ckc1v89xp001cvkifh4ghel8c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/nexus的maven配置/" data-id="ckc4fmwso0019xwifasy8n8fg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1360,7 +1650,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/26/stellar指南/" data-id="ckc1v89y30022vkif62yomdsu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/26/stellar指南/" data-id="ckc4fmwt30021xwifcbefx190" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1439,298 +1729,8 @@
 
 
 
-    <article id="post-jenkins部署springboot应用" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/04/08/jenkins部署springboot应用/">jenkins部署springboot应用</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/04/08/jenkins部署springboot应用/">
-            <time datetime="2018-04-08T08:24:50.000Z" itemprop="datePublished">2018-04-08</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Devops/">Devops</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>最近在项目中使用持续交付(CI)工具jenkins部署spring-boot应用，碰到不少问题，特以此文记录</em></p>
-<h4 id="jenkins配置"><a href="#jenkins配置" class="headerlink" title="jenkins配置"></a>jenkins配置</h4><ul>
-<li>插件配置</li>
-<li><code>java</code>,<code>maven</code>,<code>git</code>配置</li>
-</ul>
-<h4 id="部署脚本"><a href="#部署脚本" class="headerlink" title="部署脚本"></a>部署脚本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">BUILD_ID=dontKillMe</span><br><span class="line"></span><br><span class="line">PROJ_NAME=<span class="string">"backend-web-service"</span></span><br><span class="line">LOG_PATH=<span class="string">"/mnt/data01/logs"</span></span><br><span class="line">MODULE_JAR_PATH=<span class="string">"<span class="variable">$&#123;WORKSPACE&#125;</span>/backend-web-service/target/<span class="variable">$&#123;PROJ_NAME&#125;</span>.war"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###### Stop service</span></span><br><span class="line">pid=`ps -ef | grep <span class="variable">$PROJ_NAME</span> | grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span>`</span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$pid</span>"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    sudo <span class="built_in">kill</span> -9 <span class="variable">$pid</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">###### Maven build package</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;WORKSPACE&#125;</span> &amp;&amp; mvn clean package -Dmaven.test.skip=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###### Start service</span></span><br><span class="line"><span class="comment"># Check Log Path</span></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$&#123;LOG_PATH&#125;</span> ]; <span class="keyword">then</span></span><br><span class="line">    sudo mkdir -p <span class="variable">$&#123;LOG_PATH&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">sudo nohup java -jar <span class="variable">$&#123;MODULE_JAR_PATH&#125;</span> --spring.profiles.active=dev --logback.logdir=<span class="variable">$&#123;LOG_PATH&#125;</span> 1&gt;/dev/null 2&gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Log Path : <span class="variable">$&#123;LOG_PATH&#125;</span>"</span></span><br></pre></td></tr></table></figure>
-<h4 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h4><ul>
-<li>由于<code>jenkins</code>构建完毕后会杀掉所有启动的进程，可以通过改变<code>BUILD_ID</code>的值来防止后台进程被杀死</li>
-<li>如果采用<code>maven</code>工程进行构建，修改<code>BUILD_ID</code>无效，后台进程随着<code>jenkins</code>构建完成后仍被杀死</li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="ckc1v89xk0013vkife1f4t2m2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/#comments" id="sourceId::2018/04/08/jenkins部署springboot应用/" class="article-comment-link cy_cmt_count">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-jenkins安装" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/04/08/jenkins安装/">jenkins安装</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/04/08/jenkins安装/">
-            <time datetime="2018-04-08T07:32:01.000Z" itemprop="datePublished">2018-04-08</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Devops/">Devops</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理</em></p>
-<h4 id="jenkins的安装"><a href="#jenkins的安装" class="headerlink" title="jenkins的安装"></a><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins的安装</a></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu 16.04 LTS 安装</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install -y jenkins</span><br></pre></td></tr></table></figure>
-<h4 id="使用nginx配置jenkins"><a href="#使用nginx配置jenkins" class="headerlink" title="使用nginx配置jenkins"></a>使用<code>nginx</code>配置<code>jenkins</code></h4><ul>
-<li><code>nginx</code>反向代理配置</li>
-</ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jenkins</span></span><br><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /jenkins &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/jenkins;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><code>/etc/default/jenkins</code>添加<code>--prefix=$PREFIX</code>配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_ARGS=<span class="string">"--webroot=/var/cache/<span class="variable">$NAME</span>/war --httpPort=<span class="variable">$HTTP_PORT</span> --prefix=<span class="variable">$PREFIX</span>"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动<code>jenkins</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins download</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-jenkins-with-ssl-using-an-nginx-reverse-proxy" target="_blank" rel="noopener">how-to-configure-jenkins-with-ssl-using-an-nginx-reverse-proxy</a></li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckc1v89xg000wvkif78o648mt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="https://flyingglass.github.io/2018/04/08/jenkins安装/#comments" id="sourceId::2018/04/08/jenkins安装/" class="article-comment-link cy_cmt_count">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
     </nav>
 
 </section>
@@ -1785,6 +1785,44 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2019/12/25/分片和一致性/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/分布式/">分布式</a></p>
+                            <p class="item-title"><a href="/2019/12/25/分片和一致性/" class="title">分片和一致性</a></p>
+                            <p class="item-date"><time datetime="2019-12-25T07:52:42.000Z" itemprop="datePublished">2019-12-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/25/缓存一致性/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Redis/">Redis</a></p>
+                            <p class="item-title"><a href="/2019/12/25/缓存一致性/" class="title">缓存一致性</a></p>
+                            <p class="item-date"><time datetime="2019-12-25T06:57:28.000Z" itemprop="datePublished">2019-12-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2019/06/19/ssr开机启动/" class="thumbnail">
     
     
@@ -1801,44 +1839,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/06/17/docker常用命令/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
-                            <p class="item-title"><a href="/2019/06/17/docker常用命令/" class="title">docker常用命令</a></p>
-                            <p class="item-date"><time datetime="2019-06-17T08:06:33.000Z" itemprop="datePublished">2019-06-17</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/06/17/rpm离线安装脚本/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
-                            <p class="item-title"><a href="/2019/06/17/rpm离线安装脚本/" class="title">rpm离线安装脚本</a></p>
-                            <p class="item-date"><time datetime="2019-06-17T07:48:43.000Z" itemprop="datePublished">2019-06-17</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1849,7 +1849,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分布式/">分布式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -1858,7 +1858,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -1947,6 +1947,21 @@
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

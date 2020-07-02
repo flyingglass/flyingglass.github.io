@@ -163,7 +163,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                39
+                41
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,6 +192,296 @@
 
             
             <section id="main">
+    <article id="post-jenkins部署springboot应用" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/04/08/jenkins部署springboot应用/">jenkins部署springboot应用</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/04/08/jenkins部署springboot应用/">
+            <time datetime="2018-04-08T08:24:50.000Z" itemprop="datePublished">2018-04-08</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Devops/">Devops</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>最近在项目中使用持续交付(CI)工具jenkins部署spring-boot应用，碰到不少问题，特以此文记录</em></p>
+<h4 id="jenkins配置"><a href="#jenkins配置" class="headerlink" title="jenkins配置"></a>jenkins配置</h4><ul>
+<li>插件配置</li>
+<li><code>java</code>,<code>maven</code>,<code>git</code>配置</li>
+</ul>
+<h4 id="部署脚本"><a href="#部署脚本" class="headerlink" title="部署脚本"></a>部署脚本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">BUILD_ID=dontKillMe</span><br><span class="line"></span><br><span class="line">PROJ_NAME=<span class="string">"backend-web-service"</span></span><br><span class="line">LOG_PATH=<span class="string">"/mnt/data01/logs"</span></span><br><span class="line">MODULE_JAR_PATH=<span class="string">"<span class="variable">$&#123;WORKSPACE&#125;</span>/backend-web-service/target/<span class="variable">$&#123;PROJ_NAME&#125;</span>.war"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###### Stop service</span></span><br><span class="line">pid=`ps -ef | grep <span class="variable">$PROJ_NAME</span> | grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span>`</span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$pid</span>"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    sudo <span class="built_in">kill</span> -9 <span class="variable">$pid</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">###### Maven build package</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;WORKSPACE&#125;</span> &amp;&amp; mvn clean package -Dmaven.test.skip=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###### Start service</span></span><br><span class="line"><span class="comment"># Check Log Path</span></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$&#123;LOG_PATH&#125;</span> ]; <span class="keyword">then</span></span><br><span class="line">    sudo mkdir -p <span class="variable">$&#123;LOG_PATH&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">sudo nohup java -jar <span class="variable">$&#123;MODULE_JAR_PATH&#125;</span> --spring.profiles.active=dev --logback.logdir=<span class="variable">$&#123;LOG_PATH&#125;</span> 1&gt;/dev/null 2&gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Log Path : <span class="variable">$&#123;LOG_PATH&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<h4 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h4><ul>
+<li>由于<code>jenkins</code>构建完毕后会杀掉所有启动的进程，可以通过改变<code>BUILD_ID</code>的值来防止后台进程被杀死</li>
+<li>如果采用<code>maven</code>工程进行构建，修改<code>BUILD_ID</code>无效，后台进程随着<code>jenkins</code>构建完成后仍被杀死</li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="ckc4fmwsh000yxwifryy80873" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/#comments" id="sourceId::2018/04/08/jenkins部署springboot应用/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-jenkins安装" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/04/08/jenkins安装/">jenkins安装</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/04/08/jenkins安装/">
+            <time datetime="2018-04-08T07:32:01.000Z" itemprop="datePublished">2018-04-08</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Devops/">Devops</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理</em></p>
+<h4 id="jenkins的安装"><a href="#jenkins的安装" class="headerlink" title="jenkins的安装"></a><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins的安装</a></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu 16.04 LTS 安装</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install -y jenkins</span><br></pre></td></tr></table></figure>
+<h4 id="使用nginx配置jenkins"><a href="#使用nginx配置jenkins" class="headerlink" title="使用nginx配置jenkins"></a>使用<code>nginx</code>配置<code>jenkins</code></h4><ul>
+<li><code>nginx</code>反向代理配置</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jenkins</span></span><br><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /jenkins &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/jenkins;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>/etc/default/jenkins</code>添加<code>--prefix=$PREFIX</code>配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_ARGS=<span class="string">"--webroot=/var/cache/<span class="variable">$NAME</span>/war --httpPort=<span class="variable">$HTTP_PORT</span> --prefix=<span class="variable">$PREFIX</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动<code>jenkins</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins download</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-jenkins-with-ssl-using-an-nginx-reverse-proxy" target="_blank" rel="noopener">how-to-configure-jenkins-with-ssl-using-an-nginx-reverse-proxy</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckc4fmwse000txwif7i3b54p4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://flyingglass.github.io/2018/04/08/jenkins安装/#comments" id="sourceId::2018/04/08/jenkins安装/" class="article-comment-link cy_cmt_count">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
     <article id="post-nexus本地仓库搭建" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -264,7 +554,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="ckc1v89xo001avkifvdllx4es" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="ckc4fmwsl0015xwifzxwojrz5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -404,7 +694,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="ckc1v89y70028vkifvsxqjcaf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="ckc4fmwt50024xwifaa4iop4t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -567,7 +857,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/19/区块链权威指南/" data-id="ckc1v89y8002avkifnoq0d4bp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/19/区块链权威指南/" data-id="ckc4fmwt9002bxwifqv0e9kbr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -710,7 +1000,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop的使用/" data-id="ckc1v89x3000evkifv8bbr4fw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop的使用/" data-id="ckc4fmws4000fxwifohigqgof" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -857,7 +1147,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop2的安装/" data-id="ckc1v89xj0011vkifi9z55z3v" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop2的安装/" data-id="ckc4fmws2000dxwifpyngmhf6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1003,7 +1293,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/13/Resource和Autowired注解区别/" data-id="ckc1v89x5000hvkifag3rkru2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/13/Resource和Autowired注解区别/" data-id="ckc4fmwrt0007xwifzj126cmi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1165,7 +1455,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/02/hexo布局/" data-id="ckc1v89xb000pvkififmyb74m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/02/hexo布局/" data-id="ckc4fmws8000mxwif633qfka8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1340,7 +1630,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc1v89xt001kvkifo1kfc4n1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc4fmwsy001rxwifv5ofjq8n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1419,357 +1709,8 @@
 
 
 
-    <article id="post-ag" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/26/ag/">ag安装</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/02/26/ag/">
-            <time datetime="2018-02-26T11:16:21.000Z" itemprop="datePublished">2018-02-26</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/技术杂记/">技术杂记</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h4 id="Installing-ag-on-CentOS"><a href="#Installing-ag-on-CentOS" class="headerlink" title="Installing ag on CentOS"></a>Installing ag on CentOS</h4><ul>
-<li><h3 id="Prerequistes"><a href="#Prerequistes" class="headerlink" title="Prerequistes"></a>Prerequistes</h3><ul>
-<li>libpcre</li>
-<li>liblzma</li>
-</ul>
-<h3 id="Download-build-and-install"><a href="#Download-build-and-install" class="headerlink" title="Download, build and install"></a>Download, build and install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y pcre-devel</span><br><span class="line">sudo yum install xz-devel</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src &amp;&amp; sudo git <span class="built_in">clone</span> https://github.com/ggreer/the_silver_searcher.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> the_silver_searcher</span><br><span class="line">sudo ./build.sh</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">which</span> ag</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/02/26/ag/" data-id="ckc1v89wx0009vkift0d2u2s0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="https://flyingglass.github.io/2018/02/26/ag/#comments" id="sourceId::2018/02/26/ag/" class="article-comment-link cy_cmt_count">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-web常见漏洞" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/26/web常见漏洞/">web常见漏洞</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/02/26/web常见漏洞/">
-            <time datetime="2018-02-26T07:13:29.000Z" itemprop="datePublished">2018-02-26</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>项目采用springboot作为web框架，涉及到常见的漏洞，特此记录</em></p>
-<hr>
-<h4 id="启用了不安全的HTTP-方法"><a href="#启用了不安全的HTTP-方法" class="headerlink" title="启用了不安全的HTTP 方法"></a>启用了不安全的HTTP 方法</h4><ul>
-<li><p>描述：启用了不安全的 HTTP 方法， 可能会在 Web 服务器上上载、修改或删除 Web 页面、脚本和文件</p>
-</li>
-<li><p>原因：Web 服务器或应用程序服务器是以不安全的方式配置的</p>
-</li>
-<li><p>解决方案：</p>
-<ul>
-<li><p>方案一：</p>
-<p>如果采用springboot内嵌的tomcat容器，可以在application.yml或application.properties增加如下配置：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#解决不安全的HTTP方法漏洞  </span><br><span class="line">server.tomcat.port-header=HEAD,PUT,DELETE,OPTIONS,TRACE,COPY,SEARCH,PROPFIND</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方案二：</p>
-<p>代码增加对tomcat的配置，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TomcatConfig</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Bean</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> EmbeddedServletContainerFactory <span class="title">servletContainer</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        TomcatEmbeddedServletContainerFactory tomcat = <span class="keyword">new</span> TomcatEmbeddedServletContainerFactory() &#123;<span class="comment">// 1  </span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">postProcessContext</span><span class="params">(Context context)</span> </span>&#123;  </span><br><span class="line">                SecurityConstraint securityConstraint = <span class="keyword">new</span> SecurityConstraint();  </span><br><span class="line">                securityConstraint.setUserConstraint(<span class="string">"CONFIDENTIAL"</span>);  </span><br><span class="line">                SecurityCollection collection = <span class="keyword">new</span> SecurityCollection();  </span><br><span class="line">                collection.addPattern(<span class="string">"/*"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"HEAD"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"PUT"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"DELETE"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"OPTIONS"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"TRACE"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"COPY"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"SEARCH"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"PROPFIND"</span>);  </span><br><span class="line">                securityConstraint.addCollection(collection);  </span><br><span class="line">                context.addConstraint(securityConstraint);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;;  </span><br><span class="line">        <span class="keyword">return</span> tomcat;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>测试：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用curl测试：</span></span><br><span class="line">curl -v -X OPTIONS http://www.example.com/<span class="built_in">test</span>/</span><br><span class="line">查看响应的 Allow: GET, HEAD, POST, PUT, DELETE, OPTIONS</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看是否能上载来判断攻击是否生效。</span></span><br><span class="line">curl -v -T test.html  http://www.example.com/<span class="built_in">test</span>/test.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找一个存在的页面，如test2.html，如果删除成功，则攻击有效。</span></span><br><span class="line">curl -X DELETE http://www.example.com/<span class="built_in">test</span>/test2.html</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>参考链接：</p>
-<ul>
-<li><a href="http://www.cnblogs.com/qmfsun/p/6169641.html" target="_blank" rel="noopener">验证启用了不安全的HTTP方法</a></li>
-<li><a href="http://blog.csdn.net/liuchuanhong1/article/details/76667343" target="_blank" rel="noopener">spring boot使用内嵌的tomcat解决不安全的HTTP方法安全漏洞</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="Apache-JServ-protocol-service"><a href="#Apache-JServ-protocol-service" class="headerlink" title="Apache JServ protocol service"></a>Apache JServ protocol service</h4><ul>
-<li>描述：Apache JServ协议(AJP)是一种二进制协议，可以从web服务器代理入站请求。位于web服务器后的应用服务器，不建议将AJP服务公开访问。如果AJP被错误配置，它可能允许攻击者访问内部资源。</li>
-</ul>
-<ul>
-<li><p>解决方案：</p>
-<ul>
-<li>找到tomcat的配置文件目录，路径如下${tomcat目录}/conf/server.xml</li>
-<li>注释如下行 <code>&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</code></li>
-</ul>
-</li>
-<li><p>参考链接：</p>
-<ul>
-<li><a href="https://stackoverflow.com/questions/40262315/how-to-disable-apache-jserv-protocol-service" target="_blank" rel="noopener">stackoverflow禁用AJP服务</a></li>
-<li><a href="https://tomcat.apache.org/connectors-doc/ajp/ajpv13a.html" target="_blank" rel="noopener">The Apache Tomcat Connector</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="Host-header-attack"><a href="#Host-header-attack" class="headerlink" title="Host header attack"></a>Host header attack</h4><ul>
-<li><p>描述：在许多情况下，开发人员信任HTTP主机头值并使用它来生成链接、导入脚本，甚至生成密码重置与它的值的链接。这是一个非常糟糕的想法，因为HTTP主机头可以由攻击者控制，可以利用网络缓存中毒和滥用替代渠道的密码重置邮件。</p>
-</li>
-<li><p>解决方案：</p>
-<ul>
-<li>使用getServerName()代替getHeader(“host”);</li>
-<li>在Apache和nginx通过设置一个虚拟机来记录所有的非法Host header，或者在Apache和nginx里指定一个ServerName名单;</li>
-<li>同时，Apache开启UseCanonicalName选项</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apache在extra下的httpd-default.conf文件或者虚拟主机加入如下配置</span></span><br><span class="line">UseCanonicalName On</span><br><span class="line"><span class="comment"># Nginx配置</span></span><br><span class="line">server_name example.com;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>参考链接：</p>
-<ul>
-<li><a href="https://www.oschina.net/question/1455558_2218206" target="_blank" rel="noopener">被检测出有HTTP HOST头部攻击</a></li>
-<li><a href="http://blog.csdn.net/zzzzzyl/article/details/78583251" target="_blank" rel="noopener">host头攻击解决方法</a></li>
-</ul>
-<hr>
-</li>
-</ul>
-<h4 id="Slow-HTTP-Denial-of-Service-Attack"><a href="#Slow-HTTP-Denial-of-Service-Attack" class="headerlink" title="Slow HTTP Denial of Service Attack"></a>Slow HTTP Denial of Service Attack</h4><ul>
-<li><p>描述：web服务器容易受到HTTP DoS(拒绝服务)攻击的影响，HTTP POST DoS攻击依赖于HTTP协议的设计要求。在处理之前完全接收到服务器，如果HTTP请求没有完成，或者传输速率非常低，服务器保持它的资源忙着等待其余的数据。如果服务器保存了太多的资源，这会造成拒绝服务。</p>
-</li>
-<li><p>解决方案：</p>
-<p>配置防火墙 <code>iptables -A INPUT -p tcp --syn --dport 端口号 -m connlimit --connlimit-above 50 -j REJECT</code></p>
-</li>
-<li><p>参考链接</p>
-<ul>
-<li><a href="https://security.stackexchange.com/questions/42618/how-to-protect-tomcat-7-against-slowloris-attack" target="_blank" rel="noopener">how-to-protect-tomcat-7-against-slowloris-attack</a></li>
-</ul>
-</li>
-</ul>
-<p>​    </p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/02/26/web常见漏洞/" data-id="ckc1v89y60026vkifsnfbkqwb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="https://flyingglass.github.io/2018/02/26/web常见漏洞/#comments" id="sourceId::2018/02/26/web常见漏洞/" class="article-comment-link cy_cmt_count">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
     </nav>
 
 </section>
@@ -1824,6 +1765,44 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2019/12/25/分片和一致性/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/分布式/">分布式</a></p>
+                            <p class="item-title"><a href="/2019/12/25/分片和一致性/" class="title">分片和一致性</a></p>
+                            <p class="item-date"><time datetime="2019-12-25T07:52:42.000Z" itemprop="datePublished">2019-12-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/25/缓存一致性/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Redis/">Redis</a></p>
+                            <p class="item-title"><a href="/2019/12/25/缓存一致性/" class="title">缓存一致性</a></p>
+                            <p class="item-date"><time datetime="2019-12-25T06:57:28.000Z" itemprop="datePublished">2019-12-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2019/06/19/ssr开机启动/" class="thumbnail">
     
     
@@ -1840,44 +1819,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/06/17/docker常用命令/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
-                            <p class="item-title"><a href="/2019/06/17/docker常用命令/" class="title">docker常用命令</a></p>
-                            <p class="item-date"><time datetime="2019-06-17T08:06:33.000Z" itemprop="datePublished">2019-06-17</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/06/17/rpm离线安装脚本/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Devops/">Devops</a></p>
-                            <p class="item-title"><a href="/2019/06/17/rpm离线安装脚本/" class="title">rpm离线安装脚本</a></p>
-                            <p class="item-date"><time datetime="2019-06-17T07:48:43.000Z" itemprop="datePublished">2019-06-17</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1888,7 +1829,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Devops/">Devops</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macosx/">macosx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分布式/">分布式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -1897,7 +1838,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -1986,6 +1927,21 @@
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
