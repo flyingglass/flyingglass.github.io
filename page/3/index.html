@@ -254,7 +254,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="ckc4fmwsh000yxwifryy80873" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins部署springboot应用/" data-id="ckca7wkrp000zqgif7binj5tx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -376,14 +376,26 @@
         
             
             <p><em>最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理</em></p>
-<h4 id="jenkins的安装"><a href="#jenkins的安装" class="headerlink" title="jenkins的安装"></a><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins的安装</a></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu 16.04 LTS 安装</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install -y jenkins</span><br></pre></td></tr></table></figure>
-<h4 id="使用nginx配置jenkins"><a href="#使用nginx配置jenkins" class="headerlink" title="使用nginx配置jenkins"></a>使用<code>nginx</code>配置<code>jenkins</code></h4><ul>
-<li><code>nginx</code>反向代理配置</li>
-</ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jenkins</span></span><br><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /jenkins &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/jenkins;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
+<h4 id="jenkins官网"><a href="#jenkins官网" class="headerlink" title="jenkins官网"></a><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins官网</a></h4><h4 id="Ubuntu安装Jenkins"><a href="#Ubuntu安装Jenkins" class="headerlink" title="Ubuntu安装Jenkins"></a>Ubuntu安装Jenkins</h4><ul>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu 16.04 LTS 安装</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install -y jenkins</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>nginx</code>反向代理配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jenkins</span></span><br><span class="line">location ^~ /jenkins &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:8080/jenkins;</span><br><span class="line">    proxy_set_header Host <span class="variable">$http_host</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p><code>/etc/default/jenkins</code>添加<code>--prefix=$PREFIX</code>配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_ARGS=<span class="string">"--webroot=/var/cache/<span class="variable">$NAME</span>/war --httpPort=<span class="variable">$HTTP_PORT</span> --prefix=<span class="variable">$PREFIX</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动<code>jenkins</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Centos安装Jenkins"><a href="#Centos安装Jenkins" class="headerlink" title="Centos安装Jenkins"></a>Centos安装Jenkins</h4><ul>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Centos 安装</span></span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo</span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key</span><br><span class="line">yum install -y jenkins</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>/etc/sysconfig/jenkins</code>添加<code>--prefix=/jenkins</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_ARGS=<span class="string">"--prefix=/jenkins"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动<code>jenkins</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start</span><br></pre></td></tr></table></figure>
@@ -403,7 +415,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckc4fmwse000txwif7i3b54p4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckca7wkri000oqgifs19e1ea8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -554,7 +566,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="ckc4fmwsl0015xwifzxwojrz5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/nexus本地仓库搭建/" data-id="ckca7wkrw001bqgif5f86tq7b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -694,7 +706,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="ckc4fmwt50024xwifaa4iop4t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/19/truffle开发入门/" data-id="ckca7wksa0022qgifk4ws7abe" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -857,7 +869,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/19/区块链权威指南/" data-id="ckc4fmwt9002bxwifqv0e9kbr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/19/区块链权威指南/" data-id="ckca7wksd0027qgifzmtiuuqu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1000,7 +1012,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop的使用/" data-id="ckc4fmws4000fxwifohigqgof" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop的使用/" data-id="ckca7wkr9000fqgifzf9154dd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1147,7 +1159,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop2的安装/" data-id="ckc4fmws2000dxwifpyngmhf6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/13/cdh下Sqoop2的安装/" data-id="ckca7wkr5000bqgifmd9vpk43" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1293,7 +1305,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/13/Resource和Autowired注解区别/" data-id="ckc4fmwrt0007xwifzj126cmi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/13/Resource和Autowired注解区别/" data-id="ckca7wkqx0005qgif4i36aztm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1455,7 +1467,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/03/02/hexo布局/" data-id="ckc4fmws8000mxwif633qfka8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/03/02/hexo布局/" data-id="ckca7wkrc000hqgifatovft7z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1630,7 +1642,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckc4fmwsy001rxwifv5ofjq8n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="ckca7wksc0025qgif0v4ylm3s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

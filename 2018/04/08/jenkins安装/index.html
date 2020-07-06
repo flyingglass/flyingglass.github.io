@@ -5,17 +5,17 @@
     
     <title>jenkins安装 | 技术人生</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理 jenkins的安装123# ubuntu 16.04 LTS 安装apt-get updateapt-get install -y jenkins 使用nginx配置jenkins nginx反向代理配置  12345678# jenkinslocation ^~ /jenkins &amp;#1">
+    <meta name="description" content="最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理 jenkins官网Ubuntu安装Jenkins 安装 123# ubuntu 16.04 LTS 安装apt-get updateapt-get install -y jenkins  nginx反向代理配置 12345678# jenkinslocation ^~ /jenkins &amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jenkins安装">
 <meta property="og:url" content="https://flyingglass.github.io/2018/04/08/jenkins安装/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:description" content="最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理 jenkins的安装123# ubuntu 16.04 LTS 安装apt-get updateapt-get install -y jenkins 使用nginx配置jenkins nginx反向代理配置  12345678# jenkinslocation ^~ /jenkins &amp;#1">
+<meta property="og:description" content="最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理 jenkins官网Ubuntu安装Jenkins 安装 123# ubuntu 16.04 LTS 安装apt-get updateapt-get install -y jenkins  nginx反向代理配置 12345678# jenkinslocation ^~ /jenkins &amp;#">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-30T02:42:56.311Z">
+<meta property="og:updated_time" content="2020-07-06T08:02:51.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins安装">
-<meta name="twitter:description" content="最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理 jenkins的安装123# ubuntu 16.04 LTS 安装apt-get updateapt-get install -y jenkins 使用nginx配置jenkins nginx反向代理配置  12345678# jenkinslocation ^~ /jenkins &amp;#1">
+<meta name="twitter:description" content="最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理 jenkins官网Ubuntu安装Jenkins 安装 123# ubuntu 16.04 LTS 安装apt-get updateapt-get install -y jenkins  nginx反向代理配置 12345678# jenkinslocation ^~ /jenkins &amp;#">
     
 
     
@@ -238,14 +238,26 @@
         
             
             <p><em>最近spring-boot项目用到了持续集成（CI）工具Jenkins进行部署，使用nginx作为反向代理</em></p>
-<h4 id="jenkins的安装"><a href="#jenkins的安装" class="headerlink" title="jenkins的安装"></a><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins的安装</a></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu 16.04 LTS 安装</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install -y jenkins</span><br></pre></td></tr></table></figure>
-<h4 id="使用nginx配置jenkins"><a href="#使用nginx配置jenkins" class="headerlink" title="使用nginx配置jenkins"></a>使用<code>nginx</code>配置<code>jenkins</code></h4><ul>
-<li><code>nginx</code>反向代理配置</li>
-</ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jenkins</span></span><br><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /jenkins &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/jenkins;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
+<h4 id="jenkins官网"><a href="#jenkins官网" class="headerlink" title="jenkins官网"></a><a href="https://jenkins.io/download/" target="_blank" rel="noopener">jenkins官网</a></h4><h4 id="Ubuntu安装Jenkins"><a href="#Ubuntu安装Jenkins" class="headerlink" title="Ubuntu安装Jenkins"></a>Ubuntu安装Jenkins</h4><ul>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu 16.04 LTS 安装</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install -y jenkins</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>nginx</code>反向代理配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jenkins</span></span><br><span class="line">location ^~ /jenkins &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:8080/jenkins;</span><br><span class="line">    proxy_set_header Host <span class="variable">$http_host</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p><code>/etc/default/jenkins</code>添加<code>--prefix=$PREFIX</code>配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_ARGS=<span class="string">"--webroot=/var/cache/<span class="variable">$NAME</span>/war --httpPort=<span class="variable">$HTTP_PORT</span> --prefix=<span class="variable">$PREFIX</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动<code>jenkins</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Centos安装Jenkins"><a href="#Centos安装Jenkins" class="headerlink" title="Centos安装Jenkins"></a>Centos安装Jenkins</h4><ul>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Centos 安装</span></span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo</span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key</span><br><span class="line">yum install -y jenkins</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>/etc/sysconfig/jenkins</code>添加<code>--prefix=/jenkins</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_ARGS=<span class="string">"--prefix=/jenkins"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动<code>jenkins</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start</span><br></pre></td></tr></table></figure>
@@ -265,7 +277,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckc4fmwse000txwif7i3b54p4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/04/08/jenkins安装/" data-id="ckca7wkri000oqgifs19e1ea8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
