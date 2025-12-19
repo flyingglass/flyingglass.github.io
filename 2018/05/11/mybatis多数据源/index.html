@@ -1,40 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>mybatis多数据源 | 技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="对于多数据源，一般都是问了解决主从模式或者业务相对复杂需要分库来支持业务的场景。搜索解决方案，要么是采用spring多数据源的方案，要么是利用aop动态切换，感觉有点小复杂，本文采用一种相对简单的解决方案，配置过程中遇到一些问题，特以此文记录 配置yml123456789101112131415161718192021222324252627282930313233343536373839####">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis多数据源">
-<meta property="og:url" content="https://flyingglass.github.io/2018/05/11/mybatis多数据源/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2018/05/11/mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/index.html">
 <meta property="og:site_name" content="技术人生">
 <meta property="og:description" content="对于多数据源，一般都是问了解决主从模式或者业务相对复杂需要分库来支持业务的场景。搜索解决方案，要么是采用spring多数据源的方案，要么是利用aop动态切换，感觉有点小复杂，本文采用一种相对简单的解决方案，配置过程中遇到一些问题，特以此文记录 配置yml123456789101112131415161718192021222324252627282930313233343536373839####">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-11-01T09:42:00.525Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-11T07:50:06.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:42:00.525Z">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mybatis多数据源">
-<meta name="twitter:description" content="对于多数据源，一般都是问了解决主从模式或者业务相对复杂需要分库来支持业务的场景。搜索解决方案，要么是采用spring多数据源的方案，要么是利用aop动态切换，感觉有点小复杂，本文采用一种相对简单的解决方案，配置过程中遇到一些问题，特以此文记录 配置yml123456789101112131415161718192021222324252627282930313233343536373839####">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -54,11 +68,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -122,7 +136,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -167,7 +183,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -213,7 +229,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/05/11/mybatis多数据源/">
+        <a href="/2018/05/11/mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/">
             <time datetime="2018-05-11T07:50:06.000Z" itemprop="datePublished">2018-05-11</time>
         </a>
     </div>
@@ -222,7 +238,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+        <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
     </div>
 
 
@@ -239,10 +255,12 @@
             
             <p><em>对于多数据源，一般都是问了解决主从模式或者业务相对复杂需要分库来支持业务的场景。搜索解决方案，要么是采用spring多数据源的方案，要么是利用aop动态切换，感觉有点小复杂，本文采用一种相对简单的解决方案，配置过程中遇到一些问题，特以此文记录</em></p>
 <h4 id="配置yml"><a href="#配置yml" class="headerlink" title="配置yml"></a>配置yml</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############################# Multiple DataSource</span></span><br><span class="line"><span class="attr">multi:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#控制是否开启多数据源</span></span><br><span class="line">    <span class="attr">druid:</span></span><br><span class="line">      <span class="attr">master:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://ip:port/master?useUnicode=true&amp;characterEncoding=utf-8&amp;characterSetResults=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;useSSL=false</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">password:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">      <span class="attr">slave:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://ip:port/slave?useUnicode=true&amp;characterEncoding=utf-8&amp;characterSetResults=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;useSSL=false</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">password:</span> <span class="string">root</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">    <span class="attr">mybatis:</span></span><br><span class="line">      <span class="attr">master:</span></span><br><span class="line">        <span class="attr">base-packages:</span> <span class="string">com.fly.mapper.master</span></span><br><span class="line">        <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/master/*.xml</span></span><br><span class="line">      <span class="attr">slave:</span></span><br><span class="line">        <span class="attr">base-packages:</span> <span class="string">com.fly.mapper.slave</span></span><br><span class="line">        <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/slave/*.xml</span></span><br><span class="line">        </span><br><span class="line"><span class="comment">################################## mybaits</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">type-aliases-package:</span> <span class="string">com.fly.bean.mysql</span></span><br><span class="line">  <span class="comment"># 配置</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">cache-enabled:</span> <span class="literal">true</span> <span class="comment">#  全局映射器启用缓存</span></span><br><span class="line">    <span class="attr">lazy-loading-enabled:</span> <span class="literal">true</span> <span class="comment"># 查询时，关闭关联对象即时加载以提高性能</span></span><br><span class="line">    <span class="attr">aggressive-lazy-loading:</span> <span class="literal">false</span> <span class="comment"># 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指定)，不会加载关联表的所有字段，以提高性能 --&gt;</span></span><br><span class="line">    <span class="attr">multiple-result-sets-enabled:</span> <span class="literal">true</span> <span class="comment"># 对于未知的SQL查询，允许返回不同的结果集以达到通用的效果 --&gt;</span></span><br><span class="line">    <span class="attr">use-column-label:</span> <span class="literal">true</span> <span class="comment"># 允许使用列标签代替列名 --&gt;</span></span><br><span class="line">    <span class="attr">use-generated-keys:</span> <span class="literal">true</span> <span class="comment"># 允许使用自定义的主键值(比如由程序生成的UUID 32位编码作为键值)，数据表的PK生成策略将被覆盖 --&gt;</span></span><br><span class="line">    <span class="attr">auto-mapping-behavior:</span> <span class="string">full</span> <span class="comment"># 给予被嵌套的resultMap以字段-属性的映射支持 --&gt;</span></span><br><span class="line">    <span class="attr">default-executor-type:</span> <span class="string">batch</span> <span class="comment"># 对于批量更新操作缓存SQL以提高性能  --&gt;</span></span><br><span class="line">    <span class="attr">default-statement-timeout:</span> <span class="number">25000</span> <span class="comment"># 数据库超过25000秒仍未响应则超时 --&gt;</span></span><br><span class="line">    <span class="attr">mapUnderscoreToCamelCase:</span> <span class="literal">true</span> <span class="comment"># mybatis 驼峰命名 --&gt;</span></span><br><span class="line">    <span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span> <span class="comment"># 命令行输出 --&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="配置数据源"><a href="#配置数据源" class="headerlink" title="配置数据源"></a>配置数据源</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 多数据源</span></span><br><span class="line"><span class="comment"> * 1. mybatis-spring-boot-starter的MybatisAutoConfiguration不支持Multiple DataSource</span></span><br><span class="line"><span class="comment"> *    仅支持Single DataSource或<span class="doctag">@Primary</span> DataSource生效</span></span><br><span class="line"><span class="comment"> * 2. 多数据源的配置必须要配置主库<span class="doctag">@Primary</span>否则报错</span></span><br><span class="line"><span class="comment"> *    或者<span class="doctag">@EnableAutoConfiguration</span>(exclude = MybatisAutoConfiguration.class)禁止AutoConfig</span></span><br><span class="line"><span class="comment"> * 3. 多数据源采用主，副库的配置方式，通过不同包进行隔离</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line"><span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDataSourceConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 主数据源配置 <span class="doctag">@Primary</span></span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line">    <span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line">    <span class="meta">@MapperScan</span>(</span><br><span class="line">            basePackages = <span class="string">"com.fly.mapper.master"</span>,</span><br><span class="line">            sqlSessionFactoryRef = <span class="string">"masterSqlSessionFactory"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">            prefix = <span class="string">"multi.datasource.mybatis.master"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MasterDataSourceConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@javax</span>.annotation.Resource</span><br><span class="line">        MybatisConfigurationSupport support;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String[] mapperLocations;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Primary Druid DataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">                prefix = <span class="string">"multi.datasource.druid.master"</span></span><br><span class="line">        )</span><br><span class="line">        <span class="meta">@Primary</span></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> DataSource <span class="title">masterDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> DruidDataSourceBuilder</span><br><span class="line">                    .create()</span><br><span class="line">                    .build();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="meta">@Primary</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> SqlSessionFactoryBean <span class="title">masterSqlSessionFactory</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                @Qualifier(<span class="string">"masterDataSource"</span>)</span> DataSource dataSource</span></span><br><span class="line"><span class="function">        ) <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> support.createSqlSessionFactoryBean(dataSource, mapperLocations);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 从数据源配置</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line">    <span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line">    <span class="meta">@MapperScan</span>(</span><br><span class="line">            basePackages = <span class="string">"com.fly.mapper.slave"</span>,</span><br><span class="line">            sqlSessionFactoryRef = <span class="string">"slaveSqlSessionFactory"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">            prefix = <span class="string">"multi.datasource.mybatis.slave"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SlaveDataSourceConfig</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String[] mapperLocations;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@javax</span>.annotation.Resource</span><br><span class="line">        MybatisConfigurationSupport support;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Slave Druid DataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@ConfigurationProperties</span>(</span><br><span class="line">                prefix = <span class="string">"multi.datasource.druid.slave"</span></span><br><span class="line">        )</span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> DataSource <span class="title">slaveDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> DruidDataSourceBuilder</span><br><span class="line">                    .create()</span><br><span class="line">                    .build();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> SqlSessionFactoryBean <span class="title">slaveSqlSessionFactory</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                @Qualifier(<span class="string">"slaveDataSource"</span>)</span> DataSource dataSource</span></span><br><span class="line"><span class="function">        ) <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> support.createSqlSessionFactoryBean(dataSource, mapperLocations);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 用于简化MybatisProperties的配置</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Component</span></span><br><span class="line">    <span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"multi.datasource.enabled"</span>, havingValue = <span class="string">"true"</span>)</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisConfigurationSupport</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> MybatisProperties properties;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> ResourceLoader resourceLoader;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MybatisConfigurationSupport</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                MybatisProperties properties,</span></span></span><br><span class="line"><span class="function"><span class="params">                ResourceLoader resourceLoader)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.properties = properties;</span><br><span class="line">            <span class="keyword">this</span>.resourceLoader = resourceLoader;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 创建SqlSessionFactoryBean</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> dataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> mapperLocations</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> SqlSessionFactoryBean <span class="title">createSqlSessionFactoryBean</span><span class="params">(DataSource dataSource, String[] mapperLocations)</span> </span>&#123;</span><br><span class="line">            SqlSessionFactoryBean factory = <span class="keyword">new</span> SqlSessionFactoryBean();</span><br><span class="line">            factory.setDataSource(dataSource);</span><br><span class="line">            factory.setVfs(SpringBootVFS<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 处理Configuration</span></span><br><span class="line"><span class="comment">             * 必须Copy否则会抛出配置多个分页插件的异常</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">            <span class="keyword">if</span> (properties.getConfiguration() != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 必须Copy否则会抛出配置多个分页插件的异常</span></span><br><span class="line">                BeanUtils.copyProperties(properties.getConfiguration(), configuration);</span><br><span class="line">            &#125;</span><br><span class="line">            factory.setConfiguration(configuration);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 处理MapperLocations</span></span><br><span class="line">            <span class="keyword">if</span> (!ObjectUtils.isEmpty(mapperLocations)) &#123;</span><br><span class="line">                factory.setMapperLocations(resolveMapperLocations(mapperLocations));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//            if (StringUtils.hasLength(properties.getTypeAliasesPackage())) &#123;</span></span><br><span class="line"><span class="comment">//                factory.setTypeAliasesPackage(properties.getTypeAliasesPackage());</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> factory;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * MapperLocations 转化为Resource[]</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> mapperLocations</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> Resource[] resolveMapperLocations(String[] mapperLocations) &#123;</span><br><span class="line">            ResourcePatternResolver resourceResolver = <span class="keyword">new</span> PathMatchingResourcePatternResolver();</span><br><span class="line">            List&lt;Resource&gt; resources = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">if</span> (mapperLocations != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (String mapperLocation : mapperLocations) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Resource[] mappers = resourceResolver.getResources(mapperLocation);</span><br><span class="line">                        resources.addAll(Arrays.asList(mappers));</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException ignore) &#123;</span><br><span class="line">                        <span class="comment">// ignore</span></span><br><span class="line">                        ignore.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> resources.toArray(<span class="keyword">new</span> Resource[resources.size()]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置数据源"><a href="#配置数据源" class="headerlink" title="配置数据源"></a>配置数据源</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 多数据源</span></span><br><span class="line"><span class="comment"> * 1. mybatis-spring-boot-starter的MybatisAutoConfiguration不支持Multiple DataSource</span></span><br><span class="line"><span class="comment"> *    仅支持Single DataSource或<span class="doctag">@Primary</span> DataSource生效</span></span><br><span class="line"><span class="comment"> * 2. 多数据源的配置必须要配置主库<span class="doctag">@Primary</span>否则报错</span></span><br><span class="line"><span class="comment"> *    或者<span class="doctag">@EnableAutoConfiguration</span>(exclude = MybatisAutoConfiguration.class)禁止AutoConfig</span></span><br><span class="line"><span class="comment"> * 3. 多数据源采用主，副库的配置方式，通过不同包进行隔离</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line"><span class="meta">@ConditionalOnProperty(name = &quot;multi.datasource.enabled&quot;, havingValue = &quot;true&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MultiDataSourceConfig</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 主数据源配置 <span class="doctag">@Primary</span></span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line">    <span class="meta">@ConditionalOnProperty(name = &quot;multi.datasource.enabled&quot;, havingValue = &quot;true&quot;)</span></span><br><span class="line">    <span class="meta">@MapperScan(</span></span><br><span class="line"><span class="meta">            basePackages = &quot;com.fly.mapper.master&quot;,</span></span><br><span class="line"><span class="meta">            sqlSessionFactoryRef = &quot;masterSqlSessionFactory&quot;</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(</span></span><br><span class="line"><span class="meta">            prefix = &quot;multi.datasource.mybatis.master&quot;</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MasterDataSourceConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@javax</span>.annotation.Resource</span><br><span class="line">        MybatisConfigurationSupport support;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String[] mapperLocations;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Primary Druid DataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@ConfigurationProperties(</span></span><br><span class="line"><span class="meta">                prefix = &quot;multi.datasource.druid.master&quot;</span></span><br><span class="line"><span class="meta">        )</span></span><br><span class="line">        <span class="meta">@Primary</span></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="keyword">public</span> DataSource <span class="title function_">masterDataSource</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> DruidDataSourceBuilder</span><br><span class="line">                    .create()</span><br><span class="line">                    .build();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="meta">@Primary</span></span><br><span class="line">        <span class="keyword">public</span> SqlSessionFactoryBean <span class="title function_">masterSqlSessionFactory</span><span class="params">(</span></span><br><span class="line"><span class="params">                <span class="meta">@Qualifier(&quot;masterDataSource&quot;)</span> DataSource dataSource</span></span><br><span class="line"><span class="params">        )</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">            <span class="keyword">return</span> support.createSqlSessionFactoryBean(dataSource, mapperLocations);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 从数据源配置</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line">    <span class="meta">@ConditionalOnProperty(name = &quot;multi.datasource.enabled&quot;, havingValue = &quot;true&quot;)</span></span><br><span class="line">    <span class="meta">@MapperScan(</span></span><br><span class="line"><span class="meta">            basePackages = &quot;com.fly.mapper.slave&quot;,</span></span><br><span class="line"><span class="meta">            sqlSessionFactoryRef = &quot;slaveSqlSessionFactory&quot;</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties(</span></span><br><span class="line"><span class="meta">            prefix = &quot;multi.datasource.mybatis.slave&quot;</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">SlaveDataSourceConfig</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> String[] mapperLocations;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@javax</span>.annotation.Resource</span><br><span class="line">        MybatisConfigurationSupport support;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Slave Druid DataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@ConfigurationProperties(</span></span><br><span class="line"><span class="meta">                prefix = &quot;multi.datasource.druid.slave&quot;</span></span><br><span class="line"><span class="meta">        )</span></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="keyword">public</span> DataSource <span class="title function_">slaveDataSource</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> DruidDataSourceBuilder</span><br><span class="line">                    .create()</span><br><span class="line">                    .build();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Bean</span></span><br><span class="line">        <span class="keyword">public</span> SqlSessionFactoryBean <span class="title function_">slaveSqlSessionFactory</span><span class="params">(</span></span><br><span class="line"><span class="params">                <span class="meta">@Qualifier(&quot;slaveDataSource&quot;)</span> DataSource dataSource</span></span><br><span class="line"><span class="params">        )</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">            <span class="keyword">return</span> support.createSqlSessionFactoryBean(dataSource, mapperLocations);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     * 用于简化MybatisProperties的配置</span></span><br><span class="line"><span class="comment">     * *******************************************************************</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Component</span></span><br><span class="line">    <span class="meta">@ConditionalOnProperty(name = &quot;multi.datasource.enabled&quot;, havingValue = &quot;true&quot;)</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MybatisConfigurationSupport</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> MybatisProperties properties;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> ResourceLoader resourceLoader;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">MybatisConfigurationSupport</span><span class="params">(</span></span><br><span class="line"><span class="params">                MybatisProperties properties,</span></span><br><span class="line"><span class="params">                ResourceLoader resourceLoader)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.properties = properties;</span><br><span class="line">            <span class="built_in">this</span>.resourceLoader = resourceLoader;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 创建SqlSessionFactoryBean</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> dataSource</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> mapperLocations</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> SqlSessionFactoryBean <span class="title function_">createSqlSessionFactoryBean</span><span class="params">(DataSource dataSource, String[] mapperLocations)</span> &#123;</span><br><span class="line">            <span class="type">SqlSessionFactoryBean</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBean</span>();</span><br><span class="line">            factory.setDataSource(dataSource);</span><br><span class="line">            factory.setVfs(SpringBootVFS.class);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 处理Configuration</span></span><br><span class="line"><span class="comment">             * 必须Copy否则会抛出配置多个分页插件的异常</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="type">Configuration</span> <span class="variable">configuration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Configuration</span>();</span><br><span class="line">            <span class="keyword">if</span> (properties.getConfiguration() != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 必须Copy否则会抛出配置多个分页插件的异常</span></span><br><span class="line">                BeanUtils.copyProperties(properties.getConfiguration(), configuration);</span><br><span class="line">            &#125;</span><br><span class="line">            factory.setConfiguration(configuration);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 处理MapperLocations</span></span><br><span class="line">            <span class="keyword">if</span> (!ObjectUtils.isEmpty(mapperLocations)) &#123;</span><br><span class="line">                factory.setMapperLocations(resolveMapperLocations(mapperLocations));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//            if (StringUtils.hasLength(properties.getTypeAliasesPackage())) &#123;</span></span><br><span class="line"><span class="comment">//                factory.setTypeAliasesPackage(properties.getTypeAliasesPackage());</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> factory;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * MapperLocations 转化为Resource[]</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> mapperLocations</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> Resource[] resolveMapperLocations(String[] mapperLocations) &#123;</span><br><span class="line">            <span class="type">ResourcePatternResolver</span> <span class="variable">resourceResolver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PathMatchingResourcePatternResolver</span>();</span><br><span class="line">            List&lt;Resource&gt; resources = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            <span class="keyword">if</span> (mapperLocations != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (String mapperLocation : mapperLocations) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Resource[] mappers = resourceResolver.getResources(mapperLocation);</span><br><span class="line">                        resources.addAll(Arrays.asList(mappers));</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException ignore) &#123;</span><br><span class="line">                        <span class="comment">// ignore</span></span><br><span class="line">                        ignore.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> resources.toArray(<span class="keyword">new</span> <span class="title class_">Resource</span>[resources.size()]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="https://github.com/kazuki43zoo/mybatis-spring-boot-multi-ds-demo" target="_blank" rel="noopener">mybatis-spring-boot-multi-ds-demo</a></li>
-<li><a href="https://github.com/mybatis/spring-boot-starter/issues/78" target="_blank" rel="noopener">Multi Datasource</a></li>
+<li><a href="https://github.com/kazuki43zoo/mybatis-spring-boot-multi-ds-demo">mybatis-spring-boot-multi-ds-demo</a></li>
+<li><a href="https://github.com/mybatis/spring-boot-starter/issues/78">Multi Datasource</a></li>
 </ul>
 
         
@@ -254,7 +272,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/05/11/mybatis多数据源/" data-id="cm2yjq798003xysuym1bbt7f2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/05/11/mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" data-id="cmjcrlybq001tlcuy5dd7fjp6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -329,7 +347,7 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/05/11/jenkins自动化部署/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/05/11/jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -339,7 +357,7 @@
         </a>
     
     
-        <a href="/2018/04/27/爬虫设计/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/04/27/%E7%88%AC%E8%99%AB%E8%AE%BE%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">爬虫设计</div>
         </a>
@@ -374,7 +392,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -385,7 +460,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -393,7 +468,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -403,66 +478,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -476,7 +494,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -485,7 +503,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -531,7 +549,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -558,41 +576,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

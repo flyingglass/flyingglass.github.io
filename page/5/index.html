@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta property="og:type" content="website">
 <meta property="og:title" content="技术人生">
 <meta property="og:url" content="https://flyingglass.github.io/page/5/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术人生">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -50,11 +64,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -118,7 +132,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -163,7 +179,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,7 +208,7 @@
 
             
             <section id="main">
-    <article id="post-nginx代理tomcat导致css或js加载失败" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-cdh下Sqoop2的安装" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -200,7 +216,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/28/nginx代理tomcat导致css或js加载失败/">nginx代理tomcat导致css或js加载失败</a>
+            <a class="article-title" href="/2018/03/13/cdh%E4%B8%8BSqoop2%E7%9A%84%E5%AE%89%E8%A3%85/">cdh下Sqoop2的安装</a>
         </h1>
     
 
@@ -210,7 +226,456 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/02/28/nginx代理tomcat导致css或js加载失败/">
+        <a href="/2018/03/13/cdh%E4%B8%8BSqoop2%E7%9A%84%E5%AE%89%E8%A3%85/">
+            <time datetime="2018-03-13T06:51:03.000Z" itemprop="datePublished">2018-03-13</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>本文中采用的cdh版本为5.12.0，如何部署cdh可以参考之前的博文<a href="http://flyflyfish.com/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/">cdh安装准备</a>和<a href="http://flyflyfish.com/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/">cdh5.12.0的安装</a></em></p>
+<h4 id="sqoop2配置"><a href="#sqoop2配置" class="headerlink" title="sqoop2配置"></a>sqoop2配置</h4><ul>
+<li>cdh安装sqoop2</li>
+<li>配置Drivers</li>
+<li>配置hadoop依赖</li>
+</ul>
+<h4 id="cdh安装sqoop2"><a href="#cdh安装sqoop2" class="headerlink" title="cdh安装sqoop2"></a>cdh安装sqoop2</h4><p>cdh5.12.0下安装sqoop2，参见官方的<a href="https://www.cloudera.com/documentation/enterprise/5-6-x/topics/cdh_ig_sqoop2_installation.html">安装手册</a>，直接在搭建好的cdh管理界面添加Sqoop2服务组件，然后一路选择<code>继续</code>安装，等待Sqoop2服务启动完毕。</p>
+<h5 id="配置Drivers"><a href="#配置Drivers" class="headerlink" title="配置Drivers"></a>配置Drivers</h5><p>由于本文是采用hdfs导出数据到mysql，故需配置mysql的connector的jar依赖包，参考<a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_jdbc_driver_install.html">官方的指南</a>，下载mysql-connector-java.jar包，然后拷贝到对应的<code>cdh</code>的默认<code>sqoop2</code>的目录<code>/var/lin/sqoop2</code>目录中，最终的目录结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[~]<span class="built_in">ls</span> /var/lib/sqoop2</span><br><span class="line">mysql-connector-java.jar  postgresql-9.0-801.jdbc4.jar  repository  tomcat-deployment</span><br></pre></td></tr></table></figure>
+
+<h5 id="配置hadoop超链接"><a href="#配置hadoop超链接" class="headerlink" title="配置hadoop超链接"></a>配置hadoop超链接</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera/parcels/CDH/lib/hadoop/client</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s ../../hadoop-hdfs/lib/jackson-mapper-asl-1.8.8.jar .</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s ../../hadoop-hdfs/lib/jackson-core-asl-1.8.8.jar .</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>Tips：配置完毕后在cdh管理界面重启Sqoop2组件服务，否则配置不生效</strong></em></p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_sqoop2_installation.html">安装文档</a></li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_jdbc_driver_install.html">JDBC Drviers for Sqoop</a></li>
+<li><a href="https://community.cloudera.com/t5/Data-Ingestion-Integration/Sqoop-Error-Could-not-start-job/m-p/45359#M1890">Sqoop Error: Could not start job</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/03/13/cdh%E4%B8%8BSqoop2%E7%9A%84%E5%AE%89%E8%A3%85/" data-id="cmjcrlybc000klcuyg6doavoz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-Resource和Autowired注解区别" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/03/13/Resource%E5%92%8CAutowired%E6%B3%A8%E8%A7%A3%E5%8C%BA%E5%88%AB/">Resource和Autowired注解区别</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/03/13/Resource%E5%92%8CAutowired%E6%B3%A8%E8%A7%A3%E5%8C%BA%E5%88%AB/">
+            <time datetime="2018-03-13T06:29:18.000Z" itemprop="datePublished">2018-03-13</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>最近在使用Mybatis处理通用Mapper封装时，使用@Resource进行注入bean时，遇到一些问题，本文特此记录：</em></p>
+<p>@Autowired默认按照类型进行装配，要求依赖对象必须存在，如果允许为null，可以设置required属性为false；可以结合@Qualifier注解使用名称装配。</p>
+<p>@Resource主要有两种属性type和name。如果使用name属性，则使用byName进行注入；如果使用type属性，则使用byType进行注入；如果注入策略既不制定name也不指定type属性，将通过反射机制使用byName进行注入。其中@Resource的装配顺序如下：</p>
+<ul>
+<li>指定了name和type，则从Spring上下文中找到唯一匹配的bean进行装配，找不到则抛出异常</li>
+<li>指定了name，则从上下文中查找名称（id）匹配的bean进行装配，找不到则抛出异常</li>
+<li>指定了type，则从上下文中找到类型匹配的唯一bean进行装配，找不到或者找到多个，都会抛出异常</li>
+<li>既没有指定name，又没有指定type，则自动按照byName方式进行装配；如果没有匹配，则回退为一个原始类型进行匹配，如果匹配则自动装配</li>
+</ul>
+<p>在泛型装配时，@Resouce和@Autowired的区别：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 针对<span class="doctag">@Resouce</span>会出现无法装配的情形</span></span><br><span class="line"><span class="comment">* <span class="doctag">@Autowired</span>按照类型装配，在装配泛型是按照T的真实类型装配</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractService</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">IService</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">protected</span> IMapper&lt;T&gt; IMapper;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="http://blog.51cto.com/12941821/2063203">Spring注解@Autowired和@Resource区别</a></li>
+<li><a href="http://bluerhino.github.io/2016/06/02/Spring%20@Autowired+@Qualifier%E4%B8%8E@Resource%E7%9A%84%E5%8C%BA%E5%88%AB/">Spring @Autowired+@Qualifier与@Resource的区别</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/03/13/Resource%E5%92%8CAutowired%E6%B3%A8%E8%A7%A3%E5%8C%BA%E5%88%AB/" data-id="cmjcrlyba000glcuy0rto13e9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-hexo布局" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/03/02/hexo%E5%B8%83%E5%B1%80/">hexo布局</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/03/02/hexo%E5%B8%83%E5%B1%80/">
+            <time datetime="2018-03-02T09:00:55.000Z" itemprop="datePublished">2018-03-02</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h4 id="hexo布局"><a href="#hexo布局" class="headerlink" title="hexo布局"></a>hexo布局</h4><p>Hexo有三种默认布局：<code>post</code>、<code>page</code>和<code>draft</code>，他们分别对应不同的目录，而自定义的其他布局和<code>post</code>相同，都将存储到<code>source/_posts</code>目录。</p>
+<table>
+<thead>
+<tr>
+<th>布局</th>
+<th>目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>post</code></td>
+<td><code>source/_posts</code></td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>source</code></td>
+</tr>
+<tr>
+<td><code>draft</code></td>
+<td><code>source/_drafts</code></td>
+</tr>
+</tbody></table>
+<h4 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h4><p>hexo的特殊布局：<code>draft</code>，这种布局建立时会被保存到<code>source/_drafts</code>文件夹，可通过<code>publish</code>命令将草稿移动到<code>source/_posts</code>目录下，该命令的使用方式与<code>new</code>类似，也可以通过<code>layout</code>指定布局。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> publish [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<p>草稿默认不会显示在页面中，可在执行时加上<code>--draft</code>参数，或是把<code>render_drafts</code>参数设置为<code>true</code>来预览草稿。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://hexo.io/zh-cn/docs/writing.html">hexo写作</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2018/03/02/hexo%E5%B8%83%E5%B1%80/" data-id="cmjcrlybg000ulcuy42z6eb5a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-nginx代理tomcat导致css或js加载失败" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/02/28/nginx%E4%BB%A3%E7%90%86tomcat%E5%AF%BC%E8%87%B4css%E6%88%96js%E5%8A%A0%E8%BD%BD%E5%A4%B1%E8%B4%A5/">nginx代理tomcat导致css或js加载失败</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/02/28/nginx%E4%BB%A3%E7%90%86tomcat%E5%AF%BC%E8%87%B4css%E6%88%96js%E5%8A%A0%E8%BD%BD%E5%A4%B1%E8%B4%A5/">
             <time datetime="2018-02-28T02:33:58.000Z" itemprop="datePublished">2018-02-28</time>
         </a>
     </div>
@@ -219,7 +684,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+        <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
     </div>
 
 
@@ -237,44 +702,47 @@
             <p><em>Web服务器经常会使用nginx作前置路由，在使用nginx配置Web服务器负载均衡、动静分离，会碰到设置反向代理后导致前端资源无法加载的问题</em></p>
 <p>nginx反向代理的tomcat服务器导致前端资源css或js加载失败大概可以分为：端口丢失、真实ip或端口获取错误、js或者css太大加载失败等情形</p>
 <h4 id="端口丢失"><a href="#端口丢失" class="headerlink" title="端口丢失"></a>端口丢失</h4><ul>
-<li>之前笔者也有文章单独介绍，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">nginx转发丢失端口的问题</a></li>
+<li>之前笔者也有文章单独介绍，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">nginx转发丢失端口的问题</a></li>
 </ul>
 <hr>
 <h4 id="反向代理获取真实ip（域名）、端口、协议"><a href="#反向代理获取真实ip（域名）、端口、协议" class="headerlink" title="反向代理获取真实ip（域名）、端口、协议"></a>反向代理获取真实ip（域名）、端口、协议</h4><p>nginx反向代理后，servlet应用通过request.getRemoteAddr()取到的IP是nginx的IP，并非客户端的真实IP；通过request.getRequestUrl()获取的ip（域名）、端口、协议都是nginx对应的参数。</p>
 <ul>
 <li>比如nginx的配置：</li>
 </ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">upstream</span> backend &#123;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="comment">#server backend1.example.com wight=5;</span></span><br><span class="line">        <span class="comment">#server 127.0.0.1:8080 max_fails=3 fail_timeout=30s;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#server backup1.example.com backup;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span> your.domain.com;</span><br><span class="line">        </span><br><span class="line">        <span class="attribute">location</span> /test &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend/test;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="section">upstream</span> backend &#123;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="comment">#server backend1.example.com wight=5;</span></span><br><span class="line">        <span class="comment">#server 127.0.0.1:8080 max_fails=3 fail_timeout=30s;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#server backup1.example.com backup;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span> your.domain.com;</span><br><span class="line">        </span><br><span class="line">        <span class="section">location</span> /test &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend/test;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在浏览器打开<code>http://your.domain.com/test</code>访问servlet应用，获取客户端IP和URL：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log.info(<span class="string">"RemoteAddr:&#123;&#125;, URL:&#123;&#125;"</span>, request.getRemoteAddr(), request.getRequestURL());</span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">RemoteAddr:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, URL:http:<span class="comment">//127.0.0.1:8080/test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log.info(<span class="string">&quot;RemoteAddr:&#123;&#125;, URL:&#123;&#125;&quot;</span>, request.getRemoteAddr(), request.getRequestURL());</span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">RemoteAddr:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, URL:http:<span class="comment">//127.0.0.1:8080/test</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><p>针对tomcat+nginx的解决方案：</p>
 <p>nginx添加如下配置,：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br></pre></td></tr></table></figure>
-<p>如果不知道如何添加，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">nginx转发丢失端口的问题</a>。添加完后，输出结果如下：</p>
+
+<p>如果不知道如何添加，可参考<a href="http://flyflyfish.com/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">nginx转发丢失端口的问题</a>。添加完后，输出结果如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">RemoteAddr:<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, URL:http:<span class="comment">//浏览器的ip地址/test</span></span><br></pre></td></tr></table></figure>
+
 <p>发现RemoteAddr仍然获取不正确，解决方案如下：</p>
 <ul>
 <li><p>方案一：通过<code>request.getHeader(&quot;X-Forwrad-For&quot;)</code>或<code>request.getHeader(&quot;X-Real-IP&quot;)</code>获取到nginx配置的Header。</p>
 </li>
 <li><p>方案二： 配置tomcat，通过Servlet API的request.getRemoteAddr()方法获取客户端的IP。Tomcat的server.xml，在Host元素内最后加入：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.valves.RemoteIpValve"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.valves.RemoteIpValve&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
 <h4 id="JS或css无法完全加载"><a href="#JS或css无法完全加载" class="headerlink" title="JS或css无法完全加载"></a>JS或css无法完全加载</h4><p>nginx的代理缓存区，默认较小导致部分文件出现加载不全的问题，比较典型的如<code>jQuery框架</code>，可以通过配置调整nginx的缓存区即可。</p>
 <p>最终完整配置如下：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="comment"># http_proxy </span></span><br><span class="line">    <span class="attribute">proxy_buffer_size</span> <span class="number">128k</span>;</span><br><span class="line">    <span class="attribute">proxy_buffers</span> <span class="number">32</span> <span class="number">128k</span>;</span><br><span class="line">    <span class="attribute">proxy_busy_buffers_size</span> <span class="number">128k</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="attribute">upstream</span> backend &#123;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span> your.domain.com;</span><br><span class="line">        </span><br><span class="line">        <span class="attribute">location</span> /test &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend/test;</span><br><span class="line">            <span class="comment"># proxy_params</span></span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="comment"># http_proxy </span></span><br><span class="line">    <span class="attribute">proxy_buffer_size</span> <span class="number">128k</span>;</span><br><span class="line">    <span class="attribute">proxy_buffers</span> <span class="number">32</span> <span class="number">128k</span>;</span><br><span class="line">    <span class="attribute">proxy_busy_buffers_size</span> <span class="number">128k</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="section">upstream</span> backend &#123;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span> your.domain.com;</span><br><span class="line">        </span><br><span class="line">        <span class="section">location</span> /test &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend/test;</span><br><span class="line">            <span class="comment"># proxy_params</span></span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>关于<code>nginx</code>的<code>http_proxy</code>模块参数含义：</p>
-<p><img src="/2018/02/28/nginx代理tomcat导致css或js加载失败/20180303185800.jpg" alt="http_proxy模块"></p>
+<p><img src="/2018/02/28/nginx%E4%BB%A3%E7%90%86tomcat%E5%AF%BC%E8%87%B4css%E6%88%96js%E5%8A%A0%E8%BD%BD%E5%A4%B1%E8%B4%A5/20180303185800.jpg" alt="http_proxy模块"></p>
 </li>
-</ul>
+<li><p>参考链接：</p>
 <ul>
-<li>参考链接：<ul>
-<li><a href="https://lanjingling.github.io/2015/10/28/nginx-tomcat-cluster/" target="_blank" rel="noopener">nginx tomcat负载均衡、动静分离</a></li>
-<li><a href="http://www.zving.com/c/2014-03-19/257610.shtml" target="_blank" rel="noopener">Nginx+Tomcat代理环境下JS无法完全加载问题的处理</a></li>
-<li><a href="http://blog.csdn.net/xiao__gui/article/details/73733797" target="_blank" rel="noopener">Jetty/Tomcat + Nginx反向代理获取客户端真实IP、域名、协议、端口</a></li>
-<li><a href="https://www.jianshu.com/p/5c7d718f15d2" target="_blank" rel="noopener">nginx基本使用系列(三)_nginx常用配置文件解析</a></li>
+<li><a href="https://lanjingling.github.io/2015/10/28/nginx-tomcat-cluster/">nginx tomcat负载均衡、动静分离</a></li>
+<li><a href="http://www.zving.com/c/2014-03-19/257610.shtml">Nginx+Tomcat代理环境下JS无法完全加载问题的处理</a></li>
+<li><a href="http://blog.csdn.net/xiao__gui/article/details/73733797">Jetty&#x2F;Tomcat + Nginx反向代理获取客户端真实IP、域名、协议、端口</a></li>
+<li><a href="https://www.jianshu.com/p/5c7d718f15d2">nginx基本使用系列(三)_nginx常用配置文件解析</a></li>
 </ul>
 </li>
 </ul>
@@ -288,7 +756,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/28/nginx代理tomcat导致css或js加载失败/" data-id="cm2yjq7860029ysuyeyy5w2a6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/28/nginx%E4%BB%A3%E7%90%86tomcat%E5%AF%BC%E8%87%B4css%E6%88%96js%E5%8A%A0%E8%BD%BD%E5%A4%B1%E8%B4%A5/" data-id="cmjcrlybw002flcuy87oa820z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -392,7 +860,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
+        <a class="article-category-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a>
     </div>
 
 
@@ -412,7 +880,7 @@
 <li>libpcre</li>
 <li>liblzma</li>
 </ul>
-<h3 id="Download-build-and-install"><a href="#Download-build-and-install" class="headerlink" title="Download, build and install"></a>Download, build and install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y pcre-devel</span><br><span class="line">sudo yum install xz-devel</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src &amp;&amp; sudo git <span class="built_in">clone</span> https://github.com/ggreer/the_silver_searcher.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> the_silver_searcher</span><br><span class="line">sudo ./build.sh</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">which</span> ag</span><br></pre></td></tr></table></figure></li>
+<h3 id="Download-build-and-install"><a href="#Download-build-and-install" class="headerlink" title="Download, build and install"></a>Download, build and install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> yum install -y pcre-devel</span><br><span class="line"><span class="built_in">sudo</span> yum install xz-devel</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/local/src &amp;&amp; <span class="built_in">sudo</span> git <span class="built_in">clone</span> https://github.com/ggreer/the_silver_searcher.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> the_silver_searcher</span><br><span class="line"><span class="built_in">sudo</span> ./build.sh</span><br><span class="line"><span class="built_in">sudo</span> make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">which</span> ag</span><br></pre></td></tr></table></figure></li>
 </ul>
 
         
@@ -424,7 +892,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/26/ag/" data-id="cm2yjq77b000fysuy8lelbnk3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/26/ag/" data-id="cmjcrlyba000hlcuy4cn1hgs7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -509,7 +977,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/26/web常见漏洞/">web常见漏洞</a>
+            <a class="article-title" href="/2018/02/26/web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/">web常见漏洞</a>
         </h1>
     
 
@@ -519,7 +987,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/02/26/web常见漏洞/">
+        <a href="/2018/02/26/web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/">
             <time datetime="2018-02-26T07:13:29.000Z" itemprop="datePublished">2018-02-26</time>
         </a>
     </div>
@@ -528,7 +996,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+        <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
     </div>
 
 
@@ -554,39 +1022,37 @@
 <ul>
 <li><p>方案一：</p>
 <p>如果采用springboot内嵌的tomcat容器，可以在application.yml或application.properties增加如下配置：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#解决不安全的HTTP方法漏洞  </span><br><span class="line">server.tomcat.port-header=HEAD,PUT,DELETE,OPTIONS,TRACE,COPY,SEARCH,PROPFIND</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#解决不安全的HTTP方法漏洞  </span><br><span class="line">server.tomcat.port-header=HEAD,PUT,DELETE,OPTIONS,TRACE,COPY,SEARCH,PROPFIND   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>方案二：</p>
 <p>代码增加对tomcat的配置，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TomcatConfig</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Bean</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> EmbeddedServletContainerFactory <span class="title">servletContainer</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        TomcatEmbeddedServletContainerFactory tomcat = <span class="keyword">new</span> TomcatEmbeddedServletContainerFactory() &#123;<span class="comment">// 1  </span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">postProcessContext</span><span class="params">(Context context)</span> </span>&#123;  </span><br><span class="line">                SecurityConstraint securityConstraint = <span class="keyword">new</span> SecurityConstraint();  </span><br><span class="line">                securityConstraint.setUserConstraint(<span class="string">"CONFIDENTIAL"</span>);  </span><br><span class="line">                SecurityCollection collection = <span class="keyword">new</span> SecurityCollection();  </span><br><span class="line">                collection.addPattern(<span class="string">"/*"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"HEAD"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"PUT"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"DELETE"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"OPTIONS"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"TRACE"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"COPY"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"SEARCH"</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">"PROPFIND"</span>);  </span><br><span class="line">                securityConstraint.addCollection(collection);  </span><br><span class="line">                context.addConstraint(securityConstraint);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;;  </span><br><span class="line">        <span class="keyword">return</span> tomcat;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TomcatConfig</span> &#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Bean</span>  </span><br><span class="line">    <span class="keyword">public</span> EmbeddedServletContainerFactory <span class="title function_">servletContainer</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="type">TomcatEmbeddedServletContainerFactory</span> <span class="variable">tomcat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TomcatEmbeddedServletContainerFactory</span>() &#123;<span class="comment">// 1  </span></span><br><span class="line">            <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">postProcessContext</span><span class="params">(Context context)</span> &#123;  </span><br><span class="line">                <span class="type">SecurityConstraint</span> <span class="variable">securityConstraint</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecurityConstraint</span>();  </span><br><span class="line">                securityConstraint.setUserConstraint(<span class="string">&quot;CONFIDENTIAL&quot;</span>);  </span><br><span class="line">                <span class="type">SecurityCollection</span> <span class="variable">collection</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecurityCollection</span>();  </span><br><span class="line">                collection.addPattern(<span class="string">&quot;/*&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;HEAD&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;PUT&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;DELETE&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;OPTIONS&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;TRACE&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;COPY&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;SEARCH&quot;</span>);  </span><br><span class="line">                collection.addMethod(<span class="string">&quot;PROPFIND&quot;</span>);  </span><br><span class="line">                securityConstraint.addCollection(collection);  </span><br><span class="line">                context.addConstraint(securityConstraint);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;;  </span><br><span class="line">        <span class="keyword">return</span> tomcat;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>测试：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用curl测试：</span></span><br><span class="line">curl -v -X OPTIONS http://www.example.com/<span class="built_in">test</span>/</span><br><span class="line">查看响应的 Allow: GET, HEAD, POST, PUT, DELETE, OPTIONS</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看是否能上载来判断攻击是否生效。</span></span><br><span class="line">curl -v -T test.html  http://www.example.com/<span class="built_in">test</span>/test.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找一个存在的页面，如test2.html，如果删除成功，则攻击有效。</span></span><br><span class="line">curl -X DELETE http://www.example.com/<span class="built_in">test</span>/test2.html</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用curl测试：</span></span><br><span class="line">curl -v -X OPTIONS http://www.example.com/test/</span><br><span class="line">查看响应的 Allow: GET, HEAD, POST, PUT, DELETE, OPTIONS</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看是否能上载来判断攻击是否生效。</span></span><br><span class="line">curl -v -T test.html  http://www.example.com/test/test.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找一个存在的页面，如test2.html，如果删除成功，则攻击有效。</span></span><br><span class="line">curl -X DELETE http://www.example.com/test/test2.html</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>参考链接：</p>
 <ul>
-<li><a href="http://www.cnblogs.com/qmfsun/p/6169641.html" target="_blank" rel="noopener">验证启用了不安全的HTTP方法</a></li>
-<li><a href="http://blog.csdn.net/liuchuanhong1/article/details/76667343" target="_blank" rel="noopener">spring boot使用内嵌的tomcat解决不安全的HTTP方法安全漏洞</a></li>
+<li><a href="http://www.cnblogs.com/qmfsun/p/6169641.html">验证启用了不安全的HTTP方法</a></li>
+<li><a href="http://blog.csdn.net/liuchuanhong1/article/details/76667343">spring boot使用内嵌的tomcat解决不安全的HTTP方法安全漏洞</a></li>
 </ul>
 </li>
 </ul>
 <hr>
 <h4 id="Apache-JServ-protocol-service"><a href="#Apache-JServ-protocol-service" class="headerlink" title="Apache JServ protocol service"></a>Apache JServ protocol service</h4><ul>
-<li>描述：Apache JServ协议(AJP)是一种二进制协议，可以从web服务器代理入站请求。位于web服务器后的应用服务器，不建议将AJP服务公开访问。如果AJP被错误配置，它可能允许攻击者访问内部资源。</li>
-</ul>
-<ul>
+<li><p>描述：Apache JServ协议(AJP)是一种二进制协议，可以从web服务器代理入站请求。位于web服务器后的应用服务器，不建议将AJP服务公开访问。如果AJP被错误配置，它可能允许攻击者访问内部资源。</p>
+</li>
 <li><p>解决方案：</p>
 <ul>
-<li>找到tomcat的配置文件目录，路径如下${tomcat目录}/conf/server.xml</li>
+<li>找到tomcat的配置文件目录，路径如下${tomcat目录}&#x2F;conf&#x2F;server.xml</li>
 <li>注释如下行 <code>&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</code></li>
 </ul>
 </li>
 <li><p>参考链接：</p>
 <ul>
-<li><a href="https://stackoverflow.com/questions/40262315/how-to-disable-apache-jserv-protocol-service" target="_blank" rel="noopener">stackoverflow禁用AJP服务</a></li>
-<li><a href="https://tomcat.apache.org/connectors-doc/ajp/ajpv13a.html" target="_blank" rel="noopener">The Apache Tomcat Connector</a></li>
+<li><a href="https://stackoverflow.com/questions/40262315/how-to-disable-apache-jserv-protocol-service">stackoverflow禁用AJP服务</a></li>
+<li><a href="https://tomcat.apache.org/connectors-doc/ajp/ajpv13a.html">The Apache Tomcat Connector</a></li>
 </ul>
 </li>
 </ul>
@@ -600,12 +1066,15 @@
 <li>在Apache和nginx通过设置一个虚拟机来记录所有的非法Host header，或者在Apache和nginx里指定一个ServerName名单;</li>
 <li>同时，Apache开启UseCanonicalName选项</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apache在extra下的httpd-default.conf文件或者虚拟主机加入如下配置</span></span><br><span class="line">UseCanonicalName On</span><br><span class="line"><span class="comment"># Nginx配置</span></span><br><span class="line">server_name example.com;</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apache在extra下的httpd-default.conf文件或者虚拟主机加入如下配置</span></span><br><span class="line">UseCanonicalName On</span><br><span class="line"><span class="comment"># Nginx配置</span></span><br><span class="line">server_name example.com;</span><br></pre></td></tr></table></figure>
+
+<ul>
 <li><p>参考链接：</p>
 <ul>
-<li><a href="https://www.oschina.net/question/1455558_2218206" target="_blank" rel="noopener">被检测出有HTTP HOST头部攻击</a></li>
-<li><a href="http://blog.csdn.net/zzzzzyl/article/details/78583251" target="_blank" rel="noopener">host头攻击解决方法</a></li>
+<li><a href="https://www.oschina.net/question/1455558_2218206">被检测出有HTTP HOST头部攻击</a></li>
+<li><a href="http://blog.csdn.net/zzzzzyl/article/details/78583251">host头攻击解决方法</a></li>
 </ul>
 <hr>
 </li>
@@ -618,7 +1087,7 @@
 </li>
 <li><p>参考链接</p>
 <ul>
-<li><a href="https://security.stackexchange.com/questions/42618/how-to-protect-tomcat-7-against-slowloris-attack" target="_blank" rel="noopener">how-to-protect-tomcat-7-against-slowloris-attack</a></li>
+<li><a href="https://security.stackexchange.com/questions/42618/how-to-protect-tomcat-7-against-slowloris-attack">how-to-protect-tomcat-7-against-slowloris-attack</a></li>
 </ul>
 </li>
 </ul>
@@ -633,7 +1102,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/26/web常见漏洞/" data-id="cm2yjq78h0030ysuyii38eh78" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/26/web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/" data-id="cmjcrlyc2002xlcuydzcehkms" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -718,7 +1187,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/24/nginx转发丢失端口问题/">nginx转发丢失端口问题</a>
+            <a class="article-title" href="/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">nginx转发丢失端口问题</a>
         </h1>
     
 
@@ -728,7 +1197,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/02/24/nginx转发丢失端口问题/">
+        <a href="/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">
             <time datetime="2018-02-24T09:57:56.000Z" itemprop="datePublished">2018-02-24</time>
         </a>
     </div>
@@ -737,7 +1206,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Web开发/">Web开发</a>
+        <a class="article-category-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
     </div>
 
 
@@ -752,22 +1221,30 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p><em>nginx对于redirect location的处理，会造成端口丢失的现象。针对nginx处理非80标准端口进行redirect时导致端口丢失的问题，本文主要介绍nginx的反向代理和访问目录缺失/这两种情形</em></p>
+            <p><em>nginx对于redirect location的处理，会造成端口丢失的现象。针对nginx处理非80标准端口进行redirect时导致端口丢失的问题，本文主要介绍nginx的反向代理和访问目录缺失&#x2F;这两种情形</em></p>
 <p>以下为两种情形的参考范例：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向代理</span></span><br><span class="line"><span class="attribute">listen</span> <span class="number">26479</span> default_server;</span><br><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host             <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP        <span class="variable">$remote_addr</span>;  </span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问/gitlab的时候会自动加上/成为/gitlab/</span></span><br><span class="line"><span class="attribute">listen</span> <span class="number">26479</span> default_server;</span><br><span class="line"><span class="attribute">location</span> /gitlab &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p>查看<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header" target="_blank" rel="noopener">nginx官方文档</a>提及的说明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">An unchanged “Host” request header field can be passed like this:</span><br><span class="line"></span><br><span class="line">proxy_set_header Host       $http_host;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向代理</span></span><br><span class="line"><span class="attribute">listen</span> <span class="number">26479</span> default_server;</span><br><span class="line"><span class="section">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host             <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP        <span class="variable">$remote_addr</span>;  </span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问/gitlab的时候会自动加上/成为/gitlab/</span></span><br><span class="line"><span class="attribute">listen</span> <span class="number">26479</span> default_server;</span><br><span class="line"><span class="section">location</span> /gitlab &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p>查看<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header">nginx官方文档</a>提及的说明：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">An unchanged “Host” request header field can be passed like this:</span><br><span class="line"></span><br><span class="line">proxy_set_header Host       $http_host;</span><br></pre></td></tr></table></figure>
+
 <p>同时参考gitlab-ce使用非标准端口访问的方案，查看gitlab-ce的nginx配置如下：</p>
-<p><code>proxy_set_header Host    $http_host;</code></p>
-<p>通过查看nginx软件包，发现nginx已提供参考文件/etc/nginx/proxy_params</p>
+<p><code>proxy_set_header Host	$http_host;</code></p>
+<p>通过查看nginx软件包，发现nginx已提供参考文件&#x2F;etc&#x2F;nginx&#x2F;proxy_params</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br></pre></td></tr></table></figure>
-<p>由于我使用的centos下面手动编译的nginx并未找到proxy_params，我的nginx位于/usr/local/nginx，于是通过<code>vim /usr/local/nginx/conf/proxy_params</code>输入以上内容，配置nginx的location如下：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> /gitlab &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:9090/gitlab;</span><br><span class="line">    <span class="attribute">include</span> proxy_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于我使用的centos下面手动编译的nginx并未找到proxy_params，我的nginx位于&#x2F;usr&#x2F;local&#x2F;nginx，于是通过<code>vim /usr/local/nginx/conf/proxy_params</code>输入以上内容，配置nginx的location如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">location</span> /gitlab &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:9090/gitlab;</span><br><span class="line">    <span class="attribute">include</span> proxy_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>也可以手工输入proxy_params的内容到<code>location</code>配置段下</p>
-<h4 id="访问目录缺失"><a href="#访问目录缺失" class="headerlink" title="访问目录缺失/"></a>访问目录缺失/</h4><p>比如<code>$document_root</code>存在<code>data/index.html</code>文件，但是访问的时候最后没加<code>/</code>，nginx会自动给你带上<code>/</code>，返回一个301重定向(这个行为和<a href="https://httpd.apache.org/docs/2.4/mod/mod_dir.html" target="_blank" rel="noopener">apache一致</a>)，但是当nginx监听的是非标准端口，这个301返回的<code>Location</code>没有端口号，导致浏览器请求出错。用curl可以很明显的看到这一点:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[~]# curl -v 127.0.0.1:9090/data</span><br><span class="line">* About to connect() to 127.0.0.1 port 9090 (#0)</span><br><span class="line">*   Trying 127.0.0.1...</span><br><span class="line">* Connected to 127.0.0.1 (127.0.0.1) port 9090 (#0)</span><br><span class="line">&gt; GET /data HTTP/1.1</span><br><span class="line">&gt; User-Agent: curl/7.29.0</span><br><span class="line">&gt; Host: 127.0.0.1:9090</span><br><span class="line">&gt; Accept: */*</span><br><span class="line">&gt; </span><br><span class="line">&lt; HTTP/1.1 301 Moved Permanently</span><br><span class="line">* Server nginx is not blacklisted</span><br><span class="line">&lt; Server: nginx</span><br><span class="line">&lt; Date: Mon, 26 Feb 2018 02:20:49 GMT</span><br><span class="line">&lt; Content-Type: text/html; charset=utf-8</span><br><span class="line">&lt; Content-Length: 178</span><br><span class="line">&lt; Connection: keep-alive</span><br><span class="line">&lt; Cache-Control: no-cache</span><br><span class="line">&lt; Location: http://127.0.0.1/data/</span><br><span class="line">&lt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;301 Moved Permanently&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body bgcolor=&quot;white&quot;&gt;</span><br><span class="line">&lt;center&gt;&lt;h1&gt;301 Moved Permanently&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">* Connection #0 to host 127.0.0.1 left intact</span><br></pre></td></tr></table></figure>
-<p>可以看到Location端口号丢失了，这个和反向代理不一样。通过google搜索，在<a href="https://stackoverflow.com/questions/15555428/nginx-causes-301-redirect-if-theres-no-trailing-slash" target="_blank" rel="noopener">stackoverflow的question</a>找到了解决方案：</p>
+<h4 id="访问目录缺失"><a href="#访问目录缺失" class="headerlink" title="访问目录缺失&#x2F;"></a>访问目录缺失&#x2F;</h4><p>比如<code>$document_root</code>存在<code>data/index.html</code>文件，但是访问的时候最后没加<code>/</code>，nginx会自动给你带上<code>/</code>，返回一个301重定向(这个行为和<a href="https://httpd.apache.org/docs/2.4/mod/mod_dir.html">apache一致</a>)，但是当nginx监听的是非标准端口，这个301返回的<code>Location</code>没有端口号，导致浏览器请求出错。用curl可以很明显的看到这一点:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[~]# curl -v 127.0.0.1:9090/data</span><br><span class="line">* About to connect() to 127.0.0.1 port 9090 (#0)</span><br><span class="line">*   Trying 127.0.0.1...</span><br><span class="line">* Connected to 127.0.0.1 (127.0.0.1) port 9090 (#0)</span><br><span class="line">&gt; GET /data HTTP/1.1</span><br><span class="line">&gt; User-Agent: curl/7.29.0</span><br><span class="line">&gt; Host: 127.0.0.1:9090</span><br><span class="line">&gt; Accept: */*</span><br><span class="line">&gt; </span><br><span class="line">&lt; HTTP/1.1 301 Moved Permanently</span><br><span class="line">* Server nginx is not blacklisted</span><br><span class="line">&lt; Server: nginx</span><br><span class="line">&lt; Date: Mon, 26 Feb 2018 02:20:49 GMT</span><br><span class="line">&lt; Content-Type: text/html; charset=utf-8</span><br><span class="line">&lt; Content-Length: 178</span><br><span class="line">&lt; Connection: keep-alive</span><br><span class="line">&lt; Cache-Control: no-cache</span><br><span class="line">&lt; Location: http://127.0.0.1/data/</span><br><span class="line">&lt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;301 Moved Permanently&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body bgcolor=&quot;white&quot;&gt;</span><br><span class="line">&lt;center&gt;&lt;h1&gt;301 Moved Permanently&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">* Connection #0 to host 127.0.0.1 left intact</span><br></pre></td></tr></table></figure>
+
+<p>可以看到Location端口号丢失了，这个和反向代理不一样。通过google搜索，在<a href="https://stackoverflow.com/questions/15555428/nginx-causes-301-redirect-if-theres-no-trailing-slash">stackoverflow的question</a>找到了解决方案：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">if</span> (-d <span class="variable">$request_filename</span>) &#123;</span><br><span class="line">    <span class="attribute">rewrite</span> [^/]$ <span class="variable">$scheme</span>://<span class="variable">$http_host</span><span class="variable">$uri</span>/ <span class="literal">permanent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>通过对URL进行重写带上端口</p>
 
         
@@ -779,7 +1256,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/24/nginx转发丢失端口问题/" data-id="cm2yjq789002gysuyqxzsrw3b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/" data-id="cmjcrlyby002klcuy0iq77028" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -864,7 +1341,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/04/cdh5-12-0安装/">cdh5.12.0安装</a>
+            <a class="article-title" href="/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/">cdh5.12.0安装</a>
         </h1>
     
 
@@ -874,7 +1351,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/02/04/cdh5-12-0安装/">
+        <a href="/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/">
             <time datetime="2018-02-04T06:00:09.000Z" itemprop="datePublished">2018-02-04</time>
         </a>
     </div>
@@ -883,7 +1360,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
+        <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
     </div>
 
 
@@ -900,24 +1377,23 @@
             
             <h3 id="安装Cloudera-Manager"><a href="#安装Cloudera-Manager" class="headerlink" title="安装Cloudera Manager"></a>安装Cloudera Manager</h3><p>本文采用离线安装cdh5.12.0，所有安装包的版本均为5.12.0，安装所需的离线包均需提前下载，下文将给出对应下载链接地址和配置。<strong>安装的操作系统为centos 7及以上系统，其他系统和版本可以需自行下载对应的rpm</strong></p>
 <h5 id="下载cloudera-manager-repo（所有节点均需配置）"><a href="#下载cloudera-manager-repo（所有节点均需配置）" class="headerlink" title="下载cloudera-manager.repo（所有节点均需配置）"></a>下载cloudera-manager.repo（所有节点均需配置）</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo" title="下载链接" target="_blank" rel="noopener">下载链接</a></p>
+<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo" title="下载链接">下载链接</a></p>
 </li>
 <li><p>cloudera-manage.repo配置(所有节点均需配置，仅仅展示主节点的配置如下)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh] cat /etc/yum.repos.d/cloudera-manager.repo</span><br><span class="line">[cloudera-manager]</span><br><span class="line">name = Cloudera Manager, Version 5.12.0</span><br><span class="line">baseurl = https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/</span><br><span class="line">gpgkey = https://archive.cloudera.com/redhat/cdh/RPM-GPG-KEY-cloudera</span><br><span class="line">gpgcheck = 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证生效</span></span><br><span class="line">yum clean all  </span><br><span class="line">yum list | grep cloudera  </span><br><span class="line"><span class="comment"># 确认显示的版本是否正确（我这里显示5.12.0-1.cm5120.p0.120.el7）</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh] <span class="built_in">cat</span> /etc/yum.repos.d/cloudera-manager.repo</span><br><span class="line">[cloudera-manager]</span><br><span class="line">name = Cloudera Manager, Version 5.12.0</span><br><span class="line">baseurl = https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/</span><br><span class="line">gpgkey = https://archive.cloudera.com/redhat/cdh/RPM-GPG-KEY-cloudera</span><br><span class="line">gpgcheck = 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证生效</span></span><br><span class="line">yum clean all  </span><br><span class="line">yum list | grep cloudera  </span><br><span class="line"><span class="comment"># 确认显示的版本是否正确（我这里显示5.12.0-1.cm5120.p0.120.el7）</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="下载cloudera-manager-installer-bin（主节点需配置，从节点无须配置）"><a href="#下载cloudera-manager-installer-bin（主节点需配置，从节点无须配置）" class="headerlink" title="下载cloudera-manager-installer.bin（主节点需配置，从节点无须配置）"></a>下载cloudera-manager-installer.bin（主节点需配置，从节点无须配置）</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/installer/5.12.0/cloudera-manager-installer.bin" target="_blank" rel="noopener">下载链接</a></p>
+<li><p><a href="http://archive.cloudera.com/cm5/installer/5.12.0/cloudera-manager-installer.bin">下载链接</a></p>
 </li>
-<li><p>放置在/opt目录，并添加执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
+<li><p>放置在&#x2F;opt目录，并添加执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x /opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置完毕后验证[root@n171 cdh] <code>ll /opt/cloudera-manager-installer.bin</code></p>
-<p>  -rwxr-xr-x 1 root root 519670 6月  21 02:43 /opt/cloudera-manager-installer.bin</p>
+<p>  -rwxr-xr-x 1 root root 519670 6月  21 02:43 &#x2F;opt&#x2F;cloudera-manager-installer.bin</p>
 </li>
 </ul>
 <h5 id="下载RPMS"><a href="#下载RPMS" class="headerlink" title="下载RPMS"></a>下载RPMS</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/RPMS/x86_64/" target="_blank" rel="noopener">下载链接(下载目录下所有文件)</a></p>
+<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/RPMS/x86_64/">下载链接(下载目录下所有文件)</a></p>
 </li>
 <li><p>新建放置目录 <code>mkdir -p /opt/cloudera-RPMS/</code></p>
 </li>
@@ -925,33 +1401,35 @@
 <ul>
 <li>master节点，目录结构如下</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]<span class="comment"># ls /opt/cloudera-RPMS/</span></span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-db-2-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">enterprise-debuginfo-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">oracle-j2sdk1.7-1.7.0+update67-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]# <span class="built_in">ls</span> /opt/cloudera-RPMS/</span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-db-2-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">enterprise-debuginfo-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">oracle-j2sdk1.7-1.7.0+update67-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
 <ul>
-<li>slave节点(不需要server相关的rpm，只需要agent相关rpm)，目录结构如下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@n172 parcel-repo]<span class="comment"># ls /opt/cloudera-RPMS/</span></span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-</li>
+<li>slave节点(不需要server相关的rpm，只需要agent相关rpm)，目录结构如下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@n172 parcel-repo]# <span class="built_in">ls</span> /opt/cloudera-RPMS/</span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 <h5 id="下载CDH-Parcel"><a href="#下载CDH-Parcel" class="headerlink" title="下载CDH-Parcel"></a>下载CDH-Parcel</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cdh5/parcels/5.12.0/" title="下载CDH-Parcel文件" target="_blank" rel="noopener">下载链接</a></p>
+<li><p><a href="http://archive.cloudera.com/cdh5/parcels/5.12.0/" title="下载CDH-Parcel文件">下载链接</a></p>
 </li>
 <li><p>新建放置目录 <code>mkdir -p /opt/cloudera/parcel-repo/</code></p>
 </li>
 <li><p>下载完毕后(<strong>所有节点</strong>)，目录结构如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]<span class="comment"># ls /opt/cloudera/parcel-repo/</span></span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel</span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel.sha</span><br><span class="line">manifest.json</span><br><span class="line">注意:下载后将.sha1文件后缀更改为.sha</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]# <span class="built_in">ls</span> /opt/cloudera/parcel-repo/</span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel</span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel.sha</span><br><span class="line">manifest.json</span><br><span class="line">注意:下载后将.sha1文件后缀更改为.sha</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="执行安装"><a href="#执行安装" class="headerlink" title="执行安装"></a>执行安装</h5><ul>
 <li>所有节点执行</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera-RPMS  </span><br><span class="line">yum -y localinstall --nogpgcheck *.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera-RPMS  </span><br><span class="line">yum -y localinstall --nogpgcheck *.rpm  </span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>master节点执行</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝cloudera-manage-installer.bin到/opt/</span></span><br><span class="line"><span class="comment"># +x 权限</span></span><br><span class="line">sudo chmod +x /opt/cloudera-manager-installer.bin</span><br><span class="line">/opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
-<h5 id="访问安装界面"><a href="#访问安装界面" class="headerlink" title="访问安装界面"></a>访问安装界面</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://Master主机的IP:7180/ </span><br><span class="line">如果不能访问，稍等刷新再试，服务启动需要一定时间</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝cloudera-manage-installer.bin到/opt/</span></span><br><span class="line"><span class="comment"># +x 权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /opt/cloudera-manager-installer.bin</span><br><span class="line">/opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
+
+<h5 id="访问安装界面"><a href="#访问安装界面" class="headerlink" title="访问安装界面"></a>访问安装界面</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://Master主机的IP:7180/ </span><br><span class="line">如果不能访问，稍等刷新再试，服务启动需要一定时间</span><br></pre></td></tr></table></figure>
+
+
 <h5 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h5><ul>
-<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html" target="_blank" rel="noopener">CDH5.12.0安装官网链接</a></li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html">CDH5.12.0安装官网链接</a></li>
 </ul>
 
         
@@ -963,7 +1441,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/04/cdh5-12-0安装/" data-id="cm2yjq77c000iysuypk66a78e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/" data-id="cmjcrlybg000slcuy1t8t6g3s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1048,7 +1526,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2018/02/04/cdh安装准备/">cdh5.12.0安装准备</a>
+            <a class="article-title" href="/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/">cdh5.12.0安装准备</a>
         </h1>
     
 
@@ -1058,7 +1536,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/02/04/cdh安装准备/">
+        <a href="/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/">
             <time datetime="2018-02-04T04:05:09.000Z" itemprop="datePublished">2018-02-04</time>
         </a>
     </div>
@@ -1067,7 +1545,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
+        <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
     </div>
 
 
@@ -1091,8 +1569,8 @@
 <li>If using root, the hosts must accept the same root password.</li>
 <li>The hosts must have Internet access to allow the wizard to install software from <code>archive.cloudera.com</code></li>
 <li>Run a supported OS:<ul>
-<li>See <a href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rn_consolidated_pcm.html" target="_blank" rel="noopener"> CDH 5 and Cloudera Manager 5 Requirements and Supported Versions. </a></li>
-<li>SLES - SUSE Linux Enterprise Server 11, 64-bit. Service Pack 2 or higher is required. The Updates repository must be active and <a href="http://download.novell.com/Download?buildid=zzeQqpY9nK4~" target="_blank" rel="noopener"> SUSE Linux Enterprise Software Development Kit 11 SP1 </a> is required.</li>
+<li>See <a href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rn_consolidated_pcm.html"> CDH 5 and Cloudera Manager 5 Requirements and Supported Versions. </a></li>
+<li>SLES - SUSE Linux Enterprise Server 11, 64-bit. Service Pack 2 or higher is required. The Updates repository must be active and <a href="http://download.novell.com/Download?buildid=zzeQqpY9nK4~"> SUSE Linux Enterprise Software Development Kit 11 SP1 </a> is required.</li>
 <li>Debian - Wheezy (7.0 and 7.1), 64-bit.</li>
 <li>Ubuntu - Trusty (14.04) and (Precise) 12.04, 64-bit.<br>If your environment does not satisfy these requirements, the procedure described in this guide might not work. For information about other Cloudera Manager installation options and requirements,<br>see Installing Cloudera Manager and CDH.</li>
 </ul>
@@ -1103,22 +1581,30 @@
 <li>Apache Hadoop：维护人员比较多，更新频率比较快，但是稳定性比较差。</li>
 <li>Cloudera Hadoop（CDH）：CDH：Cloudera公司的发行版本，基于ApacheHadoop的二次开发，优化了组件兼容和交互接口、简化安装配置、增加Cloudera兼容特性。</li>
 </ul>
-<h3 id="CDH安装准备（本文操作系统为centos7及以上系统）"><a href="#CDH安装准备（本文操作系统为centos7及以上系统）" class="headerlink" title="CDH安装准备（本文操作系统为centos7及以上系统）"></a>CDH安装准备（本文操作系统为centos7及以上系统）</h3><h4 id="jdk-配置-vim-etc-profile"><a href="#jdk-配置-vim-etc-profile" class="headerlink" title="jdk 配置 vim /etc/profile"></a>jdk 配置 vim /etc/profile</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># JAVA</span></span><br><span class="line">JAVA_HOME=/usr/<span class="built_in">local</span>/jdk1.8.0_151</span><br><span class="line">JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line">CLASS_PATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JRE_HOME</span>/lib</span><br><span class="line"></span><br><span class="line"><span class="comment"># PATH</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># export</span></span><br><span class="line"><span class="built_in">export</span> PATH JAVA_HOME JRE_HOME CLASS_PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量生效</span></span><br><span class="line"> . /etc/profile</span><br></pre></td></tr></table></figure>
-<h4 id="hosts修改-每一个节点都需要修改"><a href="#hosts修改-每一个节点都需要修改" class="headerlink" title="hosts修改(每一个节点都需要修改)"></a>hosts修改(每一个节点都需要修改)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cloudera-RPMS] cat /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line"></span><br><span class="line">192.168.30.171 n171</span><br><span class="line">192.168.30.172 n172</span><br><span class="line">192.168.30.173 n173</span><br><span class="line">192.168.30.174 n174</span><br></pre></td></tr></table></figure>
-<h4 id="hostname配置（所有节点都需要修改需要重启）"><a href="#hostname配置（所有节点都需要修改需要重启）" class="headerlink" title="hostname配置（所有节点都需要修改需要重启）"></a>hostname配置（所有节点都需要修改需要重启）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@n171] cat /etc/hostname</span><br><span class="line">n171</span><br></pre></td></tr></table></figure>
-<h4 id="防火墙配置-cdh端口过多先关闭防火墙"><a href="#防火墙配置-cdh端口过多先关闭防火墙" class="headerlink" title="防火墙配置(cdh端口过多先关闭防火墙)"></a>防火墙配置(cdh端口过多先关闭防火墙)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭防火墙</span></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭开机启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
-<h4 id="selinux"><a href="#selinux" class="headerlink" title="selinux"></a>selinux</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看SELinux状态</span></span><br><span class="line">getenforce <span class="comment"># 如果不是Disabled,修改 SELinux=disabled ，需要重启机器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line">vim /etc/selinux/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置内容 grep -v "#" /etc/selinux/config | grep -v '^$'</span></span><br><span class="line">SELINUX=disabled</span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
-<h4 id="ntp配置-分布式系统时间同步工具"><a href="#ntp配置-分布式系统时间同步工具" class="headerlink" title="ntp配置(分布式系统时间同步工具)"></a>ntp配置(分布式系统时间同步工具)</h4><p><a href="http://cn.linux.vbird.org/linux_server/0440ntp.php#server" title="linux鸟哥私房菜ntp" target="_blank" rel="noopener">参考linux鸟哥私房菜ntp</a></p>
+<h3 id="CDH安装准备（本文操作系统为centos7及以上系统）"><a href="#CDH安装准备（本文操作系统为centos7及以上系统）" class="headerlink" title="CDH安装准备（本文操作系统为centos7及以上系统）"></a>CDH安装准备（本文操作系统为centos7及以上系统）</h3><h4 id="jdk-配置-vim-etc-profile"><a href="#jdk-配置-vim-etc-profile" class="headerlink" title="jdk 配置 vim &#x2F;etc&#x2F;profile"></a>jdk 配置 vim &#x2F;etc&#x2F;profile</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># JAVA</span></span><br><span class="line">JAVA_HOME=/usr/local/jdk1.8.0_151</span><br><span class="line">JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line">CLASS_PATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JRE_HOME</span>/lib</span><br><span class="line"></span><br><span class="line"><span class="comment"># PATH</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># export</span></span><br><span class="line"><span class="built_in">export</span> PATH JAVA_HOME JRE_HOME CLASS_PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量生效</span></span><br><span class="line"> . /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="hosts修改-每一个节点都需要修改"><a href="#hosts修改-每一个节点都需要修改" class="headerlink" title="hosts修改(每一个节点都需要修改)"></a>hosts修改(每一个节点都需要修改)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cloudera-RPMS] <span class="built_in">cat</span> /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line"></span><br><span class="line">192.168.30.171 n171</span><br><span class="line">192.168.30.172 n172</span><br><span class="line">192.168.30.173 n173</span><br><span class="line">192.168.30.174 n174</span><br></pre></td></tr></table></figure>
+
+<h4 id="hostname配置（所有节点都需要修改需要重启）"><a href="#hostname配置（所有节点都需要修改需要重启）" class="headerlink" title="hostname配置（所有节点都需要修改需要重启）"></a>hostname配置（所有节点都需要修改需要重启）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@n171] <span class="built_in">cat</span> /etc/hostname</span><br><span class="line">n171</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="防火墙配置-cdh端口过多先关闭防火墙"><a href="#防火墙配置-cdh端口过多先关闭防火墙" class="headerlink" title="防火墙配置(cdh端口过多先关闭防火墙)"></a>防火墙配置(cdh端口过多先关闭防火墙)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭防火墙</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl stop firewalld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭开机启动</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">disable</span> firewalld.service </span><br></pre></td></tr></table></figure>
+
+<h4 id="selinux"><a href="#selinux" class="headerlink" title="selinux"></a>selinux</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看SELinux状态</span></span><br><span class="line">getenforce <span class="comment"># 如果不是Disabled,修改 SELinux=disabled ，需要重启机器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line">vim /etc/selinux/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置内容 grep -v &quot;#&quot; /etc/selinux/config | grep -v &#x27;^$&#x27;</span></span><br><span class="line">SELINUX=disabled</span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
+
+<h4 id="ntp配置-分布式系统时间同步工具"><a href="#ntp配置-分布式系统时间同步工具" class="headerlink" title="ntp配置(分布式系统时间同步工具)"></a>ntp配置(分布式系统时间同步工具)</h4><p><a href="http://cn.linux.vbird.org/linux_server/0440ntp.php#server" title="linux鸟哥私房菜ntp">参考linux鸟哥私房菜ntp</a></p>
 <ul>
 <li>master(本文以n171为主节点)</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看主节点n171的配置</span></span><br><span class="line">[root@n171 ~]grep -v <span class="string">"#"</span> /etc/ntp.conf | grep -v <span class="string">"^$"</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf 配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict 192.168.30.0 mask 255.255.255.0 nomodify notrap</span><br><span class="line">server ntp1.aliyun.com prefer</span><br><span class="line">server time1.aliyun.com</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看主节点n171的配置</span></span><br><span class="line">[root@n171 ~]grep -v <span class="string">&quot;#&quot;</span> /etc/ntp.conf | grep -v <span class="string">&quot;^$&quot;</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf 配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict 192.168.30.0 mask 255.255.255.0 nomodify notrap</span><br><span class="line">server ntp1.aliyun.com prefer</span><br><span class="line">server time1.aliyun.com</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br></pre></td></tr></table></figure>
+
+
 <ul>
-<li>slave(所有从节点ntp客户端配置) <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看从节点配置</span></span><br><span class="line">[root@n172 ~]grep -v <span class="string">"#"</span> /etc/ntp.conf | grep -v <span class="string">"^$"</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict namenode01</span><br><span class="line">server namenode01</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br></pre></td></tr></table></figure>
-</li>
+<li>slave(所有从节点ntp客户端配置) <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看从节点配置</span></span><br><span class="line">[root@n172 ~]grep -v <span class="string">&quot;#&quot;</span> /etc/ntp.conf | grep -v <span class="string">&quot;^$&quot;</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict namenode01</span><br><span class="line">server namenode01</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h5><ul>
-<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html" target="_blank" rel="noopener">CDH5.12.0安装官网链接</a></li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html">CDH5.12.0安装官网链接</a></li>
 </ul>
 
         
@@ -1130,7 +1616,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/04/cdh安装准备/" data-id="cm2yjq77i000rysuybwoyvo6i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/" data-id="cmjcrlybd000mlcuy42ny0lvi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1234,7 +1720,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
+        <a class="article-category-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a>
     </div>
 
 
@@ -1252,17 +1738,20 @@
             <h4 id="ubuntu配置minidlna"><a href="#ubuntu配置minidlna" class="headerlink" title="ubuntu配置minidlna"></a>ubuntu配置minidlna</h4><ul>
 <li>删除minidlna依赖：</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge minidlna</span><br><span class="line">sudo apt-get remove minidlna </span><br><span class="line">sudo apt-get autoremove</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get purge minidlna</span><br><span class="line"><span class="built_in">sudo</span> apt-get remove minidlna </span><br><span class="line"><span class="built_in">sudo</span> apt-get autoremove</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>安装： <code>sudo apt-get install minidlna</code></p>
+<li><p>安装： <code>sudo apt-get install minidlna</code></p>
 </li>
 <li><p>修改配置</p>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/minidlna</span><br><span class="line"><span class="comment"># User and group the daemon should run as</span></span><br><span class="line">USER=<span class="string">"root"</span></span><br><span class="line"><span class="comment">#GROUP="minidlna"</span></span><br><span class="line"></span><br><span class="line">sudo vim /etc/minidlna.conf</span><br><span class="line"><span class="comment"># Specify the user name or uid to run as.</span></span><br><span class="line">user=root</span><br><span class="line"></span><br><span class="line">sudo service minidlna restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /etc/default/minidlna</span><br><span class="line"><span class="comment"># User and group the daemon should run as</span></span><br><span class="line">USER=<span class="string">&quot;root&quot;</span></span><br><span class="line"><span class="comment">#GROUP=&quot;minidlna&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> vim /etc/minidlna.conf</span><br><span class="line"><span class="comment"># Specify the user name or uid to run as.</span></span><br><span class="line">user=root</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> service minidlna restart</span><br></pre></td></tr></table></figure>
+
+
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="http://skypegnu1.blog.51cto.com/8991766/1654186" title="Raspberry Pi （树莓派）折腾记之二" target="_blank" rel="noopener">Raspberry Pi （树莓派）折腾记之二</a></li>
-<li><a href="http://askubuntu.com/questions/266033/permissions-for-video-folder-for-minidlna" title="如果启动dlna碰到权限问题:" target="_blank" rel="noopener">启动dlna权限问题</a></li>
+<li><a href="http://skypegnu1.blog.51cto.com/8991766/1654186" title="Raspberry Pi （树莓派）折腾记之二">Raspberry Pi （树莓派）折腾记之二</a></li>
+<li><a href="http://askubuntu.com/questions/266033/permissions-for-video-folder-for-minidlna" title="如果启动dlna碰到权限问题:">启动dlna权限问题</a></li>
 </ul>
 
         
@@ -1274,428 +1763,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/01/13/minidlna/" data-id="cm2yjq77v001hysuykv7y4ia3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-homebrew" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/13/homebrew/">homebrew配置</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/13/homebrew/">
-            <time datetime="2018-01-13T13:41:35.000Z" itemprop="datePublished">2018-01-13</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><a href="https://brew.sh/" title="参考链接" target="_blank" rel="noopener">参考链接</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-<h4 id="homebrew替换为清华的源"><a href="#homebrew替换为清华的源" class="headerlink" title="homebrew替换为清华的源"></a>homebrew替换为清华的源</h4><ul>
-<li>替换formula 索引的镜像（即 brew update 时所更新内容）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span></span><br><span class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></span><br><span class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line">brew update</span><br></pre></td></tr></table></figure>
-<ul>
-<li>替换Homebrew 二进制预编译包的镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/" title="homebrew清华大学开源使用帮助" target="_blank" rel="noopener">homebrew清华大学开源使用帮助</a></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/01/13/homebrew/" data-id="cm2yjq77m000yysuykmknmjsw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-gogs" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/13/gogs/">gogs配置</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/13/gogs/">
-            <time datetime="2018-01-13T13:26:30.000Z" itemprop="datePublished">2018-01-13</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="什么是-Gogs"><a href="#什么是-Gogs" class="headerlink" title="什么是 Gogs?"></a>什么是 Gogs?</h1><p>Gogs 是一款极易搭建的自助 Git 服务。</p>
-<h2 id="Gogs目的"><a href="#Gogs目的" class="headerlink" title="Gogs目的"></a>Gogs目的</h2><p>Gogs 的目标是打造一个最简单、最快速和最轻松的方式搭建自助 Git 服务。使用 Go 语言开发使得 Gogs 能够通过独立的二进制分发，并且支持 Go 语言支持的 <strong>所有平台</strong>，包括 Linux、Mac OS X、Windows 以及 ARM 平台。</p>
-<h2 id="gogs配置"><a href="#gogs配置" class="headerlink" title="gogs配置"></a>gogs配置</h2><p><a href="https://gogs.io/docs/installation" title="gogs安装配置文档" target="_blank" rel="noopener">gogs安装配置文档</a></p>
-<h3 id="gogs配置mysql数据库"><a href="#gogs配置mysql数据库" class="headerlink" title="gogs配置mysql数据库:"></a>gogs配置mysql数据库:</h3><ul>
-<li><h5 id="gogs要求Mysql版本为5-7以上-配置如下"><a href="#gogs要求Mysql版本为5-7以上-配置如下" class="headerlink" title="gogs要求Mysql版本为5.7以上,配置如下:"></a>gogs要求Mysql版本为5.7以上,配置如下:</h5><ul>
-<li><h5 id="升级MySQL到5-7"><a href="#升级MySQL到5-7" class="headerlink" title="升级MySQL到5.7"></a>升级MySQL到5.7</h5><p>  <a href="http://einverne.github.io/post/2017/07/respberry-pi-install-mysql-5-7.html" title="树莓派中安装MySQL 5.7 " target="_blank" rel="noopener">树莓派中安装MySQL 5.7 </a><br>  <a href="https://www.raspberrypi.org/forums/viewtopic.php?t=162960" title="Install Mysql 5.7 on respbian jesse -pi 3" target="_blank" rel="noopener">Install Mysql 5.7 on respbian jesse -pi 3</a></p>
-</li>
-<li><h5 id="配置innodb和字符集为utf8mb4"><a href="#配置innodb和字符集为utf8mb4" class="headerlink" title="配置innodb和字符集为utf8mb4"></a>配置innodb和字符集为utf8mb4</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">[mysqld]</span><br><span class="line">character-set-server = utf8mb4</span><br><span class="line">collation-server = utf8mb4_unicode_ci</span><br><span class="line">init_connect=&apos;SET NAMES utf8mb4&apos;</span><br><span class="line">skip-character-set-client-handshake = true</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8mb4</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/01/13/gogs/" data-id="cm2yjq77l000wysuypxtgf2ui" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/13/redis/">redis配置</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/13/redis/">
-            <time datetime="2018-01-13T13:22:09.000Z" itemprop="datePublished">2018-01-13</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h4 id="Prerequistes"><a href="#Prerequistes" class="headerlink" title="Prerequistes"></a>Prerequistes</h4><ul>
-<li><p>Centos</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install tcl</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Ubuntu</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install build-essential tcl</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="redis源码编译安装"><a href="#redis源码编译安装" class="headerlink" title="redis源码编译安装"></a>redis源码编译安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">REDIS_VERSION=4.0.1</span><br><span class="line">wget http://download.redis.io/releases/redis-<span class="variable">$REDIS_VERSION</span>.tar.gz</span><br><span class="line">tar -zxvf redis-<span class="variable">$REDIS_VERSION</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-<span class="variable">$REDIS_VERSION</span></span><br><span class="line">make</span><br><span class="line">make <span class="built_in">test</span></span><br><span class="line">sudo make install</span><br><span class="line"><span class="comment"># Once the program has been installed</span></span><br><span class="line"><span class="comment"># Redis comes with a built in script that sets up Redis to run as a background daemon.</span></span><br><span class="line"><span class="built_in">cd</span> utils</span><br><span class="line">sudo ./install_server.sh</span><br><span class="line"><span class="comment"># Start and stop</span></span><br><span class="line">sudo service redis_6379 start</span><br><span class="line">sudo service redis_6379 stop</span><br><span class="line"><span class="comment"># To set Redis to automatically start at boot, run:</span></span><br><span class="line">sudo update-rc.d redis_6379 defaults</span><br></pre></td></tr></table></figure>
-<h4 id="etc-redis-6379-conf-配置"><a href="#etc-redis-6379-conf-配置" class="headerlink" title="/etc/redis/6379.conf 配置"></a>/etc/redis/6379.conf 配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ grep -v <span class="string">"#"</span> /etc/redis/6379.conf | grep -v <span class="string">"^$"</span></span><br><span class="line"><span class="built_in">bind</span> 0.0.0.0</span><br><span class="line">protected-mode yes</span><br><span class="line">port 6379</span><br><span class="line">tcp-backlog 511</span><br><span class="line">timeout 0</span><br><span class="line">tcp-keepalive 300</span><br><span class="line">daemonize yes</span><br><span class="line">supervised no</span><br><span class="line">pidfile /var/run/redis_6379.pid</span><br><span class="line">loglevel notice</span><br><span class="line">logfile /var/<span class="built_in">log</span>/redis_6379.log</span><br><span class="line">databases 16</span><br><span class="line">always-show-logo yes</span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line">rdbcompression yes</span><br><span class="line">rdbchecksum yes</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line">dir /var/lib/redis/6379</span><br><span class="line">slave-serve-stale-data yes</span><br><span class="line">slave-read-only yes</span><br><span class="line">repl-diskless-sync no</span><br><span class="line">repl-diskless-sync-delay 5</span><br><span class="line">repl-disable-tcp-nodelay no</span><br><span class="line">slave-priority 100</span><br><span class="line">lazyfree-lazy-eviction no</span><br><span class="line">lazyfree-lazy-expire no</span><br><span class="line">lazyfree-lazy-server-del no</span><br><span class="line">slave-lazy-flush no</span><br><span class="line">appendonly no</span><br><span class="line">appendfilename <span class="string">"appendonly.aof"</span></span><br><span class="line">appendfsync everysec</span><br><span class="line">no-appendfsync-on-rewrite no</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line">aof-load-truncated yes</span><br><span class="line">aof-use-rdb-preamble no</span><br><span class="line">lua-time-limit 5000</span><br><span class="line">slowlog-log-slower-than 10000</span><br><span class="line">slowlog-max-len 128</span><br><span class="line">latency-monitor-threshold 0</span><br><span class="line">notify-keyspace-events <span class="string">""</span></span><br><span class="line"><span class="built_in">hash</span>-max-ziplist-entries 512</span><br><span class="line"><span class="built_in">hash</span>-max-ziplist-value 64</span><br><span class="line">list-max-ziplist-size -2</span><br><span class="line">list-compress-depth 0</span><br><span class="line"><span class="built_in">set</span>-max-intset-entries 512</span><br><span class="line">zset-max-ziplist-entries 128</span><br><span class="line">zset-max-ziplist-value 64</span><br><span class="line">hll-sparse-max-bytes 3000</span><br><span class="line">activerehashing yes</span><br><span class="line">client-output-buffer-limit normal 0 0 0</span><br><span class="line">client-output-buffer-limit slave 256mb 64mb 60</span><br><span class="line">client-output-buffer-limit pubsub 32mb 8mb 60</span><br><span class="line">hz 10</span><br><span class="line">aof-rewrite-incremental-fsync yes</span><br></pre></td></tr></table></figure>
-<h4 id="设置redis密码"><a href="#设置redis密码" class="headerlink" title="设置redis密码"></a>设置redis密码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索requirepass 即可查看密码，并且设置密码</span></span><br><span class="line">vim /etc/redis/redis.conf  </span><br><span class="line"><span class="comment"># 如果之前没有设置过密码可以通过密码命令行设置密码</span></span><br><span class="line">CONFIG get requirepass;</span><br><span class="line"><span class="comment"># 设置密码 </span></span><br><span class="line">127.0.0.1:6379&gt; CONFIG <span class="built_in">set</span> requirepass <span class="string">"tutorialspoint"</span>  </span><br><span class="line">OK  </span><br><span class="line">127.0.0.1:6379&gt; CONFIG get requirepass  </span><br><span class="line">1) <span class="string">"requirepass"</span>  </span><br><span class="line">2) <span class="string">"tutorialspoint</span></span><br></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/01/13/redis/" data-id="cm2yjq78b002lysuya5ncqd3m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/01/13/minidlna/" data-id="cmjcrlybn001jlcuy18152u8a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1790,7 +1858,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -1801,7 +1926,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -1809,7 +1934,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -1819,66 +1944,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -1892,7 +1960,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -1901,7 +1969,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -1947,7 +2015,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -1974,41 +2042,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

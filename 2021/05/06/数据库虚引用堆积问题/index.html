@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>数据库虚引用堆积问题 | 技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="线上出现FGC占用时间过长的告警，查看GC日志确认FGC达到3.84s  问题描述  通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间.  查看对象是com.mysql.cj.jdbc.AbandonedConnectionCleanupThread$ConnectionFinal">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="线上出现FGC占用时间过长的告警，查看GC日志确认FGC达到3.84s  问题描述  通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间. ![image2021-2-20 15_42_52](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库虚引用堆积问题">
-<meta property="og:url" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:description" content="线上出现FGC占用时间过长的告警，查看GC日志确认FGC达到3.84s  问题描述  通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间.  查看对象是com.mysql.cj.jdbc.AbandonedConnectionCleanupThread$ConnectionFinal">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2015_42_52.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2016_3_51.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2015_57_54.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2016_5_23.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2016_6_38.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/1619691072.png">
-<meta property="og:updated_time" content="2024-11-01T09:42:00.534Z">
+<meta property="og:description" content="线上出现FGC占用时间过长的告警，查看GC日志确认FGC达到3.84s  问题描述  通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间. ![image2021-2-20 15_42_52](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/1619691072.png">
+<meta property="article:published_time" content="2021-05-06T07:52:42.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:42:00.534Z">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库虚引用堆积问题">
-<meta name="twitter:description" content="线上出现FGC占用时间过长的告警，查看GC日志确认FGC达到3.84s  问题描述  通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间.  查看对象是com.mysql.cj.jdbc.AbandonedConnectionCleanupThread$ConnectionFinal">
-<meta name="twitter:image" content="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/image2021-2-20%2015_42_52.png">
+<meta name="twitter:image" content="https://flyingglass.github.io/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/1619691072.png">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -61,11 +70,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -129,7 +138,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -174,7 +185,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -220,7 +231,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2021/05/06/数据库虚引用堆积问题/">
+        <a href="/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/">
             <time datetime="2021-05-06T07:52:42.000Z" itemprop="datePublished">2021-05-06</time>
         </a>
     </div>
@@ -229,7 +240,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/问题集锦/">问题集锦</a>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a>
     </div>
 
 
@@ -249,16 +260,16 @@
 <li><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4></li>
 </ol>
 <p>通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间.</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 15_42_52.png" alt="image2021-2-20 15_42_52"></p>
+<p>![image2021-2-20 15_42_52](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 15_42_52.png)</p>
 <p>查看对象是com.mysql.cj.jdbc.AbandonedConnectionCleanupThread$ConnectionFinalizerPhantomReference（mysql的connection清理的虚引用）对象堆积达到2435个，初步判断长时间gc的问题是由于ConnectionFinalizerPhantomReference堆积引起的，该应用采用hikari的datasource.</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 16_3_51.png" alt="image2021-2-20 16_3_51"></p>
+<p>![image2021-2-20 16_3_51](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 16_3_51.png)</p>
 <p>同样选了一台采用druid的datasource的应用，也发现同样问题：</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 15_57_54.png" alt="image2021-2-20 15_57_54"></p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 16_5_23.png" alt="image2021-2-20 15_57_54"></p>
-<p><strong>其中com.mysql.cj.jdbc.NonRegisteringDriver堆积对象达到1188个</strong><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 16_6_38.png" alt="image2021-2-20 16_6_38"></p>
+<p>![image2021-2-20 15_57_54](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 15_57_54.png)</p>
+<p>![image2021-2-20 15_57_54](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 16_5_23.png)</p>
+<p><strong>其中com.mysql.cj.jdbc.NonRegisteringDriver堆积对象达到1188个</strong>![image2021-2-20 16_6_38](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 16_6_38.png)</p>
 <h4 id="2-问题分析"><a href="#2-问题分析" class="headerlink" title="2. 问题分析"></a>2. <strong>问题分析</strong></h4><p>基本可以确定是mysql driver连接弱引用的问题，两个问题可以合并为同一个问题，其中mysql清理源代码这里略过不表，有兴趣可以去查看NonRegisteringDriver中connectionPhantomRefs的添加和清理逻辑。</p>
 <p>这里结合项目中<strong>hikaricp</strong>数据配置和官方文档结合说明，Druid同理。</p>
-<p>查阅hikaricp数据池的<a href="https://github.com/brettwooldridge/HikariCP" target="_blank" rel="noopener">官网地址</a>，看看部分属性介绍如下：</p>
+<p>查阅hikaricp数据池的<a href="https://github.com/brettwooldridge/HikariCP">官网地址</a>，看看部分属性介绍如下：</p>
 <p><strong>maximumPoolSize</strong></p>
 <blockquote>
 <p>This property controls the maximum size that the pool is allowed to reach, including both idle and in-use connections. Basically this value will determine the maximum number of actual connections to the database backend. A reasonable value for this is best determined by your execution environment. When the pool reaches this size, and no idle connections are available, calls to getConnection() will block for up to connectionTimeout milliseconds before timing out. Please read about pool sizing. Default: 10</p>
@@ -280,9 +291,9 @@
 </blockquote>
 <p>连接生存时间超过 maxLifetime（默认30分钟）后，连接会被抛弃.</p>
 <p>回头看看<strong>项目的hikari配置</strong>：</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/1619691072.png" alt="1619691072"></p>
+<p><img src="/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/1619691072.png" alt="1619691072"></p>
 <ul>
-<li><p>配置了minimumIdle = 10，maximumPoolSize = 10，没有配置idleTimeout和maxLifetime。所以这两项会使用默认值 idleTimeout = 10分钟，maxLifetime = 30分钟。</p>
+<li><p>配置了minimumIdle &#x3D; 10，maximumPoolSize &#x3D; 10，没有配置idleTimeout和maxLifetime。所以这两项会使用默认值 idleTimeout &#x3D; 10分钟，maxLifetime &#x3D; 30分钟。</p>
 </li>
 <li><p>假如数据库连接池已满，有10个连接，假如系统空闲(没有连接会在10分钟后（超过idleTimeout）被废弃)；假如系统一直繁忙，10个连接会在30分钟后（超过maxLifetime）后被废弃。</p>
 </li>
@@ -291,19 +302,17 @@
 </li>
 </ul>
 <h4 id="3-问题验证"><a href="#3-问题验证" class="headerlink" title="3. 问题验证"></a>3. <strong>问题验证</strong></h4><ol>
-<li><p>线上模拟环境(待测试）</p>
-<p>为了验证问题，可以模拟线上环境，调整maxLifetime等参数~<strong>压测思路如下</strong>：</p>
-</li>
+<li>线上模拟环境(待测试）</li>
 </ol>
+<p> 为了验证问题，可以模拟线上环境，调整maxLifetime等参数~<strong>压测思路如下</strong>：</p>
 <ul>
-<li>1.缓存系统模拟线上的配置，使用压测系统一段时间内持续压缓存系统，使缓存系统短时间创建/废弃大量数据库连接，观察 connectionPhantomRefs对象是否如期大量堆积，手动触发FGC，观察 connectionPhantomRefs对象是否被清理。</li>
+<li>1.缓存系统模拟线上的配置，使用压测系统一段时间内持续压缓存系统，使缓存系统短时间创建&#x2F;废弃大量数据库连接，观察 connectionPhantomRefs对象是否如期大量堆积，手动触发FGC，观察 connectionPhantomRefs对象是否被清理。</li>
 <li>2.调整maxLifetime 参数，观察相同的压测时间内 connectionPhantomRefs对象是否还发生堆积</li>
 </ul>
-<ol>
-<li><p>不过可以结合GC日志分析：</p>
-<p>再结合我们生产的问题，假设我们每天14个小时高峰期(12:00 ～ 凌晨2:00)，期间连接数10，10个小时低峰期，期间连接数10，每次 full gc 间隔4天，等到下次 full gc 堆积的 NonRegisteringDriver 对象为 10 <em> 24 </em> 2 * 4 = 1920，与问题dump里面connectionPhantomRefs对象的数量2435个基本吻合。</p>
-</li>
+<ol start="2">
+<li>不过可以结合GC日志分析：</li>
 </ol>
+<p> 再结合我们生产的问题，假设我们每天14个小时高峰期(12:00 ～ 凌晨2:00)，期间连接数10，10个小时低峰期，期间连接数10，每次 full gc 间隔4天，等到下次 full gc 堆积的 NonRegisteringDriver 对象为 10 * 24 * 2 * 4 &#x3D; 1920，与问题dump里面connectionPhantomRefs对象的数量2435个基本吻合。</p>
 <h4 id="4-问题解决方案"><a href="#4-问题解决方案" class="headerlink" title="4. 问题解决方案"></a>4. 问题解决方案</h4><p>由上面分析可知，问题产生的根源是废弃的数据库连接对象堆积，最终导致 full gc 时间过长。可以从以下几个方面入手解决方案：</p>
 <ul>
 <li>1、减少废弃的数据连接对象的产生和堆积。</li>
@@ -313,11 +322,11 @@
 <p>可以考虑设置 maxLifetime 为一个较大的值，用于延长连接的生命周期，减少产生被废弃的数据库连接的频率，等到下次 full gc 的时候需要清理的数据库连接对象会大大减少。</p>
 <p>Hikari 推荐 maxLifetime 设置为比数据库的 wait_timeout 时间少 30s 到 1min。如果使用的是 mysql 数据库，可以使用 show global variables like ‘%timeout%’; 查看 wait_timeout，腾讯云默认为 1 小时。</p>
 <ol>
-<li>下面开始验证，设置maxLifetime = 55分钟，其他条件不变。压测启动前观察jvisualvm，connectionPhantomRefs对象数量</li>
+<li>下面开始验证，设置maxLifetime &#x3D; 55分钟，其他条件不变。压测启动前观察jvisualvm，connectionPhantomRefs对象数量</li>
 <li>1000s后，观察 connectionPhantomRefs对象</li>
 </ol>
 <p>看看connectionPhantomRefs对象没有发生堆积</p>
-<p><strong>同时另外注意</strong>：minimumIdle和maximumPoolSize不要设置得太大，一般来说配置minimumIdle=10，maximumPoolSize=10～20即可。</p>
+<p><strong>同时另外注意</strong>：minimumIdle和maximumPoolSize不要设置得太大，一般来说配置minimumIdle&#x3D;10，maximumPoolSize&#x3D;10～20即可。</p>
 <p>我们这次问题产生的根源是数据库连接对象堆积，导致full gc时间过长。解决思路可以从以下三点入手：</p>
 <ul>
 <li>1、调整hikari配置参数。例如把maxLifetime设置为较大的值（比数据库的wait_timeout少30s），minimumIdle和maximumPoolSize值不能设置太大，或者直接采用默认值即可。</li>
@@ -334,7 +343,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/" data-id="cm2yjq79l0040ysuymb75uwpx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/" data-id="cmjcrlyc50037lcuya7koce6p" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -409,7 +418,7 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/05/06/Kafka选举导致的问题/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2021/05/06/Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -419,7 +428,7 @@
         </a>
     
     
-        <a href="/2020/06/30/ConcurrentHashMap源码解析/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2020/06/30/ConcurrentHashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">ConcurrentHashMap源码解析</div>
         </a>
@@ -454,7 +463,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -465,7 +531,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -473,7 +539,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -483,66 +549,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -556,7 +565,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -565,7 +574,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -611,7 +620,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -638,41 +647,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

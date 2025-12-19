@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta property="og:type" content="website">
 <meta property="og:title" content="技术人生">
 <meta property="og:url" content="https://flyingglass.github.io/page/2/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术人生">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -50,11 +64,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -118,7 +132,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -163,7 +179,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -192,7 +208,7 @@
 
             
             <section id="main">
-    <article id="post-数据库虚引用堆积问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-lily概述" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -200,7 +216,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2021/05/06/数据库虚引用堆积问题/">数据库虚引用堆积问题</a>
+            <a class="article-title" href="/2021/08/30/lily%E6%A6%82%E8%BF%B0/">lily概述</a>
         </h1>
     
 
@@ -210,7 +226,491 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2021/05/06/数据库虚引用堆积问题/">
+        <a href="/2021/08/30/lily%E6%A6%82%E8%BF%B0/">
+            <time datetime="2021-08-30T05:58:54.000Z" itemprop="datePublished">2021-08-30</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h4 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h4><p>基于Spring Cloud、Spring Cloud Alibaba服务注册发现，Ribbon负载均衡，Feign和Rest Template调用，Spring Cloud Gateway</p>
+<ul>
+<li>全链路版本、环境、IP地址和端口匹配动态路由</li>
+<li>全链路自定义网关、服务的过滤器、负载均衡策略发布</li>
+<li>全链路条件匹配、非条件匹配</li>
+<li>服务实时性流量无损下线：IP和端口屏蔽</li>
+<li>异步场景下全链路追踪和路由：异步跨线程Agent插件</li>
+<li>全链路调用链追踪、日志监测</li>
+<li>提供服务端、消费端隔离、注册级别隔离和准入</li>
+<li>本地和远程，局部和全局配置策略驱动</li>
+<li>配置中心（Nacos）、Swagger和Rest规则策略推送</li>
+<li>基于Header参数化规则策略驱动</li>
+<li>限流、熔断、降级防护</li>
+</ul>
+<h4 id="版本兼容列表"><a href="#版本兼容列表" class="headerlink" title="版本兼容列表"></a>版本兼容列表</h4><table>
+<thead>
+<tr>
+<th>Mdd Dependencies Version</th>
+<th>Spring Cloud Version</th>
+<th>Spring Cloud Alibaba Version</th>
+<th>Spring Boot Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2.0.0</td>
+<td>Hoxton.SR9</td>
+<td>2.2.5.RELEASE</td>
+<td>2.3.8.RELEASE</td>
+</tr>
+</tbody></table>
+<h4 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h4><ul>
+<li>滚动发布<ol>
+<li>概念：每次滚动升级一个或者多个服务，升级完成后监控观察，直到所有旧版本服务升级到新版本。属于有损发布</li>
+<li>优点：升级快捷，影响范围小，只会影响滚动发布的服务。</li>
+<li>缺点：在滚动升级过程中，无法快速无损回滚，必须降级部署</li>
+</ol>
+</li>
+<li>全链路路由</li>
+</ul>
+<p><img src="/2021/08/30/lily%E6%A6%82%E8%BF%B0/%E5%85%A8%E9%93%BE%E8%B7%AF%E8%B7%AF%E7%94%B1.png" alt="image-20210830143225872"></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E6%A6%82%E8%BF%B0/" data-id="cmjcrlybl0019lcuy3mf173vc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-Jedis引发GC问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/">Jedis引发GC问题</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/">
+            <time datetime="2021-05-20T02:20:48.000Z" itemprop="datePublished">2021-05-20</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h4 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h4><p><em>线上应用经常收到跨服务间SocketTimeout的异常，服务间的调用设置超时时间为500ms，查看Cat监控发现，发生超时异常都伴随着FGC，并且FGC时间都大于500ms，于是决定dump heap镜像。</em></p>
+<h4 id="问题定位分析"><a href="#问题定位分析" class="headerlink" title="问题定位分析"></a>问题定位分析</h4><p>通过<code>mat</code>查看<code>heap dump</code>镜像，发现<strong>Finalizer</strong>引用队列在活跃对象占比高达<code>31.43%</code>，猜测可能有泄漏。</p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621478132.png" alt="1621478132"></p>
+<p>进一步分析发现，<strong>SocksSocketImpl</strong>对象高达<code>113529</code>多个，大量的对象都是<code>Jedis</code>链接，由此确定<code>Jedis</code>可能发生泄漏，同时查看<code>Old</code>区空间稳步斜率增长，怀疑对象未充分<code>YGC</code>即进入<code>Old</code>区，造成下次<code>FGC</code>较长的<code>STW</code>，引发超时。</p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621478647.png" alt="1621478647"></p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621478719.png" alt="1621478719"></p>
+<h4 id="GC问题验证"><a href="#GC问题验证" class="headerlink" title="GC问题验证"></a>GC问题验证</h4><p>接下来就是验证上述猜测了，通过获取<code>gc</code>相关的参数，查看<code>JVM</code>各区的容量，发现<code>S0</code>和<code>S1</code>容量被调整非常小大约<code>2m</code>左右，结合收集器配置，情况如下：</p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621479168.png" alt="1621479168"></p>
+<p>应用采用默认的<code>PS</code>和<code>PO</code>收集器，并且默认开启<code>-XX:+UseAdaptiveSizePolicy</code>，系统会通过吞吐量（<code>cpu</code>的<code>gc</code>时间）计算，优先保证吞吐量来分配<code>Eden</code>，<code>From</code>，<code>To</code>的<code>size</code>，最终导致<code>S0,S1</code>区降为<code>2m</code>。结合<code>GC</code>日志和<code>Cat</code>监控，导致<code>Old</code>的问题就明朗了，每次<code>YGC</code>结束，由于<code>PS</code>和<code>PO</code>收集器的缘故，<code>S0</code>和<code>S1</code>区太小无法，导致配置的晋升参数<code>8</code>几乎失效，对象晋升过快被拷贝到<code>Old</code>区，于是添加<code>-XX:+PrintTenuringDistribution</code>上线验证，得到如下大量<code>GC</code>日志：</p>
+<p><code>Desired survivor size 5048576 bytes, new threshold 1 (max 8)</code> </p>
+<h4 id="GC问题调整"><a href="#GC问题调整" class="headerlink" title="GC问题调整"></a>GC问题调整</h4><p>上述日志验证猜想，对象由于<code>S0</code>和<code>S1</code>的<code>size</code>太小，晋升过快，问题得到验证，解决就简单了：</p>
+<ol>
+<li>更换收集器，<code>PN+CMS</code>或者<code>G1</code>均可</li>
+<li>仍然采用<code>PS+PO</code>收集器，关闭<code>-XX:-UseAdaptiveSizePolicy</code>，手动设置<code>Xmn</code>和<code>SurvivorRatio</code>的值</li>
+</ol>
+<p>考虑<code>heap</code>内存比较小，<code>4g</code>左右，根据<code>R大</code>的一些分享，采用方案<code>2</code>，进行解决，通过<code>Cat</code>获取<code>S0</code>，<code>S1</code>，<code>Eden</code>的大小以及<code>After FGC</code>后活跃对象的占比，设置对应参数即可，以下来自于美团的设置分享：</p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621480549.png" alt="1621480549"></p>
+<p>根据项目实际监控情况，我们未完全上述经验值，对项目进行更合适的设置如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-Xms4G -Xmx4G -Xmn2560M -XX:MetaspaceSize=256M</span><br><span class="line"></span><br><span class="line">-XX:-UseAdaptiveSizePolicy</span><br><span class="line"></span><br><span class="line">-XX:MaxTenuringThreshold=15 -XX:TargetSurvivorRatio=80 -XX:SurvivorRatio=18</span><br></pre></td></tr></table></figure>
+
+<h4 id="Jedis问题解决"><a href="#Jedis问题解决" class="headerlink" title="Jedis问题解决"></a>Jedis问题解决</h4><p>上述<code>Jedis</code>垃圾一方面由于<code>GC</code>配置参数不合理导致晋升不合理，查看<code>Jedis</code>的连接池的配置，也进行了调整，查看<code>GenericObjectPool</code>代码，定时任务检测驱逐对象，关键代码如下：</p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222116696.png" alt="20181018222116696"></p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222136328.png" alt="20181018222136328"></p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222203139.png" alt="20181018222203139"><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222149994.png" alt="20181018222149994"></p>
+<p>从上面代码我们看出，每隔一段时间，就会检测对象池里面对象，要是发现对象空闲时间超过一定时间，就会强制回收；然后又发现链接少于<code>minIdle</code>了，开始创建对象，以满足<code>mindle</code>。调整<code>Redis client</code> 设置的检测轮询时间为1分钟，设置<code>miniIdle</code>为5，修改后上线观察。</p>
+<h4 id="调整前后对比："><a href="#调整前后对比：" class="headerlink" title="调整前后对比："></a>调整前后对比：</h4><p>调整前：</p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621480961.png" alt="1621480961"></p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621481201.png" alt="1621481201"></p>
+<p>调整后：</p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621481022.png" alt="1621481022"></p>
+<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621481096.png" alt="1621481096"></p>
+<p>通过上述对比可以看到调整后<code>YGC</code>的次数比调整前减半，调整后的<code>Oldgen</code>也几乎稳定不增长了，<code>YGC</code>由于少了大量的<code>From</code>区往<code>Old</code>区的拷贝（减少<code>Survivor</code>拷贝，<code>GC</code>标记较快，主要耗时为拷贝），<code>YGC</code>时间耗时大幅下降，<code>GC</code>吞吐量获得提升。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h4><p><a href="https://www.jianshu.com/p/7414fd6862c5">JVM GC 之「AdaptiveSizePolicy」实战</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/" data-id="cmjcrlyb5000alcuyd7px2lza" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-Kafka选举导致的问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2021/05/06/Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/">Kafka选举导致的问题</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2021/05/06/Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/">
+            <time datetime="2021-05-06T11:16:21.000Z" itemprop="datePublished">2021-05-06</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析：</p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_46_48.png)</p>
+<p>单个异常栈如下：</p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_49_22.png)</p>
+<p>消费业务代码如下：</p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_49_58.png)</p>
+<p>最终Future的超时代码如下：</p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_51_25.png)</p>
+<p>根据堆栈和日志追踪到这里：</p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_51_43.png)</p>
+<p>kafka阻塞目前会存在两个地方：</p>
+<ol>
+<li>首次拉取Metadata会阻塞</li>
+<li>由于Kafka的模型，Sender线程会处理RecordAccumulator，收集器的默认大小32M</li>
+</ol>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_54_13.png)</p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 11_0_1.png)</p>
+<p> ![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 11_5_31.png)</p>
+<p>修改方案：</p>
+<ol>
+<li>acks&#x3D;1和retries&#x3D;0参数矛盾，需查看retries代码是否会阻塞，印象中是扔到收集器后返回。</li>
+<li>业务调用代码改成异步线程，send方法采用回调函数机制（应对第一次拉取Metadata卡住）</li>
+<li>收集器容量塞满，目前是默认60s阻塞</li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2021/05/06/Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cmjcrlyb8000elcuyhjks5ec6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-数据库虚引用堆积问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/">数据库虚引用堆积问题</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/">
             <time datetime="2021-05-06T07:52:42.000Z" itemprop="datePublished">2021-05-06</time>
         </a>
     </div>
@@ -219,7 +719,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/问题集锦/">问题集锦</a>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a>
     </div>
 
 
@@ -239,16 +739,16 @@
 <li><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4></li>
 </ol>
 <p>通过mat分析dump下来的日志发现，com.mysql.cj.jdbc.AbandonedConnectionCleanupThread 对象占了堆内存的大部分空间.</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 15_42_52.png" alt="image2021-2-20 15_42_52"></p>
+<p>![image2021-2-20 15_42_52](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 15_42_52.png)</p>
 <p>查看对象是com.mysql.cj.jdbc.AbandonedConnectionCleanupThread$ConnectionFinalizerPhantomReference（mysql的connection清理的虚引用）对象堆积达到2435个，初步判断长时间gc的问题是由于ConnectionFinalizerPhantomReference堆积引起的，该应用采用hikari的datasource.</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 16_3_51.png" alt="image2021-2-20 16_3_51"></p>
+<p>![image2021-2-20 16_3_51](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 16_3_51.png)</p>
 <p>同样选了一台采用druid的datasource的应用，也发现同样问题：</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 15_57_54.png" alt="image2021-2-20 15_57_54"></p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 16_5_23.png" alt="image2021-2-20 15_57_54"></p>
-<p><strong>其中com.mysql.cj.jdbc.NonRegisteringDriver堆积对象达到1188个</strong><img src="/2021/05/06/数据库虚引用堆积问题/image2021-2-20 16_6_38.png" alt="image2021-2-20 16_6_38"></p>
+<p>![image2021-2-20 15_57_54](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 15_57_54.png)</p>
+<p>![image2021-2-20 15_57_54](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 16_5_23.png)</p>
+<p><strong>其中com.mysql.cj.jdbc.NonRegisteringDriver堆积对象达到1188个</strong>![image2021-2-20 16_6_38](&#x2F;2021&#x2F;05&#x2F;06&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98&#x2F;image2021-2-20 16_6_38.png)</p>
 <h4 id="2-问题分析"><a href="#2-问题分析" class="headerlink" title="2. 问题分析"></a>2. <strong>问题分析</strong></h4><p>基本可以确定是mysql driver连接弱引用的问题，两个问题可以合并为同一个问题，其中mysql清理源代码这里略过不表，有兴趣可以去查看NonRegisteringDriver中connectionPhantomRefs的添加和清理逻辑。</p>
 <p>这里结合项目中<strong>hikaricp</strong>数据配置和官方文档结合说明，Druid同理。</p>
-<p>查阅hikaricp数据池的<a href="https://github.com/brettwooldridge/HikariCP" target="_blank" rel="noopener">官网地址</a>，看看部分属性介绍如下：</p>
+<p>查阅hikaricp数据池的<a href="https://github.com/brettwooldridge/HikariCP">官网地址</a>，看看部分属性介绍如下：</p>
 <p><strong>maximumPoolSize</strong></p>
 <blockquote>
 <p>This property controls the maximum size that the pool is allowed to reach, including both idle and in-use connections. Basically this value will determine the maximum number of actual connections to the database backend. A reasonable value for this is best determined by your execution environment. When the pool reaches this size, and no idle connections are available, calls to getConnection() will block for up to connectionTimeout milliseconds before timing out. Please read about pool sizing. Default: 10</p>
@@ -270,9 +770,9 @@
 </blockquote>
 <p>连接生存时间超过 maxLifetime（默认30分钟）后，连接会被抛弃.</p>
 <p>回头看看<strong>项目的hikari配置</strong>：</p>
-<p><img src="/2021/05/06/数据库虚引用堆积问题/1619691072.png" alt="1619691072"></p>
+<p><img src="/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/1619691072.png" alt="1619691072"></p>
 <ul>
-<li><p>配置了minimumIdle = 10，maximumPoolSize = 10，没有配置idleTimeout和maxLifetime。所以这两项会使用默认值 idleTimeout = 10分钟，maxLifetime = 30分钟。</p>
+<li><p>配置了minimumIdle &#x3D; 10，maximumPoolSize &#x3D; 10，没有配置idleTimeout和maxLifetime。所以这两项会使用默认值 idleTimeout &#x3D; 10分钟，maxLifetime &#x3D; 30分钟。</p>
 </li>
 <li><p>假如数据库连接池已满，有10个连接，假如系统空闲(没有连接会在10分钟后（超过idleTimeout）被废弃)；假如系统一直繁忙，10个连接会在30分钟后（超过maxLifetime）后被废弃。</p>
 </li>
@@ -281,19 +781,17 @@
 </li>
 </ul>
 <h4 id="3-问题验证"><a href="#3-问题验证" class="headerlink" title="3. 问题验证"></a>3. <strong>问题验证</strong></h4><ol>
-<li><p>线上模拟环境(待测试）</p>
-<p>为了验证问题，可以模拟线上环境，调整maxLifetime等参数~<strong>压测思路如下</strong>：</p>
-</li>
+<li>线上模拟环境(待测试）</li>
 </ol>
+<p> 为了验证问题，可以模拟线上环境，调整maxLifetime等参数~<strong>压测思路如下</strong>：</p>
 <ul>
-<li>1.缓存系统模拟线上的配置，使用压测系统一段时间内持续压缓存系统，使缓存系统短时间创建/废弃大量数据库连接，观察 connectionPhantomRefs对象是否如期大量堆积，手动触发FGC，观察 connectionPhantomRefs对象是否被清理。</li>
+<li>1.缓存系统模拟线上的配置，使用压测系统一段时间内持续压缓存系统，使缓存系统短时间创建&#x2F;废弃大量数据库连接，观察 connectionPhantomRefs对象是否如期大量堆积，手动触发FGC，观察 connectionPhantomRefs对象是否被清理。</li>
 <li>2.调整maxLifetime 参数，观察相同的压测时间内 connectionPhantomRefs对象是否还发生堆积</li>
 </ul>
-<ol>
-<li><p>不过可以结合GC日志分析：</p>
-<p>再结合我们生产的问题，假设我们每天14个小时高峰期(12:00 ～ 凌晨2:00)，期间连接数10，10个小时低峰期，期间连接数10，每次 full gc 间隔4天，等到下次 full gc 堆积的 NonRegisteringDriver 对象为 10 <em> 24 </em> 2 * 4 = 1920，与问题dump里面connectionPhantomRefs对象的数量2435个基本吻合。</p>
-</li>
+<ol start="2">
+<li>不过可以结合GC日志分析：</li>
 </ol>
+<p> 再结合我们生产的问题，假设我们每天14个小时高峰期(12:00 ～ 凌晨2:00)，期间连接数10，10个小时低峰期，期间连接数10，每次 full gc 间隔4天，等到下次 full gc 堆积的 NonRegisteringDriver 对象为 10 * 24 * 2 * 4 &#x3D; 1920，与问题dump里面connectionPhantomRefs对象的数量2435个基本吻合。</p>
 <h4 id="4-问题解决方案"><a href="#4-问题解决方案" class="headerlink" title="4. 问题解决方案"></a>4. 问题解决方案</h4><p>由上面分析可知，问题产生的根源是废弃的数据库连接对象堆积，最终导致 full gc 时间过长。可以从以下几个方面入手解决方案：</p>
 <ul>
 <li>1、减少废弃的数据连接对象的产生和堆积。</li>
@@ -303,11 +801,11 @@
 <p>可以考虑设置 maxLifetime 为一个较大的值，用于延长连接的生命周期，减少产生被废弃的数据库连接的频率，等到下次 full gc 的时候需要清理的数据库连接对象会大大减少。</p>
 <p>Hikari 推荐 maxLifetime 设置为比数据库的 wait_timeout 时间少 30s 到 1min。如果使用的是 mysql 数据库，可以使用 show global variables like ‘%timeout%’; 查看 wait_timeout，腾讯云默认为 1 小时。</p>
 <ol>
-<li>下面开始验证，设置maxLifetime = 55分钟，其他条件不变。压测启动前观察jvisualvm，connectionPhantomRefs对象数量</li>
+<li>下面开始验证，设置maxLifetime &#x3D; 55分钟，其他条件不变。压测启动前观察jvisualvm，connectionPhantomRefs对象数量</li>
 <li>1000s后，观察 connectionPhantomRefs对象</li>
 </ol>
 <p>看看connectionPhantomRefs对象没有发生堆积</p>
-<p><strong>同时另外注意</strong>：minimumIdle和maximumPoolSize不要设置得太大，一般来说配置minimumIdle=10，maximumPoolSize=10～20即可。</p>
+<p><strong>同时另外注意</strong>：minimumIdle和maximumPoolSize不要设置得太大，一般来说配置minimumIdle&#x3D;10，maximumPoolSize&#x3D;10～20即可。</p>
 <p>我们这次问题产生的根源是数据库连接对象堆积，导致full gc时间过长。解决思路可以从以下三点入手：</p>
 <ul>
 <li>1、调整hikari配置参数。例如把maxLifetime设置为较大的值（比数据库的wait_timeout少30s），minimumIdle和maximumPoolSize值不能设置太大，或者直接采用默认值即可。</li>
@@ -324,7 +822,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/06/数据库虚引用堆积问题/" data-id="cm2yjq79l0040ysuymb75uwpx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/" data-id="cmjcrlyc50037lcuya7koce6p" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -409,7 +907,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2020/06/30/ConcurrentHashMap源码解析/">ConcurrentHashMap源码解析</a>
+            <a class="article-title" href="/2020/06/30/ConcurrentHashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">ConcurrentHashMap源码解析</a>
         </h1>
     
 
@@ -419,7 +917,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2020/06/30/ConcurrentHashMap源码解析/">
+        <a href="/2020/06/30/ConcurrentHashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
             <time datetime="2020-06-30T05:59:18.000Z" itemprop="datePublished">2020-06-30</time>
         </a>
     </div>
@@ -428,7 +926,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Java/">Java</a>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a>
     </div>
 
 
@@ -446,7 +944,7 @@
             <p><em>ConcurrentHashMap为Java中常用的并发容器，用于解决HashTable锁住整个hash表的问题，JDK8针对ConcurrentHashMap作了改进和优化，摒弃JDK7的分段锁机制，采用Node + CAS + synchronized保证并发安全。</em></p>
 <h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><ul>
 <li><p>类视图</p>
-<p><img src="/2020/06/30/ConcurrentHashMap源码解析/1593517421.png" alt="类视图"></p>
+<p><img src="/2020/06/30/ConcurrentHashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/1593517421.png" alt="类视图"></p>
 </li>
 <li><p>类注释</p>
 </li>
@@ -465,7 +963,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap源码解析/" data-id="cm2yjq7720005ysuy3bx5xndj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2020/06/30/ConcurrentHashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" data-id="cmjcrlyb40009lcuyc5uvadc9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -550,7 +1048,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2020/06/30/HashMap源码解析/">HashMap源码解析</a>
+            <a class="article-title" href="/2020/06/30/HashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">HashMap源码解析</a>
         </h1>
     
 
@@ -560,7 +1058,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2020/06/30/HashMap源码解析/">
+        <a href="/2020/06/30/HashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
             <time datetime="2020-06-30T03:13:45.000Z" itemprop="datePublished">2020-06-30</time>
         </a>
     </div>
@@ -569,7 +1067,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Java/">Java</a>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a>
     </div>
 
 
@@ -587,7 +1085,7 @@
             <p><em>HashMap是Java中极其频繁的、非常重要的一个集合类，在JDK8改动也比较大，本文主要基于JDK8下HashMap的实现</em></p>
 <h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><ul>
 <li><p>类视图</p>
-<p><img src="/2020/06/30/HashMap源码解析/1593487917.png" alt="类视图"></p>
+<p><img src="/2020/06/30/HashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/1593487917.png" alt="类视图"></p>
 </li>
 <li><p>类注释</p>
 <ol>
@@ -598,16 +1096,18 @@
 </ol>
 </li>
 <li><p>类常量</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The default initial capacity - MUST be a power of two.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// aka 16</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The load factor used when none specified in constructor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The bin count threshold for using a tree rather than list for a</span></span><br><span class="line"><span class="comment">   * bin.  Bins are converted to trees when adding an element to a</span></span><br><span class="line"><span class="comment">   * bin with at least this many nodes. The value must be greater</span></span><br><span class="line"><span class="comment">   * than 2 and should be at least 8 to mesh with assumptions in</span></span><br><span class="line"><span class="comment">   * tree removal about conversion back to plain bins upon</span></span><br><span class="line"><span class="comment">   * shrinkage.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TREEIFY_THRESHOLD = <span class="number">8</span>;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The smallest table capacity for which bins may be treeified.</span></span><br><span class="line"><span class="comment">   * (Otherwise the table is resized if too many nodes in a bin.)</span></span><br><span class="line"><span class="comment">   * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts</span></span><br><span class="line"><span class="comment">   * between resizing and treeification thresholds.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="number">64</span>;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The maximum capacity, used if a higher value is implicitly specified</span></span><br><span class="line"><span class="comment">   * by either of the constructors with arguments.</span></span><br><span class="line"><span class="comment">   * MUST be a power of two &lt;= 1&lt;&lt;30.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The default initial capacity - MUST be a power of two.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">DEFAULT_INITIAL_CAPACITY</span> <span class="operator">=</span> <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// aka 16</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The load factor used when none specified in constructor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">float</span> <span class="variable">DEFAULT_LOAD_FACTOR</span> <span class="operator">=</span> <span class="number">0.75f</span>;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The bin count threshold for using a tree rather than list for a</span></span><br><span class="line"><span class="comment">   * bin.  Bins are converted to trees when adding an element to a</span></span><br><span class="line"><span class="comment">   * bin with at least this many nodes. The value must be greater</span></span><br><span class="line"><span class="comment">   * than 2 and should be at least 8 to mesh with assumptions in</span></span><br><span class="line"><span class="comment">   * tree removal about conversion back to plain bins upon</span></span><br><span class="line"><span class="comment">   * shrinkage.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">TREEIFY_THRESHOLD</span> <span class="operator">=</span> <span class="number">8</span>;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The smallest table capacity for which bins may be treeified.</span></span><br><span class="line"><span class="comment">   * (Otherwise the table is resized if too many nodes in a bin.)</span></span><br><span class="line"><span class="comment">   * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts</span></span><br><span class="line"><span class="comment">   * between resizing and treeification thresholds.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MIN_TREEIFY_CAPACITY</span> <span class="operator">=</span> <span class="number">64</span>;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The maximum capacity, used if a higher value is implicitly specified</span></span><br><span class="line"><span class="comment">   * by either of the constructors with arguments.</span></span><br><span class="line"><span class="comment">   * MUST be a power of two &lt;= 1&lt;&lt;30.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MAXIMUM_CAPACITY</span> <span class="operator">=</span> <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>构造函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor)</span> </span>&#123;                                                                   </span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal initial capacity: "</span> +</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</span><br><span class="line">        initialCapacity = MAXIMUM_CAPACITY;</span><br><span class="line">    <span class="keyword">if</span> (loadFactor &lt;= <span class="number">0</span> || Float.isNaN(loadFactor))</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal load factor: "</span> + loadFactor);</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = loadFactor;</span><br><span class="line">    <span class="comment">//下面介绍一下这行代码的作用</span></span><br><span class="line">    <span class="keyword">this</span>.threshold = tableSizeFor(initialCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(initialCapacity, DEFAULT_LOAD_FACTOR);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="comment">// all other fields defaulted</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR;</span><br><span class="line">    putMapEntries(m, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">HashMap</span><span class="params">(<span class="type">int</span> initialCapacity, <span class="type">float</span> loadFactor)</span> &#123;                                                                   </span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Illegal initial capacity: &quot;</span> +</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</span><br><span class="line">        initialCapacity = MAXIMUM_CAPACITY;</span><br><span class="line">    <span class="keyword">if</span> (loadFactor &lt;= <span class="number">0</span> || Float.isNaN(loadFactor))</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Illegal load factor: &quot;</span> + loadFactor);</span><br><span class="line">    <span class="built_in">this</span>.loadFactor = loadFactor;</span><br><span class="line">    <span class="comment">//下面介绍一下这行代码的作用</span></span><br><span class="line">    <span class="built_in">this</span>.threshold = tableSizeFor(initialCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">HashMap</span><span class="params">(<span class="type">int</span> initialCapacity)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>(initialCapacity, DEFAULT_LOAD_FACTOR);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">HashMap</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="comment">// all other fields defaulted</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">HashMap</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.loadFactor = DEFAULT_LOAD_FACTOR;</span><br><span class="line">    putMapEntries(m, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>HashMap</code>有4个构造函数.</p>
 <p>重点介绍下<code>tableSizeFor(initialCapacity)</code>方法，该方法作用，将你传入的<code>initialCapacity</code>进行计算，返回一个大于等于<code>initialCapacity</code>最小的<code>2</code>的幂次方，比如输入6，结算结果为8，源码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;                                                                      </span><br><span class="line">    <span class="keyword">int</span> n = cap - <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">tableSizeFor</span><span class="params">(<span class="type">int</span> cap)</span> &#123;                                                                      </span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> cap - <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>插入源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,                                     </span></span></span><br><span class="line"><span class="function"><span class="params">               <span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</span><br><span class="line">    <span class="comment">//当table为空时，这里初始化table，不是通过构造函数初始化，而是在插入时通过扩容初始化，有效防止了初始化HashMap没有数据插入造成空间浪费可能造成内存泄露的情况</span></span><br><span class="line">    <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">        n = (tab = resize()).length;</span><br><span class="line">    <span class="comment">//存放新键值对</span></span><br><span class="line">    <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)</span><br><span class="line">        tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;K,V&gt; e; K k;</span><br><span class="line">        <span class="comment">//旧键值对的覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">            ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">            e = p;</span><br><span class="line">        <span class="comment">//在红黑树中查找旧键值对更新</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//将新键值对放在链表的最后</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    p.next = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">                    <span class="comment">//当链表的长度大于等于树化阀值，并且hash桶的长度大于等于MIN_TREEIFY_CAPACITY，链表转化为红黑树</span></span><br><span class="line">                    <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                        treeifyBin(tab, hash);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//链表中包含键值对</span></span><br><span class="line">                <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                p = e;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//map中含有旧key，返回旧值</span></span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; </span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)</span><br><span class="line">                e.value = value;</span><br><span class="line">            afterNodeAccess(e);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//map调整次数加1</span></span><br><span class="line">    ++modCount;</span><br><span class="line">    <span class="comment">//键值对的数量达到阈值需要扩容</span></span><br><span class="line">    <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">        resize();</span><br><span class="line">    afterNodeInsertion(evict);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> V <span class="title function_">put</span><span class="params">(K key, V value)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(hash(key), key, value, <span class="literal">false</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> V <span class="title function_">putVal</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">boolean</span> onlyIfAbsent,                                     </span></span><br><span class="line"><span class="params">               <span class="type">boolean</span> evict)</span> &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="type">int</span> n, i;</span><br><span class="line">    <span class="comment">//当table为空时，这里初始化table，不是通过构造函数初始化，而是在插入时通过扩容初始化，有效防止了初始化HashMap没有数据插入造成空间浪费可能造成内存泄露的情况</span></span><br><span class="line">    <span class="keyword">if</span> ((tab = table) == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">        n = (tab = resize()).length;</span><br><span class="line">    <span class="comment">//存放新键值对</span></span><br><span class="line">    <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="literal">null</span>)</span><br><span class="line">        tab[i] = newNode(hash, key, value, <span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;K,V&gt; e; K k;</span><br><span class="line">        <span class="comment">//旧键值对的覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">            ((k = p.key) == key || (key != <span class="literal">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">            e = p;</span><br><span class="line">        <span class="comment">//在红黑树中查找旧键值对更新</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="built_in">this</span>, tab, hash, key, value);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//将新键值对放在链表的最后</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">binCount</span> <span class="operator">=</span> <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((e = p.next) == <span class="literal">null</span>) &#123;</span><br><span class="line">                    p.next = newNode(hash, key, value, <span class="literal">null</span>);</span><br><span class="line">                    <span class="comment">//当链表的长度大于等于树化阀值，并且hash桶的长度大于等于MIN_TREEIFY_CAPACITY，链表转化为红黑树</span></span><br><span class="line">                    <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                        treeifyBin(tab, hash);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//链表中包含键值对</span></span><br><span class="line">                <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = e.key) == key || (key != <span class="literal">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                p = e;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//map中含有旧key，返回旧值</span></span><br><span class="line">        <span class="keyword">if</span> (e != <span class="literal">null</span>) &#123; </span><br><span class="line">            <span class="type">V</span> <span class="variable">oldValue</span> <span class="operator">=</span> e.value;</span><br><span class="line">            <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="literal">null</span>)</span><br><span class="line">                e.value = value;</span><br><span class="line">            afterNodeAccess(e);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//map调整次数加1</span></span><br><span class="line">    ++modCount;</span><br><span class="line">    <span class="comment">//键值对的数量达到阈值需要扩容</span></span><br><span class="line">    <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">        resize();</span><br><span class="line">    afterNodeInsertion(evict);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>上述代码总结如下：</p>
 <ol>
 <li>首次插入进行<code>hash</code>表的初始化操作，<code>扩容</code>初始化，插入键值对</li>
@@ -617,7 +1117,8 @@
 </ol>
 </li>
 <li><p>扩容</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] oldTab = table;</span><br><span class="line">    <span class="keyword">int</span> oldCap = (oldTab == <span class="keyword">null</span>) ? <span class="number">0</span> : oldTab.length;</span><br><span class="line">    <span class="keyword">int</span> oldThr = threshold;</span><br><span class="line">    <span class="keyword">int</span> newCap, newThr = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//如果旧hash桶不为空</span></span><br><span class="line">    <span class="keyword">if</span> (oldCap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//超过hash桶的最大长度，将阀值设为最大值</span></span><br><span class="line">        <span class="keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123;</span><br><span class="line">            threshold = Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">return</span> oldTab;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//新的hash桶的长度2被扩容没有超过最大长度，将新容量阀值扩容为以前的2倍</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                 oldCap &gt;= DEFAULT_INITIAL_CAPACITY)</span><br><span class="line">            newThr = oldThr &lt;&lt; <span class="number">1</span>; <span class="comment">// double threshold</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果hash表阈值已经初始化过</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (oldThr &gt; <span class="number">0</span>) <span class="comment">// initial capacity was placed in threshold</span></span><br><span class="line">        newCap = oldThr;</span><br><span class="line">    <span class="comment">//如果旧hash桶，并且hash桶容量阈值没有初始化，那么需要初始化新的hash桶的容量和新容量阀值</span></span><br><span class="line">    <span class="keyword">else</span> &#123;              </span><br><span class="line">        newCap = DEFAULT_INITIAL_CAPACITY;</span><br><span class="line">        newThr = (<span class="keyword">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//新的局部变量阀值赋值</span></span><br><span class="line">    <span class="keyword">if</span> (newThr == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">float</span> ft = (<span class="keyword">float</span>)newCap * loadFactor;</span><br><span class="line">        newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="keyword">float</span>)MAXIMUM_CAPACITY ?</span><br><span class="line">                  (<span class="keyword">int</span>)ft : Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//为当前容量阀值赋值</span></span><br><span class="line">    threshold = newThr;</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"rawtypes"</span>,<span class="string">"unchecked"</span>&#125;)</span><br><span class="line">    <span class="comment">//初始化hash桶</span></span><br><span class="line">    Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node[newCap];</span><br><span class="line">    table = newTab;</span><br><span class="line">    <span class="comment">//如果旧的hash桶不为空，需要将旧的hash表里的键值对重新映射到新的hash桶中</span></span><br><span class="line">    <span class="keyword">if</span> (oldTab != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; oldCap; ++j) &#123;</span><br><span class="line">            Node&lt;K,V&gt; e;</span><br><span class="line">            <span class="keyword">if</span> ((e = oldTab[j]) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                oldTab[j] = <span class="keyword">null</span>;</span><br><span class="line">                <span class="comment">//只有一个节点，通过索引位置直接映射</span></span><br><span class="line">                <span class="keyword">if</span> (e.next == <span class="keyword">null</span>)</span><br><span class="line">                    newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e;</span><br><span class="line">                <span class="comment">//如果是红黑树，需要进行树拆分然后映射</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                    ((TreeNode&lt;K,V&gt;)e).split(<span class="keyword">this</span>, newTab, j, oldCap);</span><br><span class="line">                <span class="keyword">else</span> &#123; </span><br><span class="line">                    <span class="comment">//如果是多个节点的链表，将原链表拆分为两个链表，两个链表的索引位置，一个为原索引，一个为原索引加上旧Hash桶长度的偏移量       </span></span><br><span class="line">                    Node&lt;K,V&gt; loHead = <span class="keyword">null</span>, loTail = <span class="keyword">null</span>;</span><br><span class="line">                    Node&lt;K,V&gt; hiHead = <span class="keyword">null</span>, hiTail = <span class="keyword">null</span>;</span><br><span class="line">                    Node&lt;K,V&gt; next;</span><br><span class="line">                    <span class="keyword">do</span> &#123;</span><br><span class="line">                        next = e.next;</span><br><span class="line">                        <span class="comment">//链表1</span></span><br><span class="line">                        <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (loTail == <span class="keyword">null</span>)</span><br><span class="line">                                loHead = e;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                                loTail.next = e;</span><br><span class="line">                            loTail = e;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">//链表2</span></span><br><span class="line">                        <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">if</span> (hiTail == <span class="keyword">null</span>)</span><br><span class="line">                                hiHead = e;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                                hiTail.next = e;</span><br><span class="line">                            hiTail = e;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">while</span> ((e = next) != <span class="keyword">null</span>);</span><br><span class="line">                    <span class="comment">//链表1存于原索引</span></span><br><span class="line">                    <span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        loTail.next = <span class="keyword">null</span>;</span><br><span class="line">                        newTab[j] = loHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//链表2存于原索引加上原hash桶长度的偏移量</span></span><br><span class="line">                    <span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        hiTail.next = <span class="keyword">null</span>;</span><br><span class="line">                        newTab[j + oldCap] = hiHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newTab;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] oldTab = table;</span><br><span class="line">    <span class="type">int</span> <span class="variable">oldCap</span> <span class="operator">=</span> (oldTab == <span class="literal">null</span>) ? <span class="number">0</span> : oldTab.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">oldThr</span> <span class="operator">=</span> threshold;</span><br><span class="line">    <span class="type">int</span> newCap, newThr = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//如果旧hash桶不为空</span></span><br><span class="line">    <span class="keyword">if</span> (oldCap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//超过hash桶的最大长度，将阀值设为最大值</span></span><br><span class="line">        <span class="keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123;</span><br><span class="line">            threshold = Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">return</span> oldTab;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//新的hash桶的长度2被扩容没有超过最大长度，将新容量阀值扩容为以前的2倍</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                 oldCap &gt;= DEFAULT_INITIAL_CAPACITY)</span><br><span class="line">            newThr = oldThr &lt;&lt; <span class="number">1</span>; <span class="comment">// double threshold</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果hash表阈值已经初始化过</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (oldThr &gt; <span class="number">0</span>) <span class="comment">// initial capacity was placed in threshold</span></span><br><span class="line">        newCap = oldThr;</span><br><span class="line">    <span class="comment">//如果旧hash桶，并且hash桶容量阈值没有初始化，那么需要初始化新的hash桶的容量和新容量阀值</span></span><br><span class="line">    <span class="keyword">else</span> &#123;              </span><br><span class="line">        newCap = DEFAULT_INITIAL_CAPACITY;</span><br><span class="line">        newThr = (<span class="type">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//新的局部变量阀值赋值</span></span><br><span class="line">    <span class="keyword">if</span> (newThr == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="type">float</span> <span class="variable">ft</span> <span class="operator">=</span> (<span class="type">float</span>)newCap * loadFactor;</span><br><span class="line">        newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="type">float</span>)MAXIMUM_CAPACITY ?</span><br><span class="line">                  (<span class="type">int</span>)ft : Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//为当前容量阀值赋值</span></span><br><span class="line">    threshold = newThr;</span><br><span class="line">    <span class="meta">@SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span></span><br><span class="line">    <span class="comment">//初始化hash桶</span></span><br><span class="line">    Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="keyword">new</span> <span class="title class_">Node</span>[newCap];</span><br><span class="line">    table = newTab;</span><br><span class="line">    <span class="comment">//如果旧的hash桶不为空，需要将旧的hash表里的键值对重新映射到新的hash桶中</span></span><br><span class="line">    <span class="keyword">if</span> (oldTab != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; oldCap; ++j) &#123;</span><br><span class="line">            Node&lt;K,V&gt; e;</span><br><span class="line">            <span class="keyword">if</span> ((e = oldTab[j]) != <span class="literal">null</span>) &#123;</span><br><span class="line">                oldTab[j] = <span class="literal">null</span>;</span><br><span class="line">                <span class="comment">//只有一个节点，通过索引位置直接映射</span></span><br><span class="line">                <span class="keyword">if</span> (e.next == <span class="literal">null</span>)</span><br><span class="line">                    newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e;</span><br><span class="line">                <span class="comment">//如果是红黑树，需要进行树拆分然后映射</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                    ((TreeNode&lt;K,V&gt;)e).split(<span class="built_in">this</span>, newTab, j, oldCap);</span><br><span class="line">                <span class="keyword">else</span> &#123; </span><br><span class="line">                    <span class="comment">//如果是多个节点的链表，将原链表拆分为两个链表，两个链表的索引位置，一个为原索引，一个为原索引加上旧Hash桶长度的偏移量       </span></span><br><span class="line">                    Node&lt;K,V&gt; loHead = <span class="literal">null</span>, loTail = <span class="literal">null</span>;</span><br><span class="line">                    Node&lt;K,V&gt; hiHead = <span class="literal">null</span>, hiTail = <span class="literal">null</span>;</span><br><span class="line">                    Node&lt;K,V&gt; next;</span><br><span class="line">                    <span class="keyword">do</span> &#123;</span><br><span class="line">                        next = e.next;</span><br><span class="line">                        <span class="comment">//链表1</span></span><br><span class="line">                        <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (loTail == <span class="literal">null</span>)</span><br><span class="line">                                loHead = e;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                                loTail.next = e;</span><br><span class="line">                            loTail = e;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">//链表2</span></span><br><span class="line">                        <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">if</span> (hiTail == <span class="literal">null</span>)</span><br><span class="line">                                hiHead = e;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                                hiTail.next = e;</span><br><span class="line">                            hiTail = e;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">while</span> ((e = next) != <span class="literal">null</span>);</span><br><span class="line">                    <span class="comment">//链表1存于原索引</span></span><br><span class="line">                    <span class="keyword">if</span> (loTail != <span class="literal">null</span>) &#123;</span><br><span class="line">                        loTail.next = <span class="literal">null</span>;</span><br><span class="line">                        newTab[j] = loHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//链表2存于原索引加上原hash桶长度的偏移量</span></span><br><span class="line">                    <span class="keyword">if</span> (hiTail != <span class="literal">null</span>) &#123;</span><br><span class="line">                        hiTail.next = <span class="literal">null</span>;</span><br><span class="line">                        newTab[j + oldCap] = hiHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newTab;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>如下情况会产生扩容操作：</p>
 <ol>
 <li>初始化<code>HashMap</code>，第一次进行put操作</li>
@@ -644,7 +1145,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2020/06/30/HashMap源码解析/" data-id="cm2yjq797003wysuy8ymrkodu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2020/06/30/HashMap%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" data-id="cmjcrlyb5000blcuy3t4m8rbi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -729,7 +1230,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2019/12/25/分片和一致性/">分片和一致性</a>
+            <a class="article-title" href="/2019/12/25/%E5%88%86%E7%89%87%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7/">分片和一致性</a>
         </h1>
     
 
@@ -739,7 +1240,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2019/12/25/分片和一致性/">
+        <a href="/2019/12/25/%E5%88%86%E7%89%87%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7/">
             <time datetime="2019-12-25T07:52:42.000Z" itemprop="datePublished">2019-12-25</time>
         </a>
     </div>
@@ -748,7 +1249,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/问题集锦/">问题集锦</a>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a>
     </div>
 
 
@@ -767,7 +1268,7 @@
 <h4 id="数据分片与路由"><a href="#数据分片与路由" class="headerlink" title="数据分片与路由"></a>数据分片与路由</h4><h5 id="哈希分片-Hash-Partition"><a href="#哈希分片-Hash-Partition" class="headerlink" title="哈希分片(Hash Partition)"></a>哈希分片(Hash Partition)</h5><p>一种数据分片和路由的通用模型，可以将其看作是一个二级映射关系。第一级映射是key-partition映射，其将数据记录映射到数据分片空间，这往往是多对一的映射关系，即一个数据分片包含多条记录数据；第二级映射是partition-machine映射，其将数据分片映射到物理机中，这一般也是多对一映射关系，即一台物理机容纳多个数据分片。</p>
 <ul>
 <li>Round Robin<ul>
-<li>哈希取模法。H(key) = hash(key) mod K，如果物理机增加1台，则数据和物理机之间的映射关系全被打乱。</li>
+<li>哈希取模法。H(key) &#x3D; hash(key) mod K，如果物理机增加1台，则数据和物理机之间的映射关系全被打乱。</li>
 <li>该方法缺乏扩展灵活性，原因是该方法将物理机和数据分片两个功能点合二为一，即每台物理机对应一个数据分片，这样key-paitition映射和partition-machine映射也就两位一体。</li>
 </ul>
 </li>
@@ -786,7 +1287,7 @@
 <ul>
 <li>CAP<ul>
 <li>强一致性(Consisitency)：分布式系统中同一数据多副本情形下，对于数据的更新操作体现出的效果与只有单份数据是一样的</li>
-<li>可用性(Availability)：客户端在任何时刻对大规模数据系统的读/写操作都应该保证在限定延时内完成</li>
+<li>可用性(Availability)：客户端在任何时刻对大规模数据系统的读&#x2F;写操作都应该保证在限定延时内完成</li>
 <li>分区容忍性(Partition Tolerance)：分区间的机器无法进行网络通信的情况</li>
 </ul>
 </li>
@@ -819,7 +1320,7 @@
 <li><code>Paxos</code>和<code>Raft</code>一致性协议。</li>
 </ul>
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="https://coolshell.cn/articles/10910.html" target="_blank" rel="noopener">分布式系统的事务处理</a></li>
+<li><a href="https://coolshell.cn/articles/10910.html">分布式系统的事务处理</a></li>
 </ul>
 
         
@@ -831,7 +1332,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2019/12/25/分片和一致性/" data-id="cm2yjq78f002vysuye1xpwtod" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2019/12/25/%E5%88%86%E7%89%87%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7/" data-id="cmjcrlyc40034lcuy3ontem7c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -916,7 +1417,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2019/12/25/缓存一致性/">缓存一致性</a>
+            <a class="article-title" href="/2019/12/25/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/">缓存一致性</a>
         </h1>
     
 
@@ -926,7 +1427,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2019/12/25/缓存一致性/">
+        <a href="/2019/12/25/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/">
             <time datetime="2019-12-25T06:57:28.000Z" itemprop="datePublished">2019-12-25</time>
         </a>
     </div>
@@ -935,7 +1436,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/问题集锦/">问题集锦</a>
+        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a>
     </div>
 
 
@@ -950,7 +1451,7 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p> 本文转自：<a href="http://coolshell.cn/articles/17416.html" target="_blank" rel="noopener">http://coolshell.cn/articles/17416.html</a> 。文章是耗子大神关于缓存更新策略的总结，值得大家学习讨论。 </p>
+            <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p> 本文转自：<a href="http://coolshell.cn/articles/17416.html">http://coolshell.cn/articles/17416.html</a> 。文章是耗子大神关于缓存更新策略的总结，值得大家学习讨论。 </p>
 <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>看到好些人在写更新缓存数据代码时，先删除缓存，然后再更新数据库，而后续的操作会把数据再装载的缓存中。然而，这个是逻辑是错误的。试想，两个并发操作，一个是更新操作，另一个是查询操作，更新操作删除缓存后，查询操作没有命中缓存，先把老数据读出来后放到缓存中，然后更新操作更新了数据库。于是，在缓存中的数据还是老的数据，导致缓存中的数据是脏的，而且还一直这样脏下去了。</p>
 <p>我不知道为什么这么多人用的都是这个逻辑，当我在微博上发了这个贴以后，我发现好些人给了好多非常复杂和诡异的方案，所以，我想写这篇文章说一下几个缓存更新的Design Pattern（让我们多一些套路吧）。</p>
 <p>这里，我们先不讨论更新缓存和更新数据这两个事是一个事务的事，或是会有失败的可能，我们先假设更新数据库和更新缓存都可以成功的情况（我们先把成功的代码逻辑先写对）。</p>
@@ -961,14 +1462,14 @@
 <li>命中：应用程序从cache中取数据，取到后返回。</li>
 <li>更新：先把数据存到数据库中，成功后，再让缓存失效。</li>
 </ul>
-<p><img src="/2019/12/25/缓存一致性/Cache-Aside-Design-Pattern-Flow-Diagram-e1470471723210.png" alt="Cache-Aside-Design-Pattern-Flow-Diagram-e1470471723210"></p>
-<p><img src="/2019/12/25/缓存一致性/Updating-Data-using-the-Cache-Aside-Pattern-Flow-Diagram-1-e1470471761402.png" alt="Updating-Data-using-the-Cache-Aside-Pattern-Flow-Diagram-1-e1470471761402"></p>
+<p><img src="/2019/12/25/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/Cache-Aside-Design-Pattern-Flow-Diagram-e1470471723210.png" alt="Cache-Aside-Design-Pattern-Flow-Diagram-e1470471723210"></p>
+<p><img src="/2019/12/25/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/Updating-Data-using-the-Cache-Aside-Pattern-Flow-Diagram-1-e1470471761402.png" alt="Updating-Data-using-the-Cache-Aside-Pattern-Flow-Diagram-1-e1470471761402"></p>
 <p>一个是查询操作，一个是更新操作的并发，首先，没有了删除cache数据的操作了，而是先更新了数据库中的数据，此时，缓存依然有效，所以，并发的查询操作拿的是没有更新的数据，但是，更新操作马上让缓存的失效了，后续的查询操作再把数据从数据库中拉出来。而不会像文章开头的那个逻辑产生的问题，后续的查询操作一直都在取老的数据。</p>
-<p>这是标准的design pattern，包括Facebook的论文《<a href="https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf" target="_blank" rel="noopener">Scaling Memcache at Facebook</a>》也使用了这个策略。为什么不是写完数据库后更新缓存？你可以看一下Quora上的这个问答《<a href="https://www.quora.com/Why-does-Facebook-use-delete-to-remove-the-key-value-pair-in-Memcached-instead-of-updating-the-Memcached-during-write-request-to-the-backend" target="_blank" rel="noopener">Why does Facebook use delete to remove the key-value pair in Memcached instead of updating the Memcached during write request to the backend</a>?》，主要是怕两个并发的写操作导致脏数据。</p>
+<p>这是标准的design pattern，包括Facebook的论文《<a href="https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf">Scaling Memcache at Facebook</a>》也使用了这个策略。为什么不是写完数据库后更新缓存？你可以看一下Quora上的这个问答《<a href="https://www.quora.com/Why-does-Facebook-use-delete-to-remove-the-key-value-pair-in-Memcached-instead-of-updating-the-Memcached-during-write-request-to-the-backend">Why does Facebook use delete to remove the key-value pair in Memcached instead of updating the Memcached during write request to the backend</a>?》，主要是怕两个并发的写操作导致脏数据。</p>
 <p>那么，是不是Cache Aside这个就不会有并发问题了？不是的，比如，一个是读操作，但是没有命中缓存，然后就到数据库中取数据，此时来了一个写操作，写完数据库后，让缓存失效，然后，之前的那个读操作再把老的数据放进去，所以，会造成脏数据。</p>
 <p>但，这个case理论上会出现，不过，实际上出现的概率可能非常低，因为这个条件需要发生在读缓存时缓存失效，而且并发着有一个写操作。而实际上数据库的写操作会比读操作慢得多，而且还要锁表，而读操作必需在写操作前进入数据库操作，而又要晚于写操作更新缓存，所有的这些条件都具备的概率基本并不大。</p>
 <p><em>所以，这也就是Quora上的那个答案里说的，要么通过2PC或是Paxos协议保证一致性，要么就是拼命的降低并发时脏数据的概率，而Facebook使用了这个降低概率的玩法，因为2PC太慢，而Paxos太复杂。当然，最好还是为缓存设置上过期时间。</em></p>
-<h4 id="Read-Write-Through-Pattern"><a href="#Read-Write-Through-Pattern" class="headerlink" title="Read/Write Through Pattern"></a>Read/Write Through Pattern</h4><p>我们可以看到，在上面的Cache Aside套路中，我们的应用代码需要维护两个数据存储，一个是缓存（Cache），一个是数据库（Repository）。所以，应用程序比较啰嗦。而Read/Write Through套路是把更新数据库（Repository）的操作由缓存自己代理了，所以，对于应用层来说，就简单很多了。<em>可以理解为，应用认为后端就是一个单一的存储，而存储自己维护自己的Cache</em>。</p>
+<h4 id="Read-Write-Through-Pattern"><a href="#Read-Write-Through-Pattern" class="headerlink" title="Read&#x2F;Write Through Pattern"></a>Read&#x2F;Write Through Pattern</h4><p>我们可以看到，在上面的Cache Aside套路中，我们的应用代码需要维护两个数据存储，一个是缓存（Cache），一个是数据库（Repository）。所以，应用程序比较啰嗦。而Read&#x2F;Write Through套路是把更新数据库（Repository）的操作由缓存自己代理了，所以，对于应用层来说，就简单很多了。<em>可以理解为，应用认为后端就是一个单一的存储，而存储自己维护自己的Cache</em>。</p>
 <ul>
 <li>Read Through</li>
 </ul>
@@ -977,22 +1478,22 @@
 <li>Write Through</li>
 </ul>
 <p>Write Through 套路和Read Through相仿，不过是在更新数据时发生。当有数据更新的时候，如果没有命中缓存，直接更新数据库，然后返回。如果命中了缓存，则更新缓存，然后再由Cache自己更新数据库（这是一个同步操作）</p>
-<p>下图自来Wikipedia的<a href="https://en.wikipedia.org/wiki/Cache_(computing" target="_blank" rel="noopener">Cache</a>)词条。其中的Memory你可以理解为就是我们例子里的数据库。</p>
-<p><img src="/2019/12/25/缓存一致性/460px-Write-through_with_no-write-allocation.svg_.png" alt="460px-Write-through_with_no-write-allocation.svg_"></p>
+<p>下图自来Wikipedia的<a href="https://en.wikipedia.org/wiki/Cache_(computing)">Cache</a>词条。其中的Memory你可以理解为就是我们例子里的数据库。</p>
+<p><img src="/2019/12/25/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/460px-Write-through_with_no-write-allocation.svg_.png" alt="460px-Write-through_with_no-write-allocation.svg_"></p>
 <h4 id="Write-Behind-Caching-Pattern"><a href="#Write-Behind-Caching-Pattern" class="headerlink" title="Write Behind Caching Pattern"></a>Write Behind Caching Pattern</h4><p>Write Behind 又叫 Write Back。<em>一些了解Linux操作系统内核的同学对write back应该非常熟悉，这不就是Linux文件系统的Page Cache的算法吗？是的，你看基础这玩意全都是相通的。</em> 所以，基础很重要，我已经不是一次说过基础很重要这事了。</p>
-<p>Write Back套路，一句说就是，在更新数据的时候，只更新缓存，不更新数据库，而我们的缓存会异步地批量更新数据库。这个设计的好处就是让数据的I/O操作飞快无比（因为直接操作内存嘛 ），因为异步，write backg还可以合并对同一个数据的多次操作，所以性能的提高是相当可观的。</p>
-<p>Write Back套路，一句说就是，在更新数据的时候，只更新缓存，不更新数据库，而我们的缓存会异步地批量更新数据库。这个设计的好处就是让数据的I/O操作飞快无比（因为直接操作内存嘛 ），因为异步，write backg还可以合并对同一个数据的多次操作，所以性能的提高是相当可观的。</p>
-<p>但是，其带来的问题是，数据不是强一致性的，而且可能会丢失（我们知道Unix/Linux非正常关机会导致数据丢失，就是因为这个事）。在软件设计上，我们基本上不可能做出一个没有缺陷的设计，就像算法设计中的时间换空间，空间换时间一个道理，有时候，强一致性和高性能，高可用和高性能是有冲突的。软件设计从来都是取舍Trade-Off。</p>
+<p>Write Back套路，一句说就是，在更新数据的时候，只更新缓存，不更新数据库，而我们的缓存会异步地批量更新数据库。这个设计的好处就是让数据的I&#x2F;O操作飞快无比（因为直接操作内存嘛 ），因为异步，write backg还可以合并对同一个数据的多次操作，所以性能的提高是相当可观的。</p>
+<p>Write Back套路，一句说就是，在更新数据的时候，只更新缓存，不更新数据库，而我们的缓存会异步地批量更新数据库。这个设计的好处就是让数据的I&#x2F;O操作飞快无比（因为直接操作内存嘛 ），因为异步，write backg还可以合并对同一个数据的多次操作，所以性能的提高是相当可观的。</p>
+<p>但是，其带来的问题是，数据不是强一致性的，而且可能会丢失（我们知道Unix&#x2F;Linux非正常关机会导致数据丢失，就是因为这个事）。在软件设计上，我们基本上不可能做出一个没有缺陷的设计，就像算法设计中的时间换空间，空间换时间一个道理，有时候，强一致性和高性能，高可用和高性能是有冲突的。软件设计从来都是取舍Trade-Off。</p>
 <p>另外，Write Back实现逻辑比较复杂，因为他需要track有哪数据是被更新了的，需要刷到持久层上。操作系统的write back会在仅当这个cache需要失效的时候，才会被真正持久起来，比如，内存不够了，或是进程退出了等情况，这又叫lazy write。</p>
 <p>在wikipedia上有一张write back的流程图，基本逻辑如下：</p>
-<p><img src="/2019/12/25/缓存一致性/Write-back_with_write-allocation.png" alt="Write-back_with_write-allocation"></p>
-<h4 id="再多唠叨一些"><a href="#再多唠叨一些" class="headerlink" title="再多唠叨一些"></a>再多唠叨一些</h4><p>1）上面讲的这些Design Pattern，其实并不是软件架构里的mysql数据库和memcache/redis的更新策略，这些东西都是计算机体系结构里的设计，比如CPU的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。<em>基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略</em>，所以这也就是，工程学上所谓的Best Practice，遵从就好了。</p>
-<p>2）有时候，我们觉得能做宏观的系统架构的人一定是很有经验的，其实，宏观系统架构中的很多设计都来源于这些微观的东西。比如，云计算中的很多虚拟化技术的原理，和传统的虚拟内存不是很像么？Unix下的那些I/O模型，也放大到了架构里的同步异步的模型，还有Unix发明的管道不就是数据流式计算架构吗？TCP的好些设计也用在不同系统间的通讯中，仔细看看这些微观层面，你会发现有很多设计都非常精妙……所以，<em>请允许我在这里放句观点鲜明的话——如果你要做好架构，首先你得把计算机体系结构以及很多老古董的基础技术吃透了</em>。</p>
+<p><img src="/2019/12/25/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/Write-back_with_write-allocation.png" alt="Write-back_with_write-allocation"></p>
+<h4 id="再多唠叨一些"><a href="#再多唠叨一些" class="headerlink" title="再多唠叨一些"></a>再多唠叨一些</h4><p>1）上面讲的这些Design Pattern，其实并不是软件架构里的mysql数据库和memcache&#x2F;redis的更新策略，这些东西都是计算机体系结构里的设计，比如CPU的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。<em>基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略</em>，所以这也就是，工程学上所谓的Best Practice，遵从就好了。</p>
+<p>2）有时候，我们觉得能做宏观的系统架构的人一定是很有经验的，其实，宏观系统架构中的很多设计都来源于这些微观的东西。比如，云计算中的很多虚拟化技术的原理，和传统的虚拟内存不是很像么？Unix下的那些I&#x2F;O模型，也放大到了架构里的同步异步的模型，还有Unix发明的管道不就是数据流式计算架构吗？TCP的好些设计也用在不同系统间的通讯中，仔细看看这些微观层面，你会发现有很多设计都非常精妙……所以，<em>请允许我在这里放句观点鲜明的话——如果你要做好架构，首先你得把计算机体系结构以及很多老古董的基础技术吃透了</em>。</p>
 <p>3）在软件开发或设计中，我非常建议在之前先去参考一下已有的设计和思路，<em>看看相应的guideline，best practice或design pattern，吃透了已有的这些东西，再决定是否要重新发明轮子</em>。千万不要似是而非地，想当然的做软件设计。</p>
-<p>4）上面，我们没有考虑缓存（Cache）和持久层（Repository）的整体事务的问题。比如，更新Cache成功，更新数据库失败了怎么吗？或是反过来。关于这个事，如果你需要强一致性，你需要使用“两阶段提交协议”——prepare, commit/rollback，比如Java 7 的<a href="http://docs.oracle.com/javaee/7/api/javax/transaction/xa/XAResource.html" target="_blank" rel="noopener">XAResource</a>，还有MySQL 5.7的 <a href="http://dev.mysql.com/doc/refman/5.7/en/xa.html" target="_blank" rel="noopener">XA Transaction</a>，有些cache也支持XA，比如<a href="http://www.ehcache.org/documentation/3.0/xa.html" target="_blank" rel="noopener">EhCache</a>。当然，XA这样的强一致性的玩法会导致性能下降，关于分布式的事务的相关话题，你可以看看《<a href="https://coolshell.cn/articles/10910.html" target="_blank" rel="noopener">分布式系统的事务处理</a>》一文。</p>
+<p>4）上面，我们没有考虑缓存（Cache）和持久层（Repository）的整体事务的问题。比如，更新Cache成功，更新数据库失败了怎么吗？或是反过来。关于这个事，如果你需要强一致性，你需要使用“两阶段提交协议”——prepare, commit&#x2F;rollback，比如Java 7 的<a href="http://docs.oracle.com/javaee/7/api/javax/transaction/xa/XAResource.html">XAResource</a>，还有MySQL 5.7的 <a href="http://dev.mysql.com/doc/refman/5.7/en/xa.html">XA Transaction</a>，有些cache也支持XA，比如<a href="http://www.ehcache.org/documentation/3.0/xa.html">EhCache</a>。当然，XA这样的强一致性的玩法会导致性能下降，关于分布式的事务的相关话题，你可以看看《<a href="https://coolshell.cn/articles/10910.html">分布式系统的事务处理</a>》一文。</p>
 <p>（全文完）</p>
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="https://coolshell.cn/articles/17416.html/comment-page-1#comments" target="_blank" rel="noopener">缓存更新的套路</a></li>
+<li><a href="https://coolshell.cn/articles/17416.html/comment-page-1#comments">缓存更新的套路</a></li>
 </ul>
 
         
@@ -1004,7 +1505,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2019/12/25/缓存一致性/" data-id="cm2yjq79k003zysuypjw83104" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2019/12/25/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7/" data-id="cmjcrlycb0046lcuy2sjs5i3w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1089,7 +1590,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2019/06/19/ssr开机启动/">ssr开机启动</a>
+            <a class="article-title" href="/2019/06/19/ssr%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/">ssr开机启动</a>
         </h1>
     
 
@@ -1099,7 +1600,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2019/06/19/ssr开机启动/">
+        <a href="/2019/06/19/ssr%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/">
             <time datetime="2019-06-19T07:56:47.000Z" itemprop="datePublished">2019-06-19</time>
         </a>
     </div>
@@ -1108,7 +1609,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
+        <a class="article-category-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a>
     </div>
 
 
@@ -1124,13 +1625,16 @@
         
             
             <p><em>本文主要介绍privoxy和ssr的安装和开机启动，运行系统为centos7.6，python版本为2.7.x；至于为何使用ssr，而不使用ss，主要得益于ssr具有的加密和混淆特性，其中的爱恨纠葛就不赘述，有兴趣的小伙伴可以自行搜索。</em></p>
-<h4 id="SSR-Client"><a href="#SSR-Client" class="headerlink" title="SSR Client"></a>SSR Client</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:shadowsocksr-backup/shadowsocksr.git</span><br><span class="line"><span class="comment"># 超链接</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/bin &amp;&amp; ln -s <span class="variable">$&#123;pwd&#125;</span>/shadowsocksr/shadowsocks/local.py ssrlocal</span><br><span class="line"><span class="comment"># 配置shadowsocks.json</span></span><br><span class="line">cat /etc/shadowsocks.json </span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"server"</span>:<span class="string">"your server ip"</span>,</span><br><span class="line">        <span class="string">"server_ipv6"</span>: <span class="string">"::"</span>,</span><br><span class="line">        <span class="string">"server_port"</span>:8388,</span><br><span class="line">        <span class="string">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">        <span class="string">"local_port"</span>:1080,</span><br><span class="line">        <span class="string">"password"</span>:<span class="string">"your password"</span>,</span><br><span class="line">        <span class="string">"timeout"</span>:300,</span><br><span class="line">        <span class="string">"udp_timeout"</span>: 60,</span><br><span class="line">        <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span>,</span><br><span class="line">        <span class="string">"protocol"</span>: <span class="string">"auth_aes128_md5"</span>,</span><br><span class="line">        <span class="string">"protocol_param"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"obfs"</span>:<span class="string">"tls1.2_ticket_auth"</span>,</span><br><span class="line">        <span class="string">"obfs_param"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"fast_open"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"workers"</span>: 1</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 配置启动脚本</span></span><br><span class="line">vim /etc/systemd/system/shadowsocksr.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=SSR</span><br><span class="line">[Service]</span><br><span class="line">TimeoutStartSec=0</span><br><span class="line">ExecStart=/usr/<span class="built_in">local</span>/bin/ssrlocal -c /etc/shadowsocks.json</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> shadowsocksr</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start shadowsocksr</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">systemctl status shadowsocksr</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">systemctl stop shadowsocksr</span><br><span class="line"><span class="comment"># 取消开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> shadowsocksr</span><br></pre></td></tr></table></figure>
-<h4 id="Privoxy"><a href="#Privoxy" class="headerlink" title="Privoxy"></a>Privoxy</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">yum install -y privoxy</span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line">cat /etc/privoxy/config | grep -v <span class="string">"#"</span></span><br><span class="line"></span><br><span class="line">listen-address  0.0.0.0:8118</span><br><span class="line">...</span><br><span class="line">forward-socks5 / 127.0.0.1:1080 .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> privoxy</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start privoxy</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">systemctl status privoxy</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">systemctl stop privoxy</span><br><span class="line"><span class="comment"># 取消开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> privoxy</span><br></pre></td></tr></table></figure>
+<h4 id="SSR-Client"><a href="#SSR-Client" class="headerlink" title="SSR Client"></a>SSR Client</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:shadowsocksr-backup/shadowsocksr.git</span><br><span class="line"><span class="comment"># 超链接</span></span><br><span class="line"><span class="built_in">cd</span> /usr/local/bin &amp;&amp; <span class="built_in">ln</span> -s <span class="variable">$&#123;pwd&#125;</span>/shadowsocksr/shadowsocks/local.py ssrlocal</span><br><span class="line"><span class="comment"># 配置shadowsocks.json</span></span><br><span class="line"><span class="built_in">cat</span> /etc/shadowsocks.json </span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">&quot;server&quot;</span>:<span class="string">&quot;your server ip&quot;</span>,</span><br><span class="line">        <span class="string">&quot;server_ipv6&quot;</span>: <span class="string">&quot;::&quot;</span>,</span><br><span class="line">        <span class="string">&quot;server_port&quot;</span>:8388,</span><br><span class="line">        <span class="string">&quot;local_address&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;local_port&quot;</span>:1080,</span><br><span class="line">        <span class="string">&quot;password&quot;</span>:<span class="string">&quot;your password&quot;</span>,</span><br><span class="line">        <span class="string">&quot;timeout&quot;</span>:300,</span><br><span class="line">        <span class="string">&quot;udp_timeout&quot;</span>: 60,</span><br><span class="line">        <span class="string">&quot;method&quot;</span>:<span class="string">&quot;aes-256-cfb&quot;</span>,</span><br><span class="line">        <span class="string">&quot;protocol&quot;</span>: <span class="string">&quot;auth_aes128_md5&quot;</span>,</span><br><span class="line">        <span class="string">&quot;protocol_param&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;obfs&quot;</span>:<span class="string">&quot;tls1.2_ticket_auth&quot;</span>,</span><br><span class="line">        <span class="string">&quot;obfs_param&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;fast_open&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;workers&quot;</span>: 1</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 配置启动脚本</span></span><br><span class="line">vim /etc/systemd/system/shadowsocksr.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=SSR</span><br><span class="line">[Service]</span><br><span class="line">TimeoutStartSec=0</span><br><span class="line">ExecStart=/usr/local/bin/ssrlocal -c /etc/shadowsocks.json</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> shadowsocksr</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start shadowsocksr</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">systemctl status shadowsocksr</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">systemctl stop shadowsocksr</span><br><span class="line"><span class="comment"># 取消开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> shadowsocksr</span><br></pre></td></tr></table></figure>
+
+<h4 id="Privoxy"><a href="#Privoxy" class="headerlink" title="Privoxy"></a>Privoxy</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">yum install -y privoxy</span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line"><span class="built_in">cat</span> /etc/privoxy/config | grep -v <span class="string">&quot;#&quot;</span></span><br><span class="line"></span><br><span class="line">listen-address  0.0.0.0:8118</span><br><span class="line">...</span><br><span class="line">forward-socks5 / 127.0.0.1:1080 .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> privoxy</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start privoxy</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">systemctl status privoxy</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">systemctl stop privoxy</span><br><span class="line"><span class="comment"># 取消开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> privoxy</span><br></pre></td></tr></table></figure>
+
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="http://exp-blog.com/2018/07/04/pid-1591/" target="_blank" rel="noopener">Centos + Shadowsocks客户端 + Privoxy实现外网访问</a></li>
-<li><p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp" target="_blank" rel="noopener">windows ssr</a></p>
+<li><p><a href="http://exp-blog.com/2018/07/04/pid-1591/">Centos + Shadowsocks客户端 + Privoxy实现外网访问</a></p>
 </li>
-<li><p><a href="https://walesexcitedmei.github.io/2018/11/26/SSR-ShadowsocksR-配置及使用/" target="_blank" rel="noopener">SSR-ShadowsocksR-配置及使用</a></p>
+<li><p><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp">windows ssr</a></p>
+</li>
+<li><p><a href="https://walesexcitedmei.github.io/2018/11/26/SSR-ShadowsocksR-%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/">SSR-ShadowsocksR-配置及使用</a></p>
 </li>
 </ul>
 
@@ -1143,7 +1647,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2019/06/19/ssr开机启动/" data-id="cm2yjq78c002oysuy2sn8jyiu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2019/06/19/ssr%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" data-id="cmjcrlyc0002plcuydvqbfigg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1228,7 +1732,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2019/06/17/docker常用命令/">docker常用命令</a>
+            <a class="article-title" href="/2019/06/17/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">docker常用命令</a>
         </h1>
     
 
@@ -1238,7 +1742,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2019/06/17/docker常用命令/">
+        <a href="/2019/06/17/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
             <time datetime="2019-06-17T08:06:33.000Z" itemprop="datePublished">2019-06-17</time>
         </a>
     </div>
@@ -1247,7 +1751,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Docker和K8s/">Docker和K8s</a>
+        <a class="article-category-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a>
     </div>
 
 
@@ -1262,7 +1766,7 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h5 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a><code>docker</code>常用命令</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理无效的images</span></span><br><span class="line">docker rmi $(docker images -a -q)</span><br><span class="line"><span class="comment"># daemon启动指定的image</span></span><br><span class="line">docker run -d fcoin:latest</span><br><span class="line"><span class="comment"># 进入container容器</span></span><br><span class="line">docker <span class="built_in">exec</span> -ti e7e325e08354 sh</span><br><span class="line"><span class="comment"># build 镜像</span></span><br><span class="line">docker build -t fcoin:latest -f Dockerfile .</span><br><span class="line"><span class="comment"># 停止container</span></span><br><span class="line">docker stop e7e325e08354</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定docker-compose.yml，设置project name，强制build</span></span><br><span class="line">docker-compose -f docker-compose.yml -p docker up --build</span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line">docker-compose logs -f</span><br><span class="line"><span class="comment"># 后台启动</span></span><br><span class="line">docker-compose up -d</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">docker-compose down</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常用配置</span></span><br><span class="line">cat /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"insecure-registries"</span>: [</span><br><span class="line">    <span class="string">"doc.flyflyfish.com:8082"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">    <span class="string">"http://doc.flyflyfish.com:8082"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"debug"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"experimental"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h5 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a><code>docker</code>常用命令</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理无效的images</span></span><br><span class="line">docker rmi $(docker images -a -q)</span><br><span class="line"><span class="comment"># daemon启动指定的image</span></span><br><span class="line">docker run -d fcoin:latest</span><br><span class="line"><span class="comment"># 进入container容器</span></span><br><span class="line">docker <span class="built_in">exec</span> -ti e7e325e08354 sh</span><br><span class="line"><span class="comment"># build 镜像</span></span><br><span class="line">docker build -t fcoin:latest -f Dockerfile .</span><br><span class="line"><span class="comment"># 停止container</span></span><br><span class="line">docker stop e7e325e08354</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定docker-compose.yml，设置project name，强制build</span></span><br><span class="line">docker-compose -f docker-compose.yml -p docker up --build</span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line">docker-compose logs -f</span><br><span class="line"><span class="comment"># 后台启动</span></span><br><span class="line">docker-compose up -d</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">docker-compose down</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常用配置</span></span><br><span class="line"><span class="built_in">cat</span> /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;insecure-registries&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;doc.flyflyfish.com:8082&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;http://doc.flyflyfish.com:8082&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;debug&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;experimental&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
         </div>
         <footer class="article-footer">
@@ -1272,471 +1776,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2019/06/17/docker常用命令/" data-id="cm2yjq77h000pysuyzdgbl193" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-rpm离线安装脚本" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2019/06/17/rpm离线安装脚本/">rpm离线安装脚本</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2019/06/17/rpm离线安装脚本/">
-            <time datetime="2019-06-17T07:48:43.000Z" itemprop="datePublished">2019-06-17</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>rpm离线安装脚本，主要从<a href="https://pkgs.org/下载" target="_blank" rel="noopener">https://pkgs.org/下载</a></em></p>
-<h5 id="下载脚本"><a href="#下载脚本" class="headerlink" title="下载脚本"></a>下载脚本</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">RPM_ARRAY=(perl-5.16.3-293.el7.x86_64.rpm perl-Carp-1.26-244.el7.noarch.rpm perl-Encode-2.51-7.el7.x86_64.rpm perl-Exporter-5.68-3.el7.noarch.rpm perl-File-Path-2.09-2.el7.noarch.rpm perl-File-Temp-0.23.01-3.el7.noarch.rpm perl-Filter-1.49-3.el7.x86_64.rpm perl-Getopt-Long-2.40-3.el7.noarch.rpm perl-HTTP-Tiny-0.033-3.el7.noarch.rpm perl-PathTools-3.40-5.el7.x86_64.rpm perl-Pod-Escapes-1.04-293.el7.noarch.rpm perl-Pod-Perldoc-3.20-4.el7.noarch.rpm perl-Pod-Simple-3.28-4.el7.noarch.rpm perl-Pod-Usage-1.63-3.el7.noarch.rpm perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm perl-Socket-2.010-4.el7.x86_64.rpm perl-Storable-2.45-3.el7.x86_64.rpm perl-Text-ParseWords-3.29-4.el7.noarch.rpm perl-Time-HiRes-1.9725-3.el7.x86_64.rpm perl-Time-Local-1.2300-2.el7.noarch.rpm perl-constant-1.27-2.el7.noarch.rpm perl-libs-5.16.3-293.el7.x86_64.rpm perl-macros-5.16.3-293.el7.x86_64.rpm perl-parent-0.225-244.el7.noarch.rpm perl-podlators-2.5.1-3.el7.noarch.rpm perl-threads-1.87-4.el7.x86_64.rpm perl-threads-shared-1.43-6.el7.x86_64.rpm</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> <span class="variable">$&#123;RPM_ARRAY&#125;</span>; <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;val&#125;</span></span><br><span class="line">	wget http://mirror.centos.org/centos/7/os/x86_64/Packages/<span class="variable">$&#123;val&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<h5 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h5><ul>
-<li><a href="https://linuxhint.com/bash_loop_list_strings/" target="_blank" rel="noopener">bash_loop_list_strings</a></li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2019/06/17/rpm离线安装脚本/" data-id="cm2yjq78a002jysuyryc0e9ua" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-mysql5-7离线安装" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2019/06/17/mysql5-7离线安装/">mysql5.7离线安装</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2019/06/17/mysql5-7离线安装/">
-            <time datetime="2019-06-17T02:53:49.000Z" itemprop="datePublished">2019-06-17</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p><em>本文主要介绍mysql5.7的离线安装，关于mysql的配置可以参考之前的博客<a href="https://www.flyflyfish.com/2018/01/13/mysql/" target="_blank" rel="noopener">Mysql配置</a>，离线安装中需要的rpm包可以前往<a href="https://pkgs.org/下载" target="_blank" rel="noopener">https://pkgs.org/下载</a></em></p>
-<h4 id="Centos-7-5"><a href="#Centos-7-5" class="headerlink" title="Centos 7.5"></a>Centos 7.5</h4><ul>
-<li>下载安装<code>mysql</code>，下载mysql的安装包，<a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.18-1.el7.x86_64.rpm-bundle.tar" target="_blank" rel="noopener">下载地址</a>，解压后<code>rpm</code>列表如下：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf mysql-5.7.26-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">mysql-community-client-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-server-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-test-5.7.26-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>依赖包</p>
-<ol>
-<li><p><code>numactl</code>软件包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numactl-2.0.9-4.el7_2.x86_64.rpm</span><br><span class="line">numactl-devel-2.0.9-4.el7_2.x86_64.rpm</span><br><span class="line">numactl-libs-2.0.9-4.el7_2.x86_64.rpm</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>perl</code>软件包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl-Data-Dumper-2.145-3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><code>perl</code>相关</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">perl-5.16.3-293.el7.x86_64.rpm </span><br><span class="line">perl-Carp-1.26-244.el7.noarch.rpm</span><br><span class="line">perl-Encode-2.51-7.el7.x86_64.rpm</span><br><span class="line">perl-Exporter-5.68-3.el7.noarch.rpm</span><br><span class="line">perl-File-Path-2.09-2.el7.noarch.rpm</span><br><span class="line">perl-File-Temp-0.23.01-3.el7.noarch.rpm</span><br><span class="line">perl-Filter-1.49-3.el7.x86_64.rpm</span><br><span class="line">perl-Getopt-Long-2.40-3.el7.noarch.rpm</span><br><span class="line">perl-HTTP-Tiny-0.033-3.el7.noarch.rpm</span><br><span class="line">perl-PathTools-3.40-5.el7.x86_64.rpm</span><br><span class="line">perl-Pod-Escapes-1.04-293.el7.noarch.rpm</span><br><span class="line">perl-Pod-Perldoc-3.20-4.el7.noarch.rpm</span><br><span class="line">perl-Pod-Simple-3.28-4.el7.noarch.rpm</span><br><span class="line">perl-Pod-Usage-1.63-3.el7.noarch.rpm</span><br><span class="line">perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm</span><br><span class="line">perl-Socket-2.010-4.el7.x86_64.rpm</span><br><span class="line">perl-Storable-2.45-3.el7.x86_64.rpm</span><br><span class="line">perl-Text-ParseWords-3.29-4.el7.noarch.rpm</span><br><span class="line">perl-Time-HiRes-1.9725-3.el7.x86_64.rpm</span><br><span class="line">perl-Time-Local-1.2300-2.el7.noarch.rpm</span><br><span class="line">perl-constant-1.27-2.el7.noarch.rpm</span><br><span class="line">perl-libs-5.16.3-293.el7.x86_64.rpm</span><br><span class="line">perl-macros-5.16.3-293.el7.x86_64.rpm</span><br><span class="line">perl-parent-0.225-244.el7.noarch.rpm</span><br><span class="line">perl-podlators-2.5.1-3.el7.noarch.rpm</span><br><span class="line">perl-threads-1.87-4.el7.x86_64.rpm</span><br><span class="line">perl-threads-shared-1.43-6.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>其他软件包</p>
-<p><code>libaio-0.3.109-13.el7.x86_64.rpm</code></p>
-</li>
-<li><p>查询并卸载系统自带的<code>Mariadb</code>（会与<code>mysql</code>冲突）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询mariadb</span></span><br><span class="line">rpm -ga | grep mariadb</span><br><span class="line">rpm -e --nodeps 查询出来的版本</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>安装<code>mysql</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh libaio-0.3.109-13.el7.x86_64.rpm</span><br><span class="line">rpm -ivh numactl*</span><br><span class="line">rpm -ivh perl-*</span><br><span class="line">rpm -ivh  mysql-community-*</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动<code>mysql</code>服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置开机启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> mysqld</span><br><span class="line"></span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看<code>mysql root</code>临时密码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/mysqld.log | grep password</span><br><span class="line"><span class="comment"># 修改密码</span></span><br><span class="line"><span class="comment"># mysql -uroot -p</span></span><br><span class="line"><span class="comment"># SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘newpass’);</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建用户并授权</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user newuser@’%’ identified by ‘password’;</span><br><span class="line">grant all privileges on db.* to newuser;</span><br><span class="line"># grant all privileges on *.* to newuser;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="https://wangzhigang.org/2018/03/12/CentOs7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85MySql/" target="_blank" rel="noopener">Centos7离线安装MySql</a></li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2019/06/17/mysql5-7离线安装/" data-id="cm2yjq7830021ysuy0yuqwfp5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-ubuntu移动mysql的datadir" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/11/26/ubuntu移动mysql的datadir/">ubuntu移动mysql的datadir</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/11/26/ubuntu移动mysql的datadir/">
-            <time datetime="2018-11-26T10:06:20.000Z" itemprop="datePublished">2018-11-26</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/安装配置/">安装配置</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>数据库会随着时间的推移而增长，有时会超出文件系统上的空间。当它们位于与操作系统其余部分相同的分区上时，您还可能遇到<code>I/O</code>争用。<code>RAID</code>、网络块存储和其他设备可以提供冗余和其他需要的特性。无论您是在添加更多空间、评估优化性能的方法，还是希望利用其他存储特性，本文都将指导您重新定位<code>MySQL</code>的数据目录。</p>
-<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>前置条件:</p>
-<ul>
-<li><code>ubuntu16.04</code>服务器，具有非根用户和<code>sudo</code>特权。</li>
-<li><code>MySQL</code>服务器。如果你还没有安装<code>MySQL</code>, 可以参考之前博文的<a href="https://flyflyfish.com/2018/01/13/mysql/" target="_blank" rel="noopener">mysql的安装</a>。</li>
-</ul>
-<h3 id="STEP"><a href="#STEP" class="headerlink" title="STEP"></a>STEP</h3><ul>
-<li>登录<code>mysql</code>查看当前的<code>datadir</code>：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">mysql&gt; select @@datadir;</span><br><span class="line">sudo systemctl stop mysql</span><br><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure>
-<ul>
-<li>同步现有的<code>datadir</code>到新的目录：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rsync</span></span><br><span class="line">sudo rsync -av /var/lib/mysql /mnt/data01</span><br><span class="line">sudo mv /var/lib/mysql /var/lib/mysql.bak</span><br><span class="line">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">$ cat /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">...</span><br><span class="line">datadir         = /mnt/data01/mysql</span><br><span class="line">...</span><br><span class="line"><span class="comment"># Configuring AppArmor Access Control Rules</span></span><br><span class="line">sudo vim /etc/apparmor.d/tunables/<span class="built_in">alias</span></span><br><span class="line">$ cat /etc/apparmor.d/tunables/<span class="built_in">alias</span></span><br><span class="line">. . .</span><br><span class="line"><span class="built_in">alias</span> /var/lib/mysql/ -&gt; /mnt/data01/mysql/</span><br><span class="line">. . .</span><br><span class="line"><span class="comment"># Restart apparmor</span></span><br><span class="line">sudo systemctl restart apparmor</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建目录以通过<code>/usr/share/mysql/mysql-systemd-start</code>脚本的检测：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ cat /usr/share/mysql/mysql-systemd-start</span><br><span class="line">...</span><br><span class="line">datadir=$(get_mysql_option mysqld datadir <span class="string">"/var/lib/mysql"</span>)</span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">"<span class="variable">$&#123;datadir&#125;</span>"</span> ] &amp;&amp; [ ! -L <span class="string">"<span class="variable">$&#123;datadir&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"MySQL data dir not found at <span class="variable">$&#123;datadir&#125;</span>. Please create one."</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">"<span class="variable">$&#123;datadir&#125;</span>/mysql"</span> ] &amp;&amp; [ ! -L <span class="string">"<span class="variable">$&#123;datadir&#125;</span>/mysql"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"MySQL system database not found in <span class="variable">$&#123;datadir&#125;</span>. Please run mysqld --initialize."</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># 创建目录，根据自己的datadir决定</span></span><br><span class="line">sudo mkdir /var/lib/mysql/mysql -p</span><br></pre></td></tr></table></figure>
-<ul>
-<li>验证是否更改成功</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start mysql</span><br><span class="line">sudo systemctl status mysql</span><br><span class="line">mysql -u root -p</span><br><span class="line">mysql&gt; select @@datadir;</span><br><span class="line">+----------------------------+</span><br><span class="line">| @@datadir                  |</span><br><span class="line">+----------------------------+</span><br><span class="line">| /mnt/data01/mysql/ |</span><br><span class="line">+----------------------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br><span class="line"><span class="comment"># Restart Mysql</span></span><br><span class="line">sudo systemctl restart mysql</span><br><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure>
-<h4 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h4><ul>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04" target="_blank" rel="noopener">How To Install MySQL on Ubuntu 16.04</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-move-a-mysql-data-directory-to-a-new-location-on-ubuntu-16-04" target="_blank" rel="noopener">how-to-move-a-mysql-data-directory-to-a-new-location-on-ubuntu-16-04</a></li>
-</ul>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2018/11/26/ubuntu移动mysql的datadir/" data-id="cm2yjq78i0032ysuy5wmgnzs9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2019/06/17/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cmjcrlybe000plcuy1mddhpb8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1831,7 +1871,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -1842,7 +1939,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -1850,7 +1947,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -1860,66 +1957,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -1933,7 +1973,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -1942,7 +1982,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -1988,7 +2028,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -2015,41 +2055,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

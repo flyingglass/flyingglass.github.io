@@ -1,40 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>cdh5.12.0安装 | 技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="安装Cloudera Manager本文采用离线安装cdh5.12.0，所有安装包的版本均为5.12.0，安装所需的离线包均需提前下载，下文将给出对应下载链接地址和配置。安装的操作系统为centos 7及以上系统，其他系统和版本可以需自行下载对应的rpm 下载cloudera-manager.repo（所有节点均需配置） 下载链接  cloudera-manage.repo配置(所有节点均需配置，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cdh5.12.0安装">
-<meta property="og:url" content="https://flyingglass.github.io/2018/02/04/cdh5-12-0安装/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="技术人生">
 <meta property="og:description" content="安装Cloudera Manager本文采用离线安装cdh5.12.0，所有安装包的版本均为5.12.0，安装所需的离线包均需提前下载，下文将给出对应下载链接地址和配置。安装的操作系统为centos 7及以上系统，其他系统和版本可以需自行下载对应的rpm 下载cloudera-manager.repo（所有节点均需配置） 下载链接  cloudera-manage.repo配置(所有节点均需配置，">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-11-01T09:42:00.506Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-02-04T06:00:09.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:42:00.506Z">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cdh5.12.0安装">
-<meta name="twitter:description" content="安装Cloudera Manager本文采用离线安装cdh5.12.0，所有安装包的版本均为5.12.0，安装所需的离线包均需提前下载，下文将给出对应下载链接地址和配置。安装的操作系统为centos 7及以上系统，其他系统和版本可以需自行下载对应的rpm 下载cloudera-manager.repo（所有节点均需配置） 下载链接  cloudera-manage.repo配置(所有节点均需配置，">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -54,11 +68,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -122,7 +136,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -167,7 +183,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -213,7 +229,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/02/04/cdh5-12-0安装/">
+        <a href="/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/">
             <time datetime="2018-02-04T06:00:09.000Z" itemprop="datePublished">2018-02-04</time>
         </a>
     </div>
@@ -222,7 +238,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
+        <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
     </div>
 
 
@@ -239,24 +255,23 @@
             
             <h3 id="安装Cloudera-Manager"><a href="#安装Cloudera-Manager" class="headerlink" title="安装Cloudera Manager"></a>安装Cloudera Manager</h3><p>本文采用离线安装cdh5.12.0，所有安装包的版本均为5.12.0，安装所需的离线包均需提前下载，下文将给出对应下载链接地址和配置。<strong>安装的操作系统为centos 7及以上系统，其他系统和版本可以需自行下载对应的rpm</strong></p>
 <h5 id="下载cloudera-manager-repo（所有节点均需配置）"><a href="#下载cloudera-manager-repo（所有节点均需配置）" class="headerlink" title="下载cloudera-manager.repo（所有节点均需配置）"></a>下载cloudera-manager.repo（所有节点均需配置）</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo" title="下载链接" target="_blank" rel="noopener">下载链接</a></p>
+<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo" title="下载链接">下载链接</a></p>
 </li>
 <li><p>cloudera-manage.repo配置(所有节点均需配置，仅仅展示主节点的配置如下)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh] cat /etc/yum.repos.d/cloudera-manager.repo</span><br><span class="line">[cloudera-manager]</span><br><span class="line">name = Cloudera Manager, Version 5.12.0</span><br><span class="line">baseurl = https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/</span><br><span class="line">gpgkey = https://archive.cloudera.com/redhat/cdh/RPM-GPG-KEY-cloudera</span><br><span class="line">gpgcheck = 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证生效</span></span><br><span class="line">yum clean all  </span><br><span class="line">yum list | grep cloudera  </span><br><span class="line"><span class="comment"># 确认显示的版本是否正确（我这里显示5.12.0-1.cm5120.p0.120.el7）</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh] <span class="built_in">cat</span> /etc/yum.repos.d/cloudera-manager.repo</span><br><span class="line">[cloudera-manager]</span><br><span class="line">name = Cloudera Manager, Version 5.12.0</span><br><span class="line">baseurl = https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/</span><br><span class="line">gpgkey = https://archive.cloudera.com/redhat/cdh/RPM-GPG-KEY-cloudera</span><br><span class="line">gpgcheck = 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证生效</span></span><br><span class="line">yum clean all  </span><br><span class="line">yum list | grep cloudera  </span><br><span class="line"><span class="comment"># 确认显示的版本是否正确（我这里显示5.12.0-1.cm5120.p0.120.el7）</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="下载cloudera-manager-installer-bin（主节点需配置，从节点无须配置）"><a href="#下载cloudera-manager-installer-bin（主节点需配置，从节点无须配置）" class="headerlink" title="下载cloudera-manager-installer.bin（主节点需配置，从节点无须配置）"></a>下载cloudera-manager-installer.bin（主节点需配置，从节点无须配置）</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/installer/5.12.0/cloudera-manager-installer.bin" target="_blank" rel="noopener">下载链接</a></p>
+<li><p><a href="http://archive.cloudera.com/cm5/installer/5.12.0/cloudera-manager-installer.bin">下载链接</a></p>
 </li>
-<li><p>放置在/opt目录，并添加执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
+<li><p>放置在&#x2F;opt目录，并添加执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x /opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置完毕后验证[root@n171 cdh] <code>ll /opt/cloudera-manager-installer.bin</code></p>
-<p>  -rwxr-xr-x 1 root root 519670 6月  21 02:43 /opt/cloudera-manager-installer.bin</p>
+<p>  -rwxr-xr-x 1 root root 519670 6月  21 02:43 &#x2F;opt&#x2F;cloudera-manager-installer.bin</p>
 </li>
 </ul>
 <h5 id="下载RPMS"><a href="#下载RPMS" class="headerlink" title="下载RPMS"></a>下载RPMS</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/RPMS/x86_64/" target="_blank" rel="noopener">下载链接(下载目录下所有文件)</a></p>
+<li><p><a href="http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.12.0/RPMS/x86_64/">下载链接(下载目录下所有文件)</a></p>
 </li>
 <li><p>新建放置目录 <code>mkdir -p /opt/cloudera-RPMS/</code></p>
 </li>
@@ -264,33 +279,35 @@
 <ul>
 <li>master节点，目录结构如下</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]<span class="comment"># ls /opt/cloudera-RPMS/</span></span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-db-2-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">enterprise-debuginfo-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">oracle-j2sdk1.7-1.7.0+update67-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]# <span class="built_in">ls</span> /opt/cloudera-RPMS/</span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-server-db-2-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">enterprise-debuginfo-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">oracle-j2sdk1.7-1.7.0+update67-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
 <ul>
-<li>slave节点(不需要server相关的rpm，只需要agent相关rpm)，目录结构如下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@n172 parcel-repo]<span class="comment"># ls /opt/cloudera-RPMS/</span></span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-</li>
+<li>slave节点(不需要server相关的rpm，只需要agent相关rpm)，目录结构如下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@n172 parcel-repo]# <span class="built_in">ls</span> /opt/cloudera-RPMS/</span><br><span class="line">cloudera-manager-agent-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br><span class="line">cloudera-manager-daemons-5.12.0-1.cm5120.p0.120.el7.x86_64.rpm</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 <h5 id="下载CDH-Parcel"><a href="#下载CDH-Parcel" class="headerlink" title="下载CDH-Parcel"></a>下载CDH-Parcel</h5><ul>
-<li><p><a href="http://archive.cloudera.com/cdh5/parcels/5.12.0/" title="下载CDH-Parcel文件" target="_blank" rel="noopener">下载链接</a></p>
+<li><p><a href="http://archive.cloudera.com/cdh5/parcels/5.12.0/" title="下载CDH-Parcel文件">下载链接</a></p>
 </li>
 <li><p>新建放置目录 <code>mkdir -p /opt/cloudera/parcel-repo/</code></p>
 </li>
 <li><p>下载完毕后(<strong>所有节点</strong>)，目录结构如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]<span class="comment"># ls /opt/cloudera/parcel-repo/</span></span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel</span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel.sha</span><br><span class="line">manifest.json</span><br><span class="line">注意:下载后将.sha1文件后缀更改为.sha</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cdh]# <span class="built_in">ls</span> /opt/cloudera/parcel-repo/</span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel</span><br><span class="line">CDH-5.12.0-1.cdh5.12.0.p0.29-el7.parcel.sha</span><br><span class="line">manifest.json</span><br><span class="line">注意:下载后将.sha1文件后缀更改为.sha</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="执行安装"><a href="#执行安装" class="headerlink" title="执行安装"></a>执行安装</h5><ul>
 <li>所有节点执行</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera-RPMS  </span><br><span class="line">yum -y localinstall --nogpgcheck *.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/cloudera-RPMS  </span><br><span class="line">yum -y localinstall --nogpgcheck *.rpm  </span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>master节点执行</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝cloudera-manage-installer.bin到/opt/</span></span><br><span class="line"><span class="comment"># +x 权限</span></span><br><span class="line">sudo chmod +x /opt/cloudera-manager-installer.bin</span><br><span class="line">/opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
-<h5 id="访问安装界面"><a href="#访问安装界面" class="headerlink" title="访问安装界面"></a>访问安装界面</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://Master主机的IP:7180/ </span><br><span class="line">如果不能访问，稍等刷新再试，服务启动需要一定时间</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝cloudera-manage-installer.bin到/opt/</span></span><br><span class="line"><span class="comment"># +x 权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /opt/cloudera-manager-installer.bin</span><br><span class="line">/opt/cloudera-manager-installer.bin</span><br></pre></td></tr></table></figure>
+
+<h5 id="访问安装界面"><a href="#访问安装界面" class="headerlink" title="访问安装界面"></a>访问安装界面</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://Master主机的IP:7180/ </span><br><span class="line">如果不能访问，稍等刷新再试，服务启动需要一定时间</span><br></pre></td></tr></table></figure>
+
+
 <h5 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h5><ul>
-<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html" target="_blank" rel="noopener">CDH5.12.0安装官网链接</a></li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html">CDH5.12.0安装官网链接</a></li>
 </ul>
 
         
@@ -302,7 +319,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/04/cdh5-12-0安装/" data-id="cm2yjq77c000iysuypk66a78e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/" data-id="cmjcrlybg000slcuy1t8t6g3s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -377,7 +394,7 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/02/24/nginx转发丢失端口问题/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/02/24/nginx%E8%BD%AC%E5%8F%91%E4%B8%A2%E5%A4%B1%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -387,7 +404,7 @@
         </a>
     
     
-        <a href="/2018/02/04/cdh安装准备/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">cdh5.12.0安装准备</div>
         </a>
@@ -422,7 +439,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -433,7 +507,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -441,7 +515,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -451,66 +525,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -524,7 +541,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -533,7 +550,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -579,7 +596,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -606,41 +623,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -1,40 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>cdh5.12.0安装准备 | 技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="简介CDH是cloudera公司开发的一个快速部署、高效管理Hadoop和其各种组件的一个商业化产品。 主要分为两部分，分别为Cloudera Manager和CDH软件包。其中Cloudera Manager负责集群的部署与管理。CDH软件包囊括了hdaoop各类的组件的安装包，例如hive、hdfs、spark等等。 系统要求摘自官网文档:The four hosts in the clust">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cdh5.12.0安装准备">
-<meta property="og:url" content="https://flyingglass.github.io/2018/02/04/cdh安装准备/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/index.html">
 <meta property="og:site_name" content="技术人生">
 <meta property="og:description" content="简介CDH是cloudera公司开发的一个快速部署、高效管理Hadoop和其各种组件的一个商业化产品。 主要分为两部分，分别为Cloudera Manager和CDH软件包。其中Cloudera Manager负责集群的部署与管理。CDH软件包囊括了hdaoop各类的组件的安装包，例如hive、hdfs、spark等等。 系统要求摘自官网文档:The four hosts in the clust">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-11-01T09:42:00.506Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-02-04T04:05:09.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:42:00.506Z">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cdh5.12.0安装准备">
-<meta name="twitter:description" content="简介CDH是cloudera公司开发的一个快速部署、高效管理Hadoop和其各种组件的一个商业化产品。 主要分为两部分，分别为Cloudera Manager和CDH软件包。其中Cloudera Manager负责集群的部署与管理。CDH软件包囊括了hdaoop各类的组件的安装包，例如hive、hdfs、spark等等。 系统要求摘自官网文档:The four hosts in the clust">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -54,11 +68,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -122,7 +136,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -167,7 +183,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -213,7 +229,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/02/04/cdh安装准备/">
+        <a href="/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/">
             <time datetime="2018-02-04T04:05:09.000Z" itemprop="datePublished">2018-02-04</time>
         </a>
     </div>
@@ -222,7 +238,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
+        <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
     </div>
 
 
@@ -246,8 +262,8 @@
 <li>If using root, the hosts must accept the same root password.</li>
 <li>The hosts must have Internet access to allow the wizard to install software from <code>archive.cloudera.com</code></li>
 <li>Run a supported OS:<ul>
-<li>See <a href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rn_consolidated_pcm.html" target="_blank" rel="noopener"> CDH 5 and Cloudera Manager 5 Requirements and Supported Versions. </a></li>
-<li>SLES - SUSE Linux Enterprise Server 11, 64-bit. Service Pack 2 or higher is required. The Updates repository must be active and <a href="http://download.novell.com/Download?buildid=zzeQqpY9nK4~" target="_blank" rel="noopener"> SUSE Linux Enterprise Software Development Kit 11 SP1 </a> is required.</li>
+<li>See <a href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/rn_consolidated_pcm.html"> CDH 5 and Cloudera Manager 5 Requirements and Supported Versions. </a></li>
+<li>SLES - SUSE Linux Enterprise Server 11, 64-bit. Service Pack 2 or higher is required. The Updates repository must be active and <a href="http://download.novell.com/Download?buildid=zzeQqpY9nK4~"> SUSE Linux Enterprise Software Development Kit 11 SP1 </a> is required.</li>
 <li>Debian - Wheezy (7.0 and 7.1), 64-bit.</li>
 <li>Ubuntu - Trusty (14.04) and (Precise) 12.04, 64-bit.<br>If your environment does not satisfy these requirements, the procedure described in this guide might not work. For information about other Cloudera Manager installation options and requirements,<br>see Installing Cloudera Manager and CDH.</li>
 </ul>
@@ -258,22 +274,30 @@
 <li>Apache Hadoop：维护人员比较多，更新频率比较快，但是稳定性比较差。</li>
 <li>Cloudera Hadoop（CDH）：CDH：Cloudera公司的发行版本，基于ApacheHadoop的二次开发，优化了组件兼容和交互接口、简化安装配置、增加Cloudera兼容特性。</li>
 </ul>
-<h3 id="CDH安装准备（本文操作系统为centos7及以上系统）"><a href="#CDH安装准备（本文操作系统为centos7及以上系统）" class="headerlink" title="CDH安装准备（本文操作系统为centos7及以上系统）"></a>CDH安装准备（本文操作系统为centos7及以上系统）</h3><h4 id="jdk-配置-vim-etc-profile"><a href="#jdk-配置-vim-etc-profile" class="headerlink" title="jdk 配置 vim /etc/profile"></a>jdk 配置 vim /etc/profile</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># JAVA</span></span><br><span class="line">JAVA_HOME=/usr/<span class="built_in">local</span>/jdk1.8.0_151</span><br><span class="line">JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line">CLASS_PATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JRE_HOME</span>/lib</span><br><span class="line"></span><br><span class="line"><span class="comment"># PATH</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># export</span></span><br><span class="line"><span class="built_in">export</span> PATH JAVA_HOME JRE_HOME CLASS_PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量生效</span></span><br><span class="line"> . /etc/profile</span><br></pre></td></tr></table></figure>
-<h4 id="hosts修改-每一个节点都需要修改"><a href="#hosts修改-每一个节点都需要修改" class="headerlink" title="hosts修改(每一个节点都需要修改)"></a>hosts修改(每一个节点都需要修改)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cloudera-RPMS] cat /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line"></span><br><span class="line">192.168.30.171 n171</span><br><span class="line">192.168.30.172 n172</span><br><span class="line">192.168.30.173 n173</span><br><span class="line">192.168.30.174 n174</span><br></pre></td></tr></table></figure>
-<h4 id="hostname配置（所有节点都需要修改需要重启）"><a href="#hostname配置（所有节点都需要修改需要重启）" class="headerlink" title="hostname配置（所有节点都需要修改需要重启）"></a>hostname配置（所有节点都需要修改需要重启）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@n171] cat /etc/hostname</span><br><span class="line">n171</span><br></pre></td></tr></table></figure>
-<h4 id="防火墙配置-cdh端口过多先关闭防火墙"><a href="#防火墙配置-cdh端口过多先关闭防火墙" class="headerlink" title="防火墙配置(cdh端口过多先关闭防火墙)"></a>防火墙配置(cdh端口过多先关闭防火墙)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭防火墙</span></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭开机启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
-<h4 id="selinux"><a href="#selinux" class="headerlink" title="selinux"></a>selinux</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看SELinux状态</span></span><br><span class="line">getenforce <span class="comment"># 如果不是Disabled,修改 SELinux=disabled ，需要重启机器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line">vim /etc/selinux/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置内容 grep -v "#" /etc/selinux/config | grep -v '^$'</span></span><br><span class="line">SELINUX=disabled</span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
-<h4 id="ntp配置-分布式系统时间同步工具"><a href="#ntp配置-分布式系统时间同步工具" class="headerlink" title="ntp配置(分布式系统时间同步工具)"></a>ntp配置(分布式系统时间同步工具)</h4><p><a href="http://cn.linux.vbird.org/linux_server/0440ntp.php#server" title="linux鸟哥私房菜ntp" target="_blank" rel="noopener">参考linux鸟哥私房菜ntp</a></p>
+<h3 id="CDH安装准备（本文操作系统为centos7及以上系统）"><a href="#CDH安装准备（本文操作系统为centos7及以上系统）" class="headerlink" title="CDH安装准备（本文操作系统为centos7及以上系统）"></a>CDH安装准备（本文操作系统为centos7及以上系统）</h3><h4 id="jdk-配置-vim-etc-profile"><a href="#jdk-配置-vim-etc-profile" class="headerlink" title="jdk 配置 vim &#x2F;etc&#x2F;profile"></a>jdk 配置 vim &#x2F;etc&#x2F;profile</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># JAVA</span></span><br><span class="line">JAVA_HOME=/usr/local/jdk1.8.0_151</span><br><span class="line">JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line">CLASS_PATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JRE_HOME</span>/lib</span><br><span class="line"></span><br><span class="line"><span class="comment"># PATH</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># export</span></span><br><span class="line"><span class="built_in">export</span> PATH JAVA_HOME JRE_HOME CLASS_PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量生效</span></span><br><span class="line"> . /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="hosts修改-每一个节点都需要修改"><a href="#hosts修改-每一个节点都需要修改" class="headerlink" title="hosts修改(每一个节点都需要修改)"></a>hosts修改(每一个节点都需要修改)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@n171 cloudera-RPMS] <span class="built_in">cat</span> /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line"></span><br><span class="line">192.168.30.171 n171</span><br><span class="line">192.168.30.172 n172</span><br><span class="line">192.168.30.173 n173</span><br><span class="line">192.168.30.174 n174</span><br></pre></td></tr></table></figure>
+
+<h4 id="hostname配置（所有节点都需要修改需要重启）"><a href="#hostname配置（所有节点都需要修改需要重启）" class="headerlink" title="hostname配置（所有节点都需要修改需要重启）"></a>hostname配置（所有节点都需要修改需要重启）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@n171] <span class="built_in">cat</span> /etc/hostname</span><br><span class="line">n171</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="防火墙配置-cdh端口过多先关闭防火墙"><a href="#防火墙配置-cdh端口过多先关闭防火墙" class="headerlink" title="防火墙配置(cdh端口过多先关闭防火墙)"></a>防火墙配置(cdh端口过多先关闭防火墙)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭防火墙</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl stop firewalld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭开机启动</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">disable</span> firewalld.service </span><br></pre></td></tr></table></figure>
+
+<h4 id="selinux"><a href="#selinux" class="headerlink" title="selinux"></a>selinux</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看SELinux状态</span></span><br><span class="line">getenforce <span class="comment"># 如果不是Disabled,修改 SELinux=disabled ，需要重启机器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line">vim /etc/selinux/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置内容 grep -v &quot;#&quot; /etc/selinux/config | grep -v &#x27;^$&#x27;</span></span><br><span class="line">SELINUX=disabled</span><br><span class="line">SELINUXTYPE=targeted</span><br></pre></td></tr></table></figure>
+
+<h4 id="ntp配置-分布式系统时间同步工具"><a href="#ntp配置-分布式系统时间同步工具" class="headerlink" title="ntp配置(分布式系统时间同步工具)"></a>ntp配置(分布式系统时间同步工具)</h4><p><a href="http://cn.linux.vbird.org/linux_server/0440ntp.php#server" title="linux鸟哥私房菜ntp">参考linux鸟哥私房菜ntp</a></p>
 <ul>
 <li>master(本文以n171为主节点)</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看主节点n171的配置</span></span><br><span class="line">[root@n171 ~]grep -v <span class="string">"#"</span> /etc/ntp.conf | grep -v <span class="string">"^$"</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf 配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict 192.168.30.0 mask 255.255.255.0 nomodify notrap</span><br><span class="line">server ntp1.aliyun.com prefer</span><br><span class="line">server time1.aliyun.com</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看主节点n171的配置</span></span><br><span class="line">[root@n171 ~]grep -v <span class="string">&quot;#&quot;</span> /etc/ntp.conf | grep -v <span class="string">&quot;^$&quot;</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf 配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict 192.168.30.0 mask 255.255.255.0 nomodify notrap</span><br><span class="line">server ntp1.aliyun.com prefer</span><br><span class="line">server time1.aliyun.com</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br></pre></td></tr></table></figure>
+
+
 <ul>
-<li>slave(所有从节点ntp客户端配置) <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看从节点配置</span></span><br><span class="line">[root@n172 ~]grep -v <span class="string">"#"</span> /etc/ntp.conf | grep -v <span class="string">"^$"</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict namenode01</span><br><span class="line">server namenode01</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br></pre></td></tr></table></figure>
-</li>
+<li>slave(所有从节点ntp客户端配置) <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看从节点配置</span></span><br><span class="line">[root@n172 ~]grep -v <span class="string">&quot;#&quot;</span> /etc/ntp.conf | grep -v <span class="string">&quot;^$&quot;</span></span><br><span class="line"><span class="comment"># /etc/ntp.conf配置</span></span><br><span class="line">driftfile /var/lib/ntp/drift</span><br><span class="line">restrict default nomodify notrap nopeer noquery</span><br><span class="line">restrict 127.0.0.1</span><br><span class="line">restrict ::1</span><br><span class="line">restrict namenode01</span><br><span class="line">server namenode01</span><br><span class="line">includefile /etc/ntp/crypto/pw</span><br><span class="line">keys /etc/ntp/keys</span><br><span class="line"><span class="built_in">disable</span> monitor</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h5><ul>
-<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html" target="_blank" rel="noopener">CDH5.12.0安装官网链接</a></li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/5-12-x/topics/installation.html">CDH5.12.0安装官网链接</a></li>
 </ul>
 
         
@@ -285,7 +309,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/02/04/cdh安装准备/" data-id="cm2yjq77i000rysuybwoyvo6i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/" data-id="cmjcrlybd000mlcuy42ny0lvi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -360,7 +384,7 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/02/04/cdh5-12-0安装/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -405,7 +429,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -416,7 +497,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -424,7 +505,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -434,66 +515,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -507,7 +531,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -516,7 +540,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -562,7 +586,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -589,41 +613,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

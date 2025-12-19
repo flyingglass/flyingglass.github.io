@@ -1,49 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>Kafka选举导致的问题 | 技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析：  单个异常栈如下：  消费业务代码如下：  最终Future的超时代码如下：  根据堆栈和日志追踪到这里：  kafka阻塞目前会存在两个地方：  首次拉取Metadata会阻塞 由于Kafka的模型，Sender线程会处理RecordAccumulator，收集器的默认大小32M      修改方">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析： ![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_46_48.png) 单个异常栈如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kafka选举导致的问题">
-<meta property="og:url" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2021/05/06/Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:description" content="线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析：  单个异常栈如下：  消费业务代码如下：  最终Future的超时代码如下：  根据堆栈和日志追踪到这里：  kafka阻塞目前会存在两个地方：  首次拉取Metadata会阻塞 由于Kafka的模型，Sender线程会处理RecordAccumulator，收集器的默认大小32M      修改方">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2010_46_48.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2010_49_22.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2010_49_58.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2010_51_25.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2010_51_43.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2010_54_13.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2011_0_1.png">
-<meta property="og:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2011_5_31.png">
-<meta property="og:updated_time" content="2024-11-01T09:42:00.498Z">
+<meta property="og:description" content="线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析： ![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_46_48.png) 单个异常栈如下：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-06T11:16:21.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:42:00.498Z">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kafka选举导致的问题">
-<meta name="twitter:description" content="线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析：  单个异常栈如下：  消费业务代码如下：  最终Future的超时代码如下：  根据堆栈和日志追踪到这里：  kafka阻塞目前会存在两个地方：  首次拉取Metadata会阻塞 由于Kafka的模型，Sender线程会处理RecordAccumulator，收集器的默认大小32M      修改方">
-<meta name="twitter:image" content="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/image2021-3-3%2010_46_48.png">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -63,11 +68,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -131,7 +136,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -176,7 +183,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -222,7 +229,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2021/05/06/Kafka选举导致的问题/">
+        <a href="/2021/05/06/Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/">
             <time datetime="2021-05-06T11:16:21.000Z" itemprop="datePublished">2021-05-06</time>
         </a>
     </div>
@@ -231,7 +238,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/大数据/">大数据</a>
+        <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
     </div>
 
 
@@ -247,26 +254,26 @@
         
             
             <p>线上Kafka集群由于分区达到上限，出现了选举，ISR列表发生了变更，通过kibana的日志分析：</p>
-<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_46_48.png" alt="img"></p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_46_48.png)</p>
 <p>单个异常栈如下：</p>
-<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_49_22.png" alt="img"></p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_49_22.png)</p>
 <p>消费业务代码如下：</p>
-<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_49_58.png" alt="img"></p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_49_58.png)</p>
 <p>最终Future的超时代码如下：</p>
-<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_51_25.png" alt="img"></p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_51_25.png)</p>
 <p>根据堆栈和日志追踪到这里：</p>
-<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_51_43.png" alt="img"></p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_51_43.png)</p>
 <p>kafka阻塞目前会存在两个地方：</p>
 <ol>
 <li>首次拉取Metadata会阻塞</li>
 <li>由于Kafka的模型，Sender线程会处理RecordAccumulator，收集器的默认大小32M</li>
 </ol>
-<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 10_54_13.png" alt="img"></p>
-<p><img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 11_0_1.png" alt="img"></p>
-<p> <img src="/2021/05/06/Kafka选举导致的问题/image2021-3-3 11_5_31.png" alt="img"></p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 10_54_13.png)</p>
+<p>![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 11_0_1.png)</p>
+<p> ![img](&#x2F;2021&#x2F;05&#x2F;06&#x2F;Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;image2021-3-3 11_5_31.png)</p>
 <p>修改方案：</p>
 <ol>
-<li>acks=1和retries=0参数矛盾，需查看retries代码是否会阻塞，印象中是扔到收集器后返回。</li>
+<li>acks&#x3D;1和retries&#x3D;0参数矛盾，需查看retries代码是否会阻塞，印象中是扔到收集器后返回。</li>
 <li>业务调用代码改成异步线程，send方法采用回调函数机制（应对第一次拉取Metadata卡住）</li>
 <li>收集器容量塞满，目前是默认60s阻塞</li>
 </ol>
@@ -280,7 +287,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/06/Kafka选举导致的问题/" data-id="cm2yjq77n0010ysuy9p1mwmum" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/06/Kafka%E9%80%89%E4%B8%BE%E5%AF%BC%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cmjcrlyb8000elcuyhjks5ec6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -355,7 +362,7 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/05/20/Jedis引发GC问题/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -365,7 +372,7 @@
         </a>
     
     
-        <a href="/2021/05/06/数据库虚引用堆积问题/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%99%9A%E5%BC%95%E7%94%A8%E5%A0%86%E7%A7%AF%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">数据库虚引用堆积问题</div>
         </a>
@@ -400,7 +407,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -411,7 +475,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -419,7 +483,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -429,66 +493,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -502,7 +509,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -511,7 +518,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -557,7 +564,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -584,41 +591,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

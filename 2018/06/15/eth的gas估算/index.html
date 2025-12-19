@@ -1,40 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
     
     <title>eth的gas估算 | 技术人生</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="eth平台消耗的Gas满足如下公式$cost = gasUsage * gasPrice $  $gasUsage为gas的消耗量$ $gasPrice为gas的单价，与交易打包确认时间负相关$  由于gasPrice主要影响交易等待打包确认时间，由eth平台繁忙程度所影响，可以查看参考链接中关于gasPrice 和交易等待时间的影响结合自身的业务决定，故本文只着重介绍普通交易和智能合约运行所需的">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="eth平台消耗的Gas满足如下公式$cost &#x3D; gasUsage * gasPrice $  $gasUsage为gas的消耗量$ $gasPrice为gas的单价，与交易打包确认时间负相关$  由于gasPrice主要影响交易等待打包确认时间，由eth平台繁忙程度所影响，可以查看参考链接中关于gasPrice 和交易等待时间的影响结合自身的业务决定，故本文只着重介绍普通交易和智能合约">
 <meta property="og:type" content="article">
 <meta property="og:title" content="eth的gas估算">
-<meta property="og:url" content="https://flyingglass.github.io/2018/06/15/eth的gas估算/index.html">
+<meta property="og:url" content="https://flyingglass.github.io/2018/06/15/eth%E7%9A%84gas%E4%BC%B0%E7%AE%97/index.html">
 <meta property="og:site_name" content="技术人生">
-<meta property="og:description" content="eth平台消耗的Gas满足如下公式$cost = gasUsage * gasPrice $  $gasUsage为gas的消耗量$ $gasPrice为gas的单价，与交易打包确认时间负相关$  由于gasPrice主要影响交易等待打包确认时间，由eth平台繁忙程度所影响，可以查看参考链接中关于gasPrice 和交易等待时间的影响结合自身的业务决定，故本文只着重介绍普通交易和智能合约运行所需的">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-11-01T09:42:00.507Z">
+<meta property="og:description" content="eth平台消耗的Gas满足如下公式$cost &#x3D; gasUsage * gasPrice $  $gasUsage为gas的消耗量$ $gasPrice为gas的单价，与交易打包确认时间负相关$  由于gasPrice主要影响交易等待打包确认时间，由eth平台繁忙程度所影响，可以查看参考链接中关于gasPrice 和交易等待时间的影响结合自身的业务决定，故本文只着重介绍普通交易和智能合约">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-06-15T03:00:06.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:42:00.507Z">
+<meta property="article:author" content="Fly">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="eth的gas估算">
-<meta name="twitter:description" content="eth平台消耗的Gas满足如下公式$cost = gasUsage * gasPrice $  $gasUsage为gas的消耗量$ $gasPrice为gas的单价，与交易打包确认时间负相关$  由于gasPrice主要影响交易等待打包确认时间，由eth平台繁忙程度所影响，可以查看参考链接中关于gasPrice 和交易等待时间的影响结合自身的业务决定，故本文只着重介绍普通交易和智能合约运行所需的">
     
 
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
     
@@ -54,11 +68,11 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="container">
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
@@ -122,7 +136,9 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
 
 
 </div>
@@ -167,7 +183,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -213,7 +229,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/06/15/eth的gas估算/">
+        <a href="/2018/06/15/eth%E7%9A%84gas%E4%BC%B0%E7%AE%97/">
             <time datetime="2018-06-15T03:00:06.000Z" itemprop="datePublished">2018-06-15</time>
         </a>
     </div>
@@ -222,7 +238,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/区块链/">区块链</a>
+        <a class="article-category-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>
     </div>
 
 
@@ -237,48 +253,50 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p><code>eth</code>平台消耗的Gas满足如下公式$cost = gasUsage * gasPrice $</p>
+            <p><code>eth</code>平台消耗的Gas满足如下公式$cost &#x3D; gasUsage * gasPrice $</p>
 <ul>
 <li>$gasUsage为gas的消耗量$</li>
 <li>$gasPrice为gas的单价，与交易打包确认时间负相关$</li>
 </ul>
-<p><em>由于<code>gasPrice</code>主要影响交易等待打包确认时间，由<code>eth</code>平台繁忙程度所影响，可以查看参考链接中关于<code>gasPrice</code> 和交易等待时间的影响结合自身的业务决定，故本文只着重介绍普通交易和智能合约运行所需的<code>gasUsage</code>的估算，在计算最终<code>cost</code>时，统一采用$gasPrice = 1 Gwei$</em></p>
+<p><em>由于<code>gasPrice</code>主要影响交易等待打包确认时间，由<code>eth</code>平台繁忙程度所影响，可以查看参考链接中关于<code>gasPrice</code> 和交易等待时间的影响结合自身的业务决定，故本文只着重介绍普通交易和智能合约运行所需的<code>gasUsage</code>的估算，在计算最终<code>cost</code>时，统一采用$gasPrice &#x3D; 1 Gwei$</em></p>
 <h4 id="普通交易所需的Gas"><a href="#普通交易所需的Gas" class="headerlink" title="普通交易所需的Gas"></a>普通交易所需的Gas</h4><p>在<code>eth</code>平台执行普通的交易转账需要消耗<code>gas</code>，消耗的<code>gas</code> 满足一下公式:</p>
-<p>$cost = gasUsage * gasPrice = (账户发起者减少的资产 - 账户接收者增加的资产)$</p>
+<p>$cost &#x3D; gasUsage * gasPrice &#x3D; (账户发起者减少的资产 - 账户接收者增加的资产)$</p>
 <ul>
-<li>其中$gasUsage为固定值=21000$</li>
+<li>其中$gasUsage为固定值&#x3D;21000$</li>
 <li>$gasPrice为gas的单价，与交易打包确认时间负相关$</li>
 </ul>
 <h4 id="智能合约所需的Gas"><a href="#智能合约所需的Gas" class="headerlink" title="智能合约所需的Gas"></a>智能合约所需的Gas</h4><p>普通转账交易所需的<code>gas</code>固定值为<code>21000，</code>调用智能合约方法所需要的<code>gas</code>并不一定,主要由占用的资源(<code>cpu</code>，内存等)决定（计算量影响<code>cpu</code>），占用的资源越多，所需要的<code>gas</code>也越多。我们主要分析两个智能合约的gas消耗估算：</p>
 <ul>
 <li><p>智能合约<code>token</code>转账</p>
 <p>采用<code>truffle demo</code>的<code>MetaCoin.sol</code>进行智能合约的测试，合约内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.2;</span><br><span class="line">import &quot;./ConvertLib.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract MetaCoin &#123;</span><br><span class="line">	mapping (address =&gt; uint) balances;</span><br><span class="line"></span><br><span class="line">	event Transfer(address indexed _from, address indexed _to, uint256 _value);</span><br><span class="line"></span><br><span class="line">	function MetaCoin() &#123;</span><br><span class="line">		balances[tx.origin] = 10000;</span><br><span class="line">	&#125;</span><br><span class="line">	// 转账逻辑</span><br><span class="line">	function sendCoin(address receiver, uint amount) returns(bool sufficient) &#123;</span><br><span class="line">		if (balances[msg.sender] &lt; amount) return false;</span><br><span class="line">		balances[msg.sender] -= amount;</span><br><span class="line">		balances[receiver] += amount;</span><br><span class="line">		Transfer(msg.sender, receiver, amount);</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function getBalanceInEth(address addr) returns(uint)&#123;</span><br><span class="line">		return ConvertLib.convert(getBalance(addr),2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function getBalance(address addr) returns(uint) &#123;</span><br><span class="line">		return balances[addr];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.2;</span><br><span class="line">import &quot;./ConvertLib.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract MetaCoin &#123;</span><br><span class="line">	mapping (address =&gt; uint) balances;</span><br><span class="line"></span><br><span class="line">	event Transfer(address indexed _from, address indexed _to, uint256 _value);</span><br><span class="line"></span><br><span class="line">	function MetaCoin() &#123;</span><br><span class="line">		balances[tx.origin] = 10000;</span><br><span class="line">	&#125;</span><br><span class="line">	// 转账逻辑</span><br><span class="line">	function sendCoin(address receiver, uint amount) returns(bool sufficient) &#123;</span><br><span class="line">		if (balances[msg.sender] &lt; amount) return false;</span><br><span class="line">		balances[msg.sender] -= amount;</span><br><span class="line">		balances[receiver] += amount;</span><br><span class="line">		Transfer(msg.sender, receiver, amount);</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function getBalanceInEth(address addr) returns(uint)&#123;</span><br><span class="line">		return ConvertLib.convert(getBalance(addr),2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function getBalance(address addr) returns(uint) &#123;</span><br><span class="line">		return balances[addr];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>使用以上智能合约，进行一次转账操作(<code>Send Meta Token,发送的token数量为1</code>)：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Transaction: 0xc3591a4a8614721ce176f58782455b127d1946dbcf10876c7e7c4fa169da849b</span><br><span class="line">Gas usage: 36050</span><br><span class="line">Block Number: 7</span><br><span class="line">Block Time: Fri Jun 15 2018 11:05:41 GMT+0800 (CST)</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Transaction<span class="punctuation">:</span> <span class="number">0xc3591a4a8614721ce176f58782455b127d1946dbcf10876c7e7c4fa169da849b</span></span><br><span class="line">Gas usage<span class="punctuation">:</span> <span class="number">36050</span></span><br><span class="line">Block Number<span class="punctuation">:</span> <span class="number">7</span></span><br><span class="line">Block Time<span class="punctuation">:</span> Fri Jun <span class="number">15</span> <span class="number">2018</span> <span class="number">11</span><span class="punctuation">:</span><span class="number">05</span><span class="punctuation">:</span><span class="number">41</span> GMT+<span class="number">0800</span> (CST)</span><br></pre></td></tr></table></figure>
+
 <p>通过<code>testrpc</code>日志可以看到<code>Gas usage</code>为<code>36050</code></p>
 </li>
-</ul>
-<ul>
 <li><p>智能合约存储</p>
 <p>测试一下简单的智能合约<code>SimpleStorage.sol</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.2;  </span><br><span class="line">contract SimpleStorage &#123;  </span><br><span class="line">   string storedData;  </span><br><span class="line">  </span><br><span class="line">   function set(string x) &#123;   </span><br><span class="line">    storedData = x;  </span><br><span class="line">   &#125;  </span><br><span class="line">  </span><br><span class="line">   function get() constant returns (string) &#123;   </span><br><span class="line">      return storedData;  </span><br><span class="line">   &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.2;  </span><br><span class="line">contract SimpleStorage &#123;  </span><br><span class="line">   string storedData;  </span><br><span class="line">  </span><br><span class="line">   function set(string x) &#123;   </span><br><span class="line">    storedData = x;  </span><br><span class="line">   &#125;  </span><br><span class="line">  </span><br><span class="line">   function get() constant returns (string) &#123;   </span><br><span class="line">      return storedData;  </span><br><span class="line">   &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在<code>truffle console</code>执行智能合约<code>contract.set(&#39;8DFCB2DA63B35B9DAA0906FCA18053FD&#39;)</code>存入<code>32 ASCII Character</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123; tx: '0xb49d7d757920514d5ef9f2bbb5c1171d76d9bcfa8e4633f05f73c718164812f3',</span><br><span class="line">  receipt: </span><br><span class="line">   &#123; transactionHash: '0xb49d7d757920514d5ef9f2bbb5c1171d76d9bcfa8e4633f05f73c718164812f3',</span><br><span class="line">     transactionIndex: 0,</span><br><span class="line">     blockHash: '0x84f864f4999edd4278a714af9ba3c6ea99010c8ef2ce45551e93ad019ae4c03d',</span><br><span class="line">     blockNumber: 8,</span><br><span class="line">     gasUsed: 64764,</span><br><span class="line">     cumulativeGasUsed: 64764,</span><br><span class="line">     contractAddress: null,</span><br><span class="line">     logs: [],</span><br><span class="line">     status: 1 &#125;,</span><br><span class="line">  logs: [] &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> tx<span class="punctuation">:</span> &#x27;<span class="number">0xb49d7d757920514d5ef9f2bbb5c1171d76d9bcfa8e4633f05f73c718164812f3</span>&#x27;<span class="punctuation">,</span></span><br><span class="line">  receipt<span class="punctuation">:</span> </span><br><span class="line">   <span class="punctuation">&#123;</span> transactionHash<span class="punctuation">:</span> &#x27;<span class="number">0xb49d7d757920514d5ef9f2bbb5c1171d76d9bcfa8e4633f05f73c718164812f3</span>&#x27;<span class="punctuation">,</span></span><br><span class="line">     transactionIndex<span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">     blockHash<span class="punctuation">:</span> &#x27;<span class="number">0x84f864f4999edd4278a714af9ba3c6ea99010c8ef2ce45551e93ad019ae4c03d</span>&#x27;<span class="punctuation">,</span></span><br><span class="line">     blockNumber<span class="punctuation">:</span> <span class="number">8</span><span class="punctuation">,</span></span><br><span class="line">     gasUsed<span class="punctuation">:</span> <span class="number">64764</span><span class="punctuation">,</span></span><br><span class="line">     cumulativeGasUsed<span class="punctuation">:</span> <span class="number">64764</span><span class="punctuation">,</span></span><br><span class="line">     contractAddress<span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">     logs<span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     status<span class="punctuation">:</span> <span class="number">1</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  logs<span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <p>通过<code>testrpc</code>日志可以看到<code>Gas usage</code>为<code>64764</code>(不同的机器环境会有些误差)</p>
 </li>
 </ul>
-<h4 id="单位换算"><a href="#单位换算" class="headerlink" title="单位换算"></a>单位换算</h4><p>$ 1eth = 10^9 Gwei = 10^{18} wei = $ <code>$508.08</code></p>
+<h4 id="单位换算"><a href="#单位换算" class="headerlink" title="单位换算"></a>单位换算</h4><p>$ 1eth &#x3D; 10^9 Gwei &#x3D; 10^{18} wei &#x3D; $ <code>$508.08</code></p>
 <p>比如普通转账的<code>gas</code>估算：</p>
 <ul>
-<li><p>$gasPrice = 1Gwei$</p>
+<li><p>$gasPrice &#x3D; 1Gwei$</p>
 </li>
-<li><p>$gasUsage = 21000$</p>
+<li><p>$gasUsage &#x3D; 21000$</p>
 </li>
 </ul>
-<p><code>cost = gasUsage * gasPrice = 21000 * 1Gwei / 10 ^{18}wei = 2.1 * 10 ^ {-5}eth = $ 0.01</code></p>
+<p><code>cost = gasUsage * gasPrice = 21000 * 1Gwei / 10 ^&#123;18&#125;wei = 2.1 * 10 ^ &#123;-5&#125;eth = $ 0.01 </code></p>
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
-<li><a href="https://ethgasstation.info/" target="_blank" rel="noopener">gasPrice和打包确认时间实时信息</a></li>
+<li><a href="https://ethgasstation.info/">gasPrice和打包确认时间实时信息</a></li>
 </ul>
 
         
@@ -290,7 +308,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2018/06/15/eth的gas估算/" data-id="cm2yjq77j000sysuykrbft0uk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2018/06/15/eth%E7%9A%84gas%E4%BC%B0%E7%AE%97/" data-id="cmjcrlybf000qlcuy9fi9df9f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -365,7 +383,7 @@
         
 <nav id="article-nav">
     
-        <a href="/2018/11/26/ubuntu移动mysql的datadir/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/11/26/ubuntu%E7%A7%BB%E5%8A%A8mysql%E7%9A%84datadir/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -375,7 +393,7 @@
         </a>
     
     
-        <a href="/2018/06/02/aws配置eb-cli/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/06/02/aws%E9%85%8D%E7%BD%AEeb-cli/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">aws配置eb-cli</div>
         </a>
@@ -410,7 +428,64 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/29/Nas迁移恢复/" class="thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/test/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -421,7 +496,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Nas/">Nas</a></p>
-                            <p class="item-title"><a href="/2023/03/29/Nas迁移恢复/" class="title">Nas迁移恢复</a></p>
+                            <p class="item-title"><a href="/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" class="title">Nas迁移恢复</a></p>
                             <p class="item-date"><time datetime="2023-03-29T10:08:19.000Z" itemprop="datePublished">2023-03-29</time></p>
                         </div>
                     </li>
@@ -429,7 +504,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2023/03/28/mesh下Gateway落地/" class="thumbnail">
+                            <a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -439,66 +514,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/28/mesh下Gateway落地/" class="title">mesh下Gateway落地</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" class="title">mesh下Gateway落地</a></p>
                             <p class="item-date"><time datetime="2023-03-28T07:04:17.000Z" itemprop="datePublished">2023-03-28</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/23/mesh腾讯云物理架构/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/23/mesh腾讯云物理架构/" class="title">mesh腾讯云物理架构</a></p>
-                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2023/03/22/mesh与cvm的对比/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/架构之路/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/架构之路/Mesh/">Mesh</a></p>
-                            <p class="item-title"><a href="/2023/03/22/mesh与cvm的对比/" class="title">mesh与cvm的对比</a></p>
-                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2021/09/14/jmx远程调试/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Web开发/">Web开发</a></p>
-                            <p class="item-title"><a href="/2021/09/14/jmx远程调试/" class="title">jmx远程调试</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T08:44:22.000Z" itemprop="datePublished">2021-09-14</time></p>
                         </div>
                     </li>
                 
@@ -512,7 +530,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker和K8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web开发/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/区块链/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安装配置/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/微服务/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构之路/问题集锦/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -521,7 +539,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -567,7 +585,7 @@
 
 
             <!--
-            &copy; 2024 Fly<br>
+            &copy; 2025 Fly<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
             -->
         </div>
@@ -594,41 +612,48 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
+
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
