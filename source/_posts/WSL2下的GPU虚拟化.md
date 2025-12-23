@@ -15,36 +15,36 @@ categories:
 
 - `WSL2`：
 
-  ![image-20251223163542672](image-20251223163542672.png)
+  ![image-20251223163542672](WSL2下的GPU虚拟化/image-20251223163542672.png)
 
   1. `Wsl2：2.6.2.0`
   2. `Ubuntu：24.04`
 
 - `Windows`：
 
-  ​			![image-20251223163934497](image-20251223163934497.png)
+  ​			![image-20251223163934497](WSL2下的GPU虚拟化/image-20251223163934497.png)
 
   1. `Windows：win11 23H2 22631.2428 `
 
 ### 架构图
 
-![GPU虚拟化.drawio](GPU虚拟化.drawio.png)
+![GPU虚拟化.drawio](WSL2下的GPU虚拟化/GPU虚拟化.drawio.png)
 
 - `pod`视角
 
 ​		`pod--> nvidia-cuda-toolkit --> wsl2 --> nvidia-container-toolkit --> windows driver`
 
-​		![image-20251223162232252](image-20251223162232252.png)
+​		![image-20251223162232252](WSL2下的GPU虚拟化/image-20251223162232252.png)
 
 ### 网络（Bridge）
 
 - 原理图
 
-![image-20251223164352885](image-20251223164352885.png)
+![image-20251223164352885](WSL2下的GPU虚拟化/image-20251223164352885.png)
 
 - 效果图
 
-![image-20251223164429834](image-20251223164429834.png)
+![image-20251223164429834](WSL2下的GPU虚拟化/image-20251223164429834.png)
 
 - 配置方式
 
@@ -286,21 +286,26 @@ categories:
 
 #### L20
 
-- `Windows`宿主机可支持`dxdiag`识别显卡，支持运行`windows`的图形软件
+- 作用：`Windows`宿主机通过`WDDM`使用`dxdiag`识别显卡，支持运行`windows`的图形软件
 
 - 支持模式
 
-  ![image-20251223182017230](image-20251223182017230.png)
+  ![image-20251223182017230](WSL2下的GPU虚拟化/image-20251223182017230.png)
 
 - 开启`Physical Display Modes`
 
-  ![image-20251223182124657](image-20251223182124657.png)
+  ![image-20251223182124657](WSL2下的GPU虚拟化/image-20251223182124657-17664871185291.png)
 
 - `TCC`改为`WDDM`
 
-  ![image-20251223182359183](image-20251223182359183.png)
+  ![image-20251223182359183](WSL2下的GPU虚拟化/image-20251223182359183.png)
 
 ## 参考链接
 
-[CUDA on WSL User Guide](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
+- [CUDA on WSL User Guide](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
 
+- [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+- [Nvidia device plugin for k8s](https://github.com/NVIDIA/k8s-device-plugin)
+
+- [nvidia/cuda docker hub](https://hub.docker.com/r/nvidia/cuda)
+- [NVIDIA Display Mode Selector Tool](https://developer.nvidia.com/displaymodeselector)
