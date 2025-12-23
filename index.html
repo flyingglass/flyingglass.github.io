@@ -302,11 +302,18 @@
 </li>
 </ul>
 <h3 id="Nvidia"><a href="#Nvidia" class="headerlink" title="Nvidia"></a>Nvidia</h3><h4 id="Nvidia-Container-Toolkit"><a href="#Nvidia-Container-Toolkit" class="headerlink" title="Nvidia-Container-Toolkit"></a>Nvidia-Container-Toolkit</h4><ul>
+<li><p>指南</p>
+<p><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.9.0/nvidia-containerd.html">https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.9.0/nvidia-containerd.html</a></p>
+</li>
 <li><p>安装</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install the prerequisites for the instructions below:</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get update &amp;&amp; <span class="built_in">sudo</span> apt-get install -y --no-install-recommends \</span><br><span class="line">   curl \</span><br><span class="line">   gnupg2</span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure the production repository:</span></span><br><span class="line">curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | <span class="built_in">sudo</span> gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \</span><br><span class="line">  &amp;&amp; curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \</span><br><span class="line">    sed <span class="string">&#x27;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#x27;</span> | \</span><br><span class="line">    <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/nvidia-container-toolkit.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install the NVIDIA Container Toolkit packages:</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">export</span> NVIDIA_CONTAINER_TOOLKIT_VERSION=1.18.1-1</span><br><span class="line">  <span class="built_in">sudo</span> apt-get install -y \</span><br><span class="line">      nvidia-container-toolkit=<span class="variable">$&#123;NVIDIA_CONTAINER_TOOLKIT_VERSION&#125;</span> \</span><br><span class="line">      nvidia-container-toolkit-base=<span class="variable">$&#123;NVIDIA_CONTAINER_TOOLKIT_VERSION&#125;</span> \</span><br><span class="line">      libnvidia-container-tools=<span class="variable">$&#123;NVIDIA_CONTAINER_TOOLKIT_VERSION&#125;</span> \</span><br><span class="line">      libnvidia-container1=<span class="variable">$&#123;NVIDIA_CONTAINER_TOOLKIT_VERSION&#125;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置(<code>Containerd</code>)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Configure the container runtime by using the nvidia-ctk command:</span></span><br><span class="line"><span class="built_in">sudo</span> nvidia-ctk runtime configure --runtime=containerd</span><br><span class="line"><span class="comment"># Restart containerd:</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl restart containerd</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Configure the container runtime by using the nvidia-ctk command:</span></span><br><span class="line"><span class="built_in">sudo</span> nvidia-ctk runtime configure --runtime=containerd</span><br><span class="line"><span class="comment"># Restart containerd:</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl restart containerd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>补丁</p>
+<p><img src="/2025/12/23/WSL2%E4%B8%8B%E7%9A%84GPU%E8%99%9A%E6%8B%9F%E5%8C%96/image-20251223192245372.png" alt="image-20251223192245372"></p>
+</li>
 </ul>
 <h4 id="Nvidia-Device-Plugin"><a href="#Nvidia-Device-Plugin" class="headerlink" title="Nvidia-Device-Plugin"></a>Nvidia-Device-Plugin</h4><ul>
 <li><p>作用</p>
@@ -366,16 +373,12 @@
 </li>
 </ul>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><p><a href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html">CUDA on WSL User Guide</a></p>
-</li>
-<li><p><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">Nvidia Container Toolkit</a></p>
-</li>
-<li><p><a href="https://github.com/NVIDIA/k8s-device-plugin">Nvidia device plugin for k8s</a></p>
-</li>
-<li><p><a href="https://hub.docker.com/r/nvidia/cuda">nvidia&#x2F;cuda docker hub</a></p>
-</li>
-<li><p><a href="https://developer.nvidia.com/displaymodeselector">NVIDIA Display Mode Selector Tool</a></p>
-</li>
+<li><a href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html">CUDA on WSL User Guide</a></li>
+<li><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.9.0/nvidia-containerd.html">Nvidia Containerd</a></li>
+<li><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">Nvidia Container Toolkit</a></li>
+<li><a href="https://github.com/NVIDIA/k8s-device-plugin">Nvidia device plugin for k8s</a></li>
+<li><a href="https://hub.docker.com/r/nvidia/cuda">nvidia&#x2F;cuda docker hub</a></li>
+<li><a href="https://developer.nvidia.com/displaymodeselector">NVIDIA Display Mode Selector Tool</a></li>
 </ul>
 
         
@@ -387,7 +390,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2025/12/23/WSL2%E4%B8%8B%E7%9A%84GPU%E8%99%9A%E6%8B%9F%E5%8C%96/" data-id="cmjihqq08000gj8uy555xf29f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2025/12/23/WSL2%E4%B8%8B%E7%9A%84GPU%E8%99%9A%E6%8B%9F%E5%8C%96/" data-id="cmjii349v000rakuy9mr93p1v" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -523,7 +526,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" data-id="cmjihqq0a000jj8uyhyr658dq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/29/Nas%E8%BF%81%E7%A7%BB%E6%81%A2%E5%A4%8D/" data-id="cmjii349r000hakuy7glg5ll7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -700,7 +703,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" data-id="cmjihqq0p001qj8uyg0cnd50k" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/28/mesh%E4%B8%8BGateway%E8%90%BD%E5%9C%B0/" data-id="cmjii34a8001rakuy6gvua4mj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -830,7 +833,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/23/mesh%E8%85%BE%E8%AE%AF%E4%BA%91%E7%89%A9%E7%90%86%E6%9E%B6%E6%9E%84/" data-id="cmjihqq0q001vj8uy3yr9ef1q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/23/mesh%E8%85%BE%E8%AE%AF%E4%BA%91%E7%89%A9%E7%90%86%E6%9E%B6%E6%9E%84/" data-id="cmjii34aa001wakuy8mczezjk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1047,7 +1050,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2023/03/22/mesh%E4%B8%8Ecvm%E7%9A%84%E5%AF%B9%E6%AF%94/" data-id="cmjihqq0q001tj8uygbek3xye" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2023/03/22/mesh%E4%B8%8Ecvm%E7%9A%84%E5%AF%B9%E6%AF%94/" data-id="cmjii34a9001takuy2duh39ef" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1185,7 +1188,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/09/14/jmx%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/" data-id="cmjihqq0l001gj8uy1adj865l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/09/14/jmx%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/" data-id="cmjii34a6001makuyenxz8dsu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1328,7 +1331,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/" data-id="cmjihqq0n001jj8uyed1tdd9v" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/" data-id="cmjii34a3001fakuy9fyrh28o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1506,7 +1509,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cmjihqq0o001oj8uycfuu0eei" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cmjii34a5001kakuy94mshpew" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1675,7 +1678,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E6%A6%82%E8%BF%B0/" data-id="cmjihqq0n001lj8uy2fql4pjb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E6%A6%82%E8%BF%B0/" data-id="cmjii34a7001oakuy925fdf5r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1837,7 +1840,7 @@
 
 </div>
 
-    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/" data-id="cmjihqq06000cj8uyest28o85" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/" data-id="cmjii349o000cakuygj1zea1y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

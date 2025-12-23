@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/categories/index.html</loc>
+    <loc>https://flyingglass.github.io/about/index.html</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/about/index.html</loc>
+    <loc>https://flyingglass.github.io/categories/index.html</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -101,15 +101,6 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/11/26/ubuntu%E7%A7%BB%E5%8A%A8mysql%E7%9A%84datadir/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://flyingglass.github.io/2018/04/26/stellar%E6%8C%87%E5%8D%97/</loc>
     
     <lastmod>2024-11-01</lastmod>
@@ -119,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/01/13/redis/</loc>
+    <loc>https://flyingglass.github.io/2018/11/26/ubuntu%E7%A7%BB%E5%8A%A8mysql%E7%9A%84datadir/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -146,16 +137,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/06/02/nginx%E5%8F%8D%E7%88%AC%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://flyingglass.github.io/2018/05/27/nginx%E7%9A%84https%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://flyingglass.github.io/2018/01/13/redis/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -173,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/05/12/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://flyingglass.github.io/2018/05/27/nginx%E7%9A%84https%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -182,7 +164,16 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/01/13/nginx/</loc>
+    <loc>https://flyingglass.github.io/2018/06/02/nginx%E5%8F%8D%E7%88%AC%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://flyingglass.github.io/2018/05/12/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -200,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/04/26/nexus%E7%9A%84npm%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://flyingglass.github.io/2018/01/13/nginx/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -209,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/04/08/nexus%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/</loc>
+    <loc>https://flyingglass.github.io/2018/04/26/nexus%E7%9A%84npm%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -227,6 +218,15 @@
   </url>
   
   <url>
+    <loc>https://flyingglass.github.io/2018/04/08/nexus%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://flyingglass.github.io/2018/05/11/mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/</loc>
     
     <lastmod>2024-11-01</lastmod>
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2019/06/17/mysql5-7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</loc>
+    <loc>https://flyingglass.github.io/2018/01/13/mysql/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/01/13/mysql/</loc>
+    <loc>https://flyingglass.github.io/2019/06/17/mysql5-7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -344,6 +344,15 @@
   </url>
   
   <url>
+    <loc>https://flyingglass.github.io/2018/01/13/homebrew/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://flyingglass.github.io/2018/01/13/gogs/</loc>
     
     <lastmod>2024-11-01</lastmod>
@@ -362,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/01/13/homebrew/</loc>
+    <loc>https://flyingglass.github.io/2018/06/15/eth%E7%9A%84gas%E4%BC%B0%E7%AE%97/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -380,16 +389,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/06/15/eth%E7%9A%84gas%E4%BC%B0%E7%AE%97/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://flyingglass.github.io/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/</loc>
+    <loc>https://flyingglass.github.io/2018/03/13/cdh%E4%B8%8BSqoop%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -407,7 +407,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/</loc>
+    <loc>https://flyingglass.github.io/2018/02/04/cdh5-12-0%E5%AE%89%E8%A3%85/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -416,7 +416,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/2018/03/13/cdh%E4%B8%8BSqoop%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://flyingglass.github.io/2018/02/04/cdh%E5%AE%89%E8%A3%85%E5%87%86%E5%A4%87/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -543,7 +543,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/categories/Nvidia/</loc>
+    <loc>https://flyingglass.github.io/categories/Nas/</loc>
     <lastmod>2025-12-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -557,21 +557,7 @@
   </url>
   
   <url>
-    <loc>https://flyingglass.github.io/categories/Nas/</loc>
-    <lastmod>2025-12-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://flyingglass.github.io/categories/Docker%E5%92%8CK8s/</loc>
-    <lastmod>2025-12-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://flyingglass.github.io/categories/Nvidia/WSL2/</loc>
+    <loc>https://flyingglass.github.io/categories/Nvidia/</loc>
     <lastmod>2025-12-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -585,7 +571,21 @@
   </url>
   
   <url>
+    <loc>https://flyingglass.github.io/categories/Docker%E5%92%8CK8s/</loc>
+    <lastmod>2025-12-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://flyingglass.github.io/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2025-12-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://flyingglass.github.io/categories/Nvidia/WSL2/</loc>
     <lastmod>2025-12-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
