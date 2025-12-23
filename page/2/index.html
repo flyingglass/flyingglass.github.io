@@ -179,7 +179,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                55
+                53
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -208,337 +208,6 @@
 
             
             <section id="main">
-    <article id="post-lily概述" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2021/08/30/lily%E6%A6%82%E8%BF%B0/">lily概述</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2021/08/30/lily%E6%A6%82%E8%BF%B0/">
-            <time datetime="2021-08-30T05:58:54.000Z" itemprop="datePublished">2021-08-30</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h4 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h4><p>基于Spring Cloud、Spring Cloud Alibaba服务注册发现，Ribbon负载均衡，Feign和Rest Template调用，Spring Cloud Gateway</p>
-<ul>
-<li>全链路版本、环境、IP地址和端口匹配动态路由</li>
-<li>全链路自定义网关、服务的过滤器、负载均衡策略发布</li>
-<li>全链路条件匹配、非条件匹配</li>
-<li>服务实时性流量无损下线：IP和端口屏蔽</li>
-<li>异步场景下全链路追踪和路由：异步跨线程Agent插件</li>
-<li>全链路调用链追踪、日志监测</li>
-<li>提供服务端、消费端隔离、注册级别隔离和准入</li>
-<li>本地和远程，局部和全局配置策略驱动</li>
-<li>配置中心（Nacos）、Swagger和Rest规则策略推送</li>
-<li>基于Header参数化规则策略驱动</li>
-<li>限流、熔断、降级防护</li>
-</ul>
-<h4 id="版本兼容列表"><a href="#版本兼容列表" class="headerlink" title="版本兼容列表"></a>版本兼容列表</h4><table>
-<thead>
-<tr>
-<th>Mdd Dependencies Version</th>
-<th>Spring Cloud Version</th>
-<th>Spring Cloud Alibaba Version</th>
-<th>Spring Boot Version</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2.0.0</td>
-<td>Hoxton.SR9</td>
-<td>2.2.5.RELEASE</td>
-<td>2.3.8.RELEASE</td>
-</tr>
-</tbody></table>
-<h4 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h4><ul>
-<li>滚动发布<ol>
-<li>概念：每次滚动升级一个或者多个服务，升级完成后监控观察，直到所有旧版本服务升级到新版本。属于有损发布</li>
-<li>优点：升级快捷，影响范围小，只会影响滚动发布的服务。</li>
-<li>缺点：在滚动升级过程中，无法快速无损回滚，必须降级部署</li>
-</ol>
-</li>
-<li>全链路路由</li>
-</ul>
-<p><img src="/2021/08/30/lily%E6%A6%82%E8%BF%B0/%E5%85%A8%E9%93%BE%E8%B7%AF%E8%B7%AF%E7%94%B1.png" alt="image-20210830143225872"></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2021/08/30/lily%E6%A6%82%E8%BF%B0/" data-id="cmjcrlybl0019lcuy3mf173vc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-    <article id="post-Jedis引发GC问题" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/">Jedis引发GC问题</a>
-        </h1>
-    
-
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/">
-            <time datetime="2021-05-20T02:20:48.000Z" itemprop="datePublished">2021-05-20</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a>
-    </div>
-
-
-                        
-
-                    </div>
-                
-            </header>
-        
-        
-
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h4 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h4><p><em>线上应用经常收到跨服务间SocketTimeout的异常，服务间的调用设置超时时间为500ms，查看Cat监控发现，发生超时异常都伴随着FGC，并且FGC时间都大于500ms，于是决定dump heap镜像。</em></p>
-<h4 id="问题定位分析"><a href="#问题定位分析" class="headerlink" title="问题定位分析"></a>问题定位分析</h4><p>通过<code>mat</code>查看<code>heap dump</code>镜像，发现<strong>Finalizer</strong>引用队列在活跃对象占比高达<code>31.43%</code>，猜测可能有泄漏。</p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621478132.png" alt="1621478132"></p>
-<p>进一步分析发现，<strong>SocksSocketImpl</strong>对象高达<code>113529</code>多个，大量的对象都是<code>Jedis</code>链接，由此确定<code>Jedis</code>可能发生泄漏，同时查看<code>Old</code>区空间稳步斜率增长，怀疑对象未充分<code>YGC</code>即进入<code>Old</code>区，造成下次<code>FGC</code>较长的<code>STW</code>，引发超时。</p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621478647.png" alt="1621478647"></p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621478719.png" alt="1621478719"></p>
-<h4 id="GC问题验证"><a href="#GC问题验证" class="headerlink" title="GC问题验证"></a>GC问题验证</h4><p>接下来就是验证上述猜测了，通过获取<code>gc</code>相关的参数，查看<code>JVM</code>各区的容量，发现<code>S0</code>和<code>S1</code>容量被调整非常小大约<code>2m</code>左右，结合收集器配置，情况如下：</p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621479168.png" alt="1621479168"></p>
-<p>应用采用默认的<code>PS</code>和<code>PO</code>收集器，并且默认开启<code>-XX:+UseAdaptiveSizePolicy</code>，系统会通过吞吐量（<code>cpu</code>的<code>gc</code>时间）计算，优先保证吞吐量来分配<code>Eden</code>，<code>From</code>，<code>To</code>的<code>size</code>，最终导致<code>S0,S1</code>区降为<code>2m</code>。结合<code>GC</code>日志和<code>Cat</code>监控，导致<code>Old</code>的问题就明朗了，每次<code>YGC</code>结束，由于<code>PS</code>和<code>PO</code>收集器的缘故，<code>S0</code>和<code>S1</code>区太小无法，导致配置的晋升参数<code>8</code>几乎失效，对象晋升过快被拷贝到<code>Old</code>区，于是添加<code>-XX:+PrintTenuringDistribution</code>上线验证，得到如下大量<code>GC</code>日志：</p>
-<p><code>Desired survivor size 5048576 bytes, new threshold 1 (max 8)</code> </p>
-<h4 id="GC问题调整"><a href="#GC问题调整" class="headerlink" title="GC问题调整"></a>GC问题调整</h4><p>上述日志验证猜想，对象由于<code>S0</code>和<code>S1</code>的<code>size</code>太小，晋升过快，问题得到验证，解决就简单了：</p>
-<ol>
-<li>更换收集器，<code>PN+CMS</code>或者<code>G1</code>均可</li>
-<li>仍然采用<code>PS+PO</code>收集器，关闭<code>-XX:-UseAdaptiveSizePolicy</code>，手动设置<code>Xmn</code>和<code>SurvivorRatio</code>的值</li>
-</ol>
-<p>考虑<code>heap</code>内存比较小，<code>4g</code>左右，根据<code>R大</code>的一些分享，采用方案<code>2</code>，进行解决，通过<code>Cat</code>获取<code>S0</code>，<code>S1</code>，<code>Eden</code>的大小以及<code>After FGC</code>后活跃对象的占比，设置对应参数即可，以下来自于美团的设置分享：</p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621480549.png" alt="1621480549"></p>
-<p>根据项目实际监控情况，我们未完全上述经验值，对项目进行更合适的设置如下：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-Xms4G -Xmx4G -Xmn2560M -XX:MetaspaceSize=256M</span><br><span class="line"></span><br><span class="line">-XX:-UseAdaptiveSizePolicy</span><br><span class="line"></span><br><span class="line">-XX:MaxTenuringThreshold=15 -XX:TargetSurvivorRatio=80 -XX:SurvivorRatio=18</span><br></pre></td></tr></table></figure>
-
-<h4 id="Jedis问题解决"><a href="#Jedis问题解决" class="headerlink" title="Jedis问题解决"></a>Jedis问题解决</h4><p>上述<code>Jedis</code>垃圾一方面由于<code>GC</code>配置参数不合理导致晋升不合理，查看<code>Jedis</code>的连接池的配置，也进行了调整，查看<code>GenericObjectPool</code>代码，定时任务检测驱逐对象，关键代码如下：</p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222116696.png" alt="20181018222116696"></p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222136328.png" alt="20181018222136328"></p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222203139.png" alt="20181018222203139"><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/20181018222149994.png" alt="20181018222149994"></p>
-<p>从上面代码我们看出，每隔一段时间，就会检测对象池里面对象，要是发现对象空闲时间超过一定时间，就会强制回收；然后又发现链接少于<code>minIdle</code>了，开始创建对象，以满足<code>mindle</code>。调整<code>Redis client</code> 设置的检测轮询时间为1分钟，设置<code>miniIdle</code>为5，修改后上线观察。</p>
-<h4 id="调整前后对比："><a href="#调整前后对比：" class="headerlink" title="调整前后对比："></a>调整前后对比：</h4><p>调整前：</p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621480961.png" alt="1621480961"></p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621481201.png" alt="1621481201"></p>
-<p>调整后：</p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621481022.png" alt="1621481022"></p>
-<p><img src="/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/1621481096.png" alt="1621481096"></p>
-<p>通过上述对比可以看到调整后<code>YGC</code>的次数比调整前减半，调整后的<code>Oldgen</code>也几乎稳定不增长了，<code>YGC</code>由于少了大量的<code>From</code>区往<code>Old</code>区的拷贝（减少<code>Survivor</code>拷贝，<code>GC</code>标记较快，主要耗时为拷贝），<code>YGC</code>时间耗时大幅下降，<code>GC</code>吞吐量获得提升。</p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h4><p><a href="https://www.jianshu.com/p/7414fd6862c5">JVM GC 之「AdaptiveSizePolicy」实战</a></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://flyingglass.github.io/2021/05/20/Jedis%E5%BC%95%E5%8F%91GC%E9%97%AE%E9%A2%98/" data-id="cmjcrlyb5000alcuyd7px2lza" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
     <article id="post-Kafka选举导致的问题" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1853,6 +1522,317 @@
 
 
 
+    <article id="post-rpm离线安装脚本" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/06/17/rpm%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/">rpm离线安装脚本</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/06/17/rpm%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/">
+            <time datetime="2019-06-17T07:48:43.000Z" itemprop="datePublished">2019-06-17</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>rpm离线安装脚本，主要从<a href="https://pkgs.org/%E4%B8%8B%E8%BD%BD">https://pkgs.org/下载</a></em></p>
+<h5 id="下载脚本"><a href="#下载脚本" class="headerlink" title="下载脚本"></a>下载脚本</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">RPM_ARRAY=(perl-5.16.3-293.el7.x86_64.rpm perl-Carp-1.26-244.el7.noarch.rpm perl-Encode-2.51-7.el7.x86_64.rpm perl-Exporter-5.68-3.el7.noarch.rpm perl-File-Path-2.09-2.el7.noarch.rpm perl-File-Temp-0.23.01-3.el7.noarch.rpm perl-Filter-1.49-3.el7.x86_64.rpm perl-Getopt-Long-2.40-3.el7.noarch.rpm perl-HTTP-Tiny-0.033-3.el7.noarch.rpm perl-PathTools-3.40-5.el7.x86_64.rpm perl-Pod-Escapes-1.04-293.el7.noarch.rpm perl-Pod-Perldoc-3.20-4.el7.noarch.rpm perl-Pod-Simple-3.28-4.el7.noarch.rpm perl-Pod-Usage-1.63-3.el7.noarch.rpm perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm perl-Socket-2.010-4.el7.x86_64.rpm perl-Storable-2.45-3.el7.x86_64.rpm perl-Text-ParseWords-3.29-4.el7.noarch.rpm perl-Time-HiRes-1.9725-3.el7.x86_64.rpm perl-Time-Local-1.2300-2.el7.noarch.rpm perl-constant-1.27-2.el7.noarch.rpm perl-libs-5.16.3-293.el7.x86_64.rpm perl-macros-5.16.3-293.el7.x86_64.rpm perl-parent-0.225-244.el7.noarch.rpm perl-podlators-2.5.1-3.el7.noarch.rpm perl-threads-1.87-4.el7.x86_64.rpm perl-threads-shared-1.43-6.el7.x86_64.rpm</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> <span class="variable">$&#123;RPM_ARRAY&#125;</span>; <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;val&#125;</span></span><br><span class="line">	wget http://mirror.centos.org/centos/7/os/x86_64/Packages/<span class="variable">$&#123;val&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h5><ul>
+<li><a href="https://linuxhint.com/bash_loop_list_strings/">bash_loop_list_strings</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2019/06/17/rpm%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/" data-id="cmjcrlybz002nlcuy74zh6qxd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+    <article id="post-mysql5-7离线安装" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/06/17/mysql5-7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/">mysql5.7离线安装</a>
+        </h1>
+    
+
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/06/17/mysql5-7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/">
+            <time datetime="2019-06-17T02:53:49.000Z" itemprop="datePublished">2019-06-17</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a>
+    </div>
+
+
+                        
+
+                    </div>
+                
+            </header>
+        
+        
+
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><em>本文主要介绍mysql5.7的离线安装，关于mysql的配置可以参考之前的博客<a href="https://www.flyflyfish.com/2018/01/13/mysql/">Mysql配置</a>，离线安装中需要的rpm包可以前往<a href="https://pkgs.org/%E4%B8%8B%E8%BD%BD">https://pkgs.org/下载</a></em></p>
+<h4 id="Centos-7-5"><a href="#Centos-7-5" class="headerlink" title="Centos 7.5"></a>Centos 7.5</h4><ul>
+<li>下载安装<code>mysql</code>，下载mysql的安装包，<a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.18-1.el7.x86_64.rpm-bundle.tar">下载地址</a>，解压后<code>rpm</code>列表如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf mysql-5.7.26-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">mysql-community-client-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-server-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-test-5.7.26-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>依赖包</p>
+<ol>
+<li><p><code>numactl</code>软件包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numactl-2.0.9-4.el7_2.x86_64.rpm</span><br><span class="line">numactl-devel-2.0.9-4.el7_2.x86_64.rpm</span><br><span class="line">numactl-libs-2.0.9-4.el7_2.x86_64.rpm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>perl</code>软件包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl-Data-Dumper-2.145-3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>perl</code>相关</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">perl-5.16.3-293.el7.x86_64.rpm </span><br><span class="line">perl-Carp-1.26-244.el7.noarch.rpm</span><br><span class="line">perl-Encode-2.51-7.el7.x86_64.rpm</span><br><span class="line">perl-Exporter-5.68-3.el7.noarch.rpm</span><br><span class="line">perl-File-Path-2.09-2.el7.noarch.rpm</span><br><span class="line">perl-File-Temp-0.23.01-3.el7.noarch.rpm</span><br><span class="line">perl-Filter-1.49-3.el7.x86_64.rpm</span><br><span class="line">perl-Getopt-Long-2.40-3.el7.noarch.rpm</span><br><span class="line">perl-HTTP-Tiny-0.033-3.el7.noarch.rpm</span><br><span class="line">perl-PathTools-3.40-5.el7.x86_64.rpm</span><br><span class="line">perl-Pod-Escapes-1.04-293.el7.noarch.rpm</span><br><span class="line">perl-Pod-Perldoc-3.20-4.el7.noarch.rpm</span><br><span class="line">perl-Pod-Simple-3.28-4.el7.noarch.rpm</span><br><span class="line">perl-Pod-Usage-1.63-3.el7.noarch.rpm</span><br><span class="line">perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm</span><br><span class="line">perl-Socket-2.010-4.el7.x86_64.rpm</span><br><span class="line">perl-Storable-2.45-3.el7.x86_64.rpm</span><br><span class="line">perl-Text-ParseWords-3.29-4.el7.noarch.rpm</span><br><span class="line">perl-Time-HiRes-1.9725-3.el7.x86_64.rpm</span><br><span class="line">perl-Time-Local-1.2300-2.el7.noarch.rpm</span><br><span class="line">perl-constant-1.27-2.el7.noarch.rpm</span><br><span class="line">perl-libs-5.16.3-293.el7.x86_64.rpm</span><br><span class="line">perl-macros-5.16.3-293.el7.x86_64.rpm</span><br><span class="line">perl-parent-0.225-244.el7.noarch.rpm</span><br><span class="line">perl-podlators-2.5.1-3.el7.noarch.rpm</span><br><span class="line">perl-threads-1.87-4.el7.x86_64.rpm</span><br><span class="line">perl-threads-shared-1.43-6.el7.x86_64.rpm</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>其他软件包</p>
+</li>
+</ol>
+<p>   <code>libaio-0.3.109-13.el7.x86_64.rpm</code></p>
+<ol start="4">
+<li><p>查询并卸载系统自带的<code>Mariadb</code>（会与<code>mysql</code>冲突）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询mariadb</span></span><br><span class="line">rpm -ga | grep mariadb</span><br><span class="line">rpm -e --nodeps 查询出来的版本</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>安装<code>mysql</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh libaio-0.3.109-13.el7.x86_64.rpm</span><br><span class="line">rpm -ivh numactl*</span><br><span class="line">rpm -ivh perl-*</span><br><span class="line">rpm -ivh  mysql-community-*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动<code>mysql</code>服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置开机启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> mysqld</span><br><span class="line"></span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看<code>mysql root</code>临时密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /var/log/mysqld.log | grep password</span><br><span class="line"><span class="comment"># 修改密码</span></span><br><span class="line"><span class="comment"># mysql -uroot -p</span></span><br><span class="line"><span class="comment"># SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘newpass’);</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建用户并授权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user newuser@’%’ identified by ‘password’;</span><br><span class="line">grant all privileges on db.* to newuser;</span><br><span class="line"># grant all privileges on *.* to newuser;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://wangzhigang.org/2018/03/12/CentOs7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85MySql/">Centos7离线安装MySql</a></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://flyingglass.github.io/2019/06/17/mysql5-7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" data-id="cmjcrlybr001wlcuyg0yu08yn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
     </nav>
@@ -1871,7 +1851,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="thumbnail">
+                            <a href="/2025/12/23/WSL2%E4%B8%8B%E7%9A%84GPU%E8%99%9A%E6%8B%9F%E5%8C%96/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -1881,47 +1861,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95/" class="title">测试</a></p>
-                            <p class="item-date"><time datetime="2024-11-01T11:27:31.000Z" itemprop="datePublished">2024-11-01</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2024/11/01/test/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2024/11/01/test/" class="title">test</a></p>
-                            <p class="item-date"><time datetime="2024-11-01T10:06:12.000Z" itemprop="datePublished">2024-11-01</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2024/11/01/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="title"></a></p>
-                            <p class="item-date"><time datetime="2024-11-01T10:03:07.691Z" itemprop="datePublished">2024-11-01</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nvidia/">Nvidia</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Nvidia/WSL2/">WSL2</a></p>
+                            <p class="item-title"><a href="/2025/12/23/WSL2%E4%B8%8B%E7%9A%84GPU%E8%99%9A%E6%8B%9F%E5%8C%96/" class="title">WSL2下的GPU虚拟化</a></p>
+                            <p class="item-date"><time datetime="2025-12-23T07:54:57.000Z" itemprop="datePublished">2025-12-23</time></p>
                         </div>
                     </li>
                 
@@ -1963,6 +1905,44 @@
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/23/mesh%E8%85%BE%E8%AE%AF%E4%BA%91%E7%89%A9%E7%90%86%E6%9E%B6%E6%9E%84/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/23/mesh%E8%85%BE%E8%AE%AF%E4%BA%91%E7%89%A9%E7%90%86%E6%9E%B6%E6%9E%84/" class="title">mesh腾讯云物理架构</a></p>
+                            <p class="item-date"><time datetime="2023-03-23T08:19:21.000Z" itemprop="datePublished">2023-03-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2023/03/22/mesh%E4%B8%8Ecvm%E7%9A%84%E5%AF%B9%E6%AF%94/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a></p>
+                            <p class="item-title"><a href="/2023/03/22/mesh%E4%B8%8Ecvm%E7%9A%84%E5%AF%B9%E6%AF%94/" class="title">mesh与cvm的对比</a></p>
+                            <p class="item-date"><time datetime="2023-03-22T06:52:41.000Z" itemprop="datePublished">2023-03-22</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -1973,7 +1953,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%92%8CK8s/">Docker和K8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nas/">Nas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nvidia/">Nvidia</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nvidia/WSL2/">WSL2</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">安装配置</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/">架构之路</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/Mesh/">Mesh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84%E4%B9%8B%E8%B7%AF/%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">问题集锦</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -1982,7 +1962,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">十二月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
