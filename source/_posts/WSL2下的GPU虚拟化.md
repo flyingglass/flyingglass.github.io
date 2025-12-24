@@ -70,6 +70,10 @@ categories:
 
 #### Nvidia-Container-Toolkit
 
+- 指南
+
+  https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.9.0/nvidia-containerd.html
+
 - 安装
 
   ```bash
@@ -102,6 +106,10 @@ categories:
   # Restart containerd:
   sudo systemctl restart containerd
   ```
+
+- 补丁
+
+  ![image-20251223192245372](WSL2下的GPU虚拟化/image-20251223192245372.png)
 
 #### Nvidia-Device-Plugin
 
@@ -303,9 +311,8 @@ categories:
 ## 参考链接
 
 - [CUDA on WSL User Guide](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
-
+- [Nvidia Containerd](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/1.9.0/nvidia-containerd.html)
 - [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 - [Nvidia device plugin for k8s](https://github.com/NVIDIA/k8s-device-plugin)
-
 - [nvidia/cuda docker hub](https://hub.docker.com/r/nvidia/cuda)
 - [NVIDIA Display Mode Selector Tool](https://developer.nvidia.com/displaymodeselector)
