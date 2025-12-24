@@ -1,0 +1,38 @@
+name: Deploy Hexo
+
+on:
+  push:
+    branches:
+      - source  # 对应你原来的 source 分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+        with:
+          submodules: true # 【关键】强制拉取主题里的图标库
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 使用现代稳定的 Node 版本
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          # 确保 Icarus 主题的依赖也被安装
+          if [ -f "themes/icarus/package.json" ]; then cd themes/icarus && npm install && cd ../..; fi
+
+      - name: Generate
+        run: |
+          npx hexo clean
+          npx hexo generate
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # 自动获取权限，无需手动设置 Token
+          publish_dir: ./public
+          publish_branch: master # 部署到 master 分支
